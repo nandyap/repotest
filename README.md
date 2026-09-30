@@ -142,3 +142,53 @@ Still 500 → the broker is broken regardless of identity. Conclusive. Ticket on
 Works → user-assigned identity binding is the fault, and recreating them is the fix.
 That's additive, reversible (identity remove), and doesn't touch the working config. It's the one test I'd still run.
 
+
+
+
+Title
+Container Apps managed identity broker returns HTTP 500 for all identities and all resource audiences in environment cae-m42-ailz-dev-uaen-01
+
+Body — paste as-is
+Summary
+
+The managed identity token broker in Container Apps Environment cae-m42-ailz-dev-uaen-01 (UAE North) returns HTTP 500 for every token request. This affects every identity and every resource audience, in both container apps in the environment. No managed identity authentication works in this environment at all.
+
+Symptom
+
+Requests to the MSI endpoint from inside the containers:
+
+Correlation IDs
+
+1b9a1ef8-0f16-435a-9aba-1c0aff5e20dc — backend identity, resource https://cosmos.azure.com
+ffa18b39-c83b-482c-896d-c5710ca18d15 — backend identity, resource https://management.azure.com
+7e9af3f5-b3e1-4bec-9cd4-faadb36a4d89 — frontend identity, resource https://vault.azure.net
+Scope of the failure
+
+Identity	App	Audience	Result
+145781a6-e02b-4770-b01d-e2ca5639f9ca (user-assigned)	backend	cosmos.azure.com	500
+same	backend	management.azure.com	500
+a25d1900-742e-4c01-ae25-db2b645aa9a8 (user-assigned)	frontend	management.azure.com	500
+same	frontend	vault.azure.net	500
+system-assigned (newly created)	backend	cosmos.azure.com	500
+The broker is responsive and parsing requests correctly — api-version=2018-02-01 returns a correct 400 UnsupportedApiVersion, and a request with no client_id before a system-assigned identity existed returned a correct 400 "Unable to load the proper Managed Identity". Only actual token issuance fails.
+
+Ruled out, verified against the live deployment
+
+Cosmos DB RBAC — backend principal eb621cc0-675b-4f5a-9723-e615e5709af6 holds Cosmos DB Built-in Data Contributor (00000000-0000-0000-0000-000000000002) at account scope
+Identity attachment — az containerapp show confirms attachment; client id matches AZURE_CLIENT_ID
+Container environment — IDENTITY_ENDPOINT, IDENTITY_HEADER, MSI_ENDPOINT, MSI_SECRET all present and correctly valued
+SDK versions — azure-identity 1.25.3, azure-cosmos 4.17.1
+Client-side scope handling — verified _scopes_to_resource strips /.default correctly; also reproduced with raw HTTP, no SDK involved
+Network — DNS resolves to private endpoint 10.13.84.41; TCP 443 connects from inside the container
+Cosmos network ACLs — publicNetworkAccess: Enabled, isVirtualNetworkFilterEnabled: false, ipRules: []
+Azure Resource Health — all resources report Available
+Revision restart, fresh revision from a new deployment, and a newly created system-assigned identity — none resolved it
+Possibly relevant history
+
+This environment was initially deployed while VNet peering and private DNS in the landing zone were still misconfigured; the managed identities were created during that deployment. Those network issues have since been corrected. The identity broker has never successfully issued a token in this environment.
+
+Ask
+
+Please inspect the broker logs for the correlation IDs above and identify why token issuance fails. We are unable to see past the generic 500. This blocks managed identity authentication for the whole environment, which we require before UAT.
+
+
