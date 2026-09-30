@@ -127,3 +127,18 @@ Implementation sketch (requires a code change — deliberately not made yet):
   `CosmosClient(self._endpoint, credential=<key>)` when a key/secret is configured, instead of
   `ManagedIdentityCredential`/`DefaultAzureCredential`. Keep the existing managed-identity path
   as the default so this reverts cleanly once the platform issue is fixed.
+
+
+
+
+ Enable a system-assigned identity on the backend:
+
+az containerapp identity assign -n ca-intake-intake-dev-backend `
+  -g rg-m42-ailz-dev-uaen-01 --system-assigned
+
+Then request a token from inside the container with no client_id at all. Today that returns 400 "Unable to load the proper Managed Identity" — correct, because there isn't one. With a system-assigned identity present:
+
+Still 500 → the broker is broken regardless of identity. Conclusive. Ticket only.
+Works → user-assigned identity binding is the fault, and recreating them is the fix.
+That's additive, reversible (identity remove), and doesn't touch the working config. It's the one test I'd still run.
+
