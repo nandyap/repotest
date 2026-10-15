@@ -32,7 +32,7 @@ Select-String -Path $f -Pattern 'DEV_BEARER'
 
 7. Set the secrets and the allowlist in this window only
 Replace the angle-bracket values. Donal and Santosh get the two patients shown; change them if you want. You need no entry for yourself, because Admin bypasses the list.
-
+_qg8Q~2MaiNNLk0RDCxp9V3FloDQkg3PoQbhGa1p
 $env:AZURE_ENTRA_CLIENT_SECRET = '<client secret>'
 $env:AZURE_LLM_API_KEY = '<Compass key>'
 $env:AZURE_AUTHZ_ALLOWLIST_JSON = '{"version":1,"clinicians":{"<donal-oid>":["PGP001","HG04001"],"<santosh-oid>":["PGP001","HG04001"]}}'
