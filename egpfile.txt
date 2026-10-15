@@ -84,3 +84,24 @@ The backend log should also show the allowlist being seeded.
 
 
 
+
+
+
+====================
+
+$s = $env:AZURE_ENTRA_CLIENT_SECRET
+"length: $($s.Length)   has ~: $($s.Contains('~'))   is a GUID: $($s -match '^[0-9a-fA-F-]{36}$')   has spaces: $($s -match '\s')"
+
+try {
+  $r = Invoke-RestMethod -Method Post -Uri "https://login.microsoftonline.com/97b5dbfb-9d27-4e61-84a6-04d68a2ef555/oauth2/v2.0/token" -Body @{ client_id='e31603af-7beb-486e-8ca5-b268a1aa70b8'; client_secret=$env:AZURE_ENTRA_CLIENT_SECRET; scope='https://graph.microsoft.com/.default'; grant_type='client_credentials' }
+  'SECRET IS VALID'
+} catch { ($_.ErrorDetails.Message | ConvertFrom-Json).error_description.Split("`n")[0] }
+
+$rg = 'rg-ailz-egpwin-dev-m42-aen-001'
+az containerapp auth show -n egpmaf-dev-frontend -g $rg --query "{provider:identityProviders.azureActiveDirectory.registration.clientId, issuer:identityProviders.azureActiveDirectory.registration.openIdIssuer, audiences:identityProviders.azureActiveDirectory.validation.allowedAudiences, tokenStore:login.tokenStore.enabled}" -o json
+az containerapp secret list -n egpmaf-dev-frontend -g $rg --query "[].name" -o tsv
+
+$env:AZURE_ENTRA_CLIENT_SECRET = '<the Value>'
+azd provision
+
+
