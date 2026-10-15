@@ -1,0 +1,215 @@
+PowerShell 7.6.6
+PS C:\Users\vijayn> cd .\Projects\
+PS C:\Users\vijayn\Projects> cd .\EGP\
+PS C:\Users\vijayn\Projects\EGP> cd .\EPG-MAF\
+PS C:\Users\vijayn\Projects\EGP\EPG-MAF> ls
+
+    Directory: C:\Users\vijayn\Projects\EGP\EPG-MAF
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d----          10/15/2026 12:04 PM                .azure
+d----           8/11/2026  6:07 AM                .github
+d----           8/11/2026  6:07 AM                agents
+d----           8/11/2026  6:07 AM                config
+d----           8/11/2026  6:07 AM                dashboards
+d----           8/26/2026  8:37 AM                docs
+d----           8/11/2026  6:07 AM                epg-maf
+d----           9/11/2026 12:23 PM                infra
+d----           8/11/2026  6:07 AM                scripts
+d----           8/11/2026  6:07 AM                test_data
+d----           8/11/2026  6:07 AM                tests
+-a---           8/11/2026  6:07 AM             68 .env.example
+-a---           8/24/2026  6:44 AM           1732 .gitignore
+-a---           8/19/2026 11:25 AM           1906 azure.yaml
+-a---           8/11/2026  6:07 AM          14269 egp-window-agent-discovery.md
+-a---           8/11/2026  6:07 AM            153 langgraph.json
+-a---           9/14/2026  5:08 PM         101691 log2.txt
+-a---           8/11/2026  6:07 AM          15274 README.md
+-a---           8/11/2026  6:07 AM            240 requirements.txt
+
+PS C:\Users\vijayn\Projects\EGP\EPG-MAF> $rg = 'rg-ailz-egpwin-dev-m42-aen-001'
+>> New-Item -ItemType Directory -Force .azure\snapshots | Out-Null
+>> az containerapp show -n egpmaf-dev-backend -g $rg -o json > .azure\snapshots\backend-before.json
+>> az containerapp show -n egpmaf-dev-frontend -g $rg -o json > .azure\snapshots\frontend-before.json
+ERROR: Decryption failed: [WinError 87]  App developer may consider this guidance: https://github.com/AzureAD/microsoft-authentication-extensions-for-python/wiki/PersistenceDecryptionError
+ERROR: Decryption failed: [WinError 87]  App developer may consider this guidance: https://github.com/AzureAD/microsoft-authentication-extensions-for-python/wiki/PersistenceDecryptionError
+PS C:\Users\vijayn\Projects\EGP\EPG-MAF> azd env set AZURE_ENTRA_TENANT_ID 97b5dbfb-9d27-4e61-84a6-04d68a2ef555
+>> azd env set AZURE_ENTRA_CLIENT_ID e31603af-7beb-486e-8ca5-b268a1aa70b8
+>> azd env set AZURE_ENTRA_API_SCOPE api://app-reg-egp-window-agent-dev/access_as_user
+>> azd env set AZURE_ENTRA_ALLOWED_AUDIENCES api://app-reg-egp-window-agent-dev
+>> azd env set AZURE_ENTRA_EXPECTED_AUDIENCE e31603af-7beb-486e-8ca5-b268a1aa70b8
+>> azd env set AZURE_ENTRA_EXPECTED_ISSUER https://login.microsoftonline.com/97b5dbfb-9d27-4e61-84a6-04d68a2ef555/v2.0
+>> azd env set AZURE_ENTRA_JWKS_URL https://login.microsoftonline.com/97b5dbfb-9d27-4e61-84a6-04d68a2ef555/discovery/v2.0/keys
+>> azd env set AZURE_ENTRA_AUTH_ENABLED true
+>> azd env set AZURE_AUTH_STUB_ENABLED false
+>> azd env set AZURE_AUTHZ_BACKEND cosmos
+Update available: 1.30.0 -> 1.35.1 (Release notes)
+To update, run `winget upgrade Microsoft.Azd`
+Update available: 1.30.0 -> 1.35.1 (Release notes)
+To update, run `winget upgrade Microsoft.Azd`
+Update available: 1.30.0 -> 1.35.1 (Release notes)
+To update, run `winget upgrade Microsoft.Azd`
+Update available: 1.30.0 -> 1.35.1 (Release notes)
+To update, run `winget upgrade Microsoft.Azd`
+Update available: 1.30.0 -> 1.35.1 (Release notes)
+To update, run `winget upgrade Microsoft.Azd`
+Update available: 1.30.0 -> 1.35.1 (Release notes)
+To update, run `winget upgrade Microsoft.Azd`
+Update available: 1.30.0 -> 1.35.1 (Release notes)
+To update, run `winget upgrade Microsoft.Azd`
+Update available: 1.30.0 -> 1.35.1 (Release notes)
+To update, run `winget upgrade Microsoft.Azd`
+Update available: 1.30.0 -> 1.35.1 (Release notes)
+To update, run `winget upgrade Microsoft.Azd`
+Update available: 1.30.0 -> 1.35.1 (Release notes)
+To update, run `winget upgrade Microsoft.Azd`
+PS C:\Users\vijayn\Projects\EGP\EPG-MAF> $envName = azd env get-value AZURE_ENV_NAME
+>> $f = ".azure\$envName\.env"
+>> (Get-Content $f) | Where-Object { $_ -notmatch '^NEXT_PUBLIC_DEV_BEARER=' } | Set-Content $f -Encoding ASCII
+>> Select-String -Path $f -Pattern 'DEV_BEARER'
+Update available: 1.30.0 -> 1.35.1 (https://github.com/Azure/azure-dev/releases/tag/azure-dev-cli_1.35.1)
+To update, run `winget upgrade Microsoft.Azd`
+PS C:\Users\vijayn\Projects\EGP\EPG-MAF> $env:AZURE_AUTHZ_ALLOWLIST_JSON = '{"version":1,"clinicians":{"6441885a-094f-460b-a5ff-45c5f8283ff0":["PGP001","HG04001"],"9f7cd65e-9334-4f0d-bea7-abdf02227b24":["PGP001","HG04001"]}}'
+PS C:\Users\vijayn\Projects\EGP\EPG-MAF>  $env:AZURE_LLM_API_KEY = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+PS C:\Users\vijayn\Projects\EGP\EPG-MAF> $env:AZURE_ENTRA_CLIENT_SECRET = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+PS C:\Users\vijayn\Projects\EGP\EPG-MAF> pwsh ./scripts/preflight.ps1
+== EGP MAF preflight (all; mode: Entra sign-in) ==
+Preflight passed.
+PS C:\Users\vijayn\Projects\EGP\EPG-MAF> Resolve-DnsName crailzegpwindevm42aen001.azurecr.io -Server 8.8.8.8 -Type A
+>> Get-Content "$env:windir\System32\drivers\etc\hosts" | Select-String azurecr
+>> Test-NetConnection crailzegpwindevm42aen001.azurecr.io -Port 443
+>> Test-NetConnection crailzegpwindevm42aen001.uaenorth.data.azurecr.io -Port 443
+>>
+>>
+
+Name                           Type   TTL   Section    NameHost
+----                           ----   ---   -------    --------
+crailzegpwindevm42aen001.azure CNAME  60    Answer     crailzegpwindevm42aen001.privatelink.azurecr.io
+cr.io
+crailzegpwindevm42aen001.priva CNAME  60    Answer     uaen-1-az.fe.azcr.io
+telink.azurecr.io
+uaen-1-az.fe.azcr.io           CNAME  60    Answer     uaen-1-acr-az-reg.trafficmanager.net
+uaen-1-acr-az-reg.trafficmanag CNAME  60    Answer     r0922uaen-1-az.uaenorth.cloudapp.azure.com
+er.net
+
+Name       : r0922uaen-1-az.uaenorth.cloudapp.azure.com
+QueryType  : A
+TTL        : 10
+Section    : Answer
+IP4Address : 20.38.140.194
+
+
+IgnoreCase : True
+LineNumber : 31
+Line       : # STALE 2026-08-24 20.38.140.207 crailzegpwindevm42aen001.azurecr.io
+Filename   : InputStream
+Path       : InputStream
+Pattern    : azurecr
+Context    :
+Matches    : {0}
+
+
+IgnoreCase : True
+LineNumber : 32
+Line       : # STALE 2026-08-24 20.38.140.206 crailzegpwindevm42aen001.uaenorth.data.azurecr.io
+Filename   : InputStream
+Path       : InputStream
+Pattern    : azurecr
+Context    :
+Matches    : {0}
+
+
+IgnoreCase : True
+LineNumber : 33
+Line       : 20.38.140.204 crailzegpwindevm42aen001.azurecr.io
+Filename   : InputStream
+Path       : InputStream
+Pattern    : azurecr
+Context    :
+Matches    : {0}
+
+
+IgnoreCase : True
+LineNumber : 34
+Line       : 20.38.140.195 crailzegpwindevm42aen001.uaenorth.data.azurecr.io
+Filename   : InputStream
+Path       : InputStream
+Pattern    : azurecr
+Context    :
+Matches    : {0}
+
+WARNING: TCP connect to (20.38.140.204 : 443) failed
+WARNING: Ping to 20.38.140.204 failed with status: TimedOut
+
+ComputerName             : crailzegpwindevm42aen001.azurecr.io
+RemoteAddress            : 20.38.140.204
+ResolvedAddresses        : {20.38.140.204}
+PingSucceeded            : False
+PingReplyDetails         : System.Net.NetworkInformation.PingReply
+TcpClientSocket          :
+TcpTestSucceeded         : False
+RemotePort               : 443
+TraceRoute               :
+Detailed                 : False
+InterfaceAlias           : Ethernet 182
+InterfaceIndex           : 24
+InterfaceDescription     : Microsoft Hyper-V Network Adapter #2
+NetAdapter               : MSFT_NetAdapter (CreationClassName = "MSFT_NetAdapter", DeviceID =
+                           "{1CA9CE8F-E82C-44BE-A689-40C6D97DE944}", SystemCreationClassName = "CIM_NetworkPort",
+                           SystemName = "vdaenprvt01-72.MHCORP.MUBADALAHEALTH.AE...)
+NetRoute                 : MSFT_NetRoute (InstanceID = ":8:8:8:9:55??55;:8;?8A?8;?C55;")
+SourceAddress            : 10.12.73.181
+NameResolutionSucceeded  : True
+BasicNameResolution      : {Microsoft.DnsClient.Commands.DnsRecord_A}
+LLMNRNetbiosRecords      : {}
+DNSOnlyRecords           : {}
+AllNameResolutionResults : Microsoft.DnsClient.Commands.DnsRecord_A
+IsAdmin                  : False
+NetworkIsolationContext  : Internet
+MatchingIPsecRules       :
+
+WARNING: TCP connect to (20.38.140.195 : 443) failed
+WARNING: Ping to 20.38.140.195 failed with status: TimedOut
+
+ComputerName             : crailzegpwindevm42aen001.uaenorth.data.azurecr.io
+RemoteAddress            : 20.38.140.195
+ResolvedAddresses        : {20.38.140.195}
+PingSucceeded            : False
+PingReplyDetails         : System.Net.NetworkInformation.PingReply
+TcpClientSocket          :
+TcpTestSucceeded         : False
+RemotePort               : 443
+TraceRoute               :
+Detailed                 : False
+InterfaceAlias           : Ethernet 182
+InterfaceIndex           : 24
+InterfaceDescription     : Microsoft Hyper-V Network Adapter #2
+NetAdapter               : MSFT_NetAdapter (CreationClassName = "MSFT_NetAdapter", DeviceID =
+                           "{1CA9CE8F-E82C-44BE-A689-40C6D97DE944}", SystemCreationClassName = "CIM_NetworkPort",
+                           SystemName = "vdaenprvt01-72.MHCORP.MUBADALAHEALTH.AE...)
+NetRoute                 : MSFT_NetRoute (InstanceID = ":8:8:8:9:55??55;:8;?8A?8;?C55;")
+SourceAddress            : 10.12.73.181
+NameResolutionSucceeded  : True
+BasicNameResolution      : {Microsoft.DnsClient.Commands.DnsRecord_A}
+LLMNRNetbiosRecords      : {}
+DNSOnlyRecords           : {}
+AllNameResolutionResults : Microsoft.DnsClient.Commands.DnsRecord_A
+IsAdmin                  : False
+NetworkIsolationContext  : Internet
+MatchingIPsecRules       :
+
+
+PS C:\Users\vijayn\Projects\EGP\EPG-MAF> azd deploy backend
+
+Deploying services (azd deploy)
+
+
+  Service  Status        Duration
+  ───────  ────────────  ──────────
+  ✗ backend  Failed        1m35s
+
+ERROR: publishing service backend: failed publishing service 'backend': failed logging into container registry, token: failed getting ACR token: Post "https://crailzegpwindevm42aen001.azurecr.io/oauth2/exchange": dial tcp 20.38.140.204:443: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond., admin: admin user is not enabled for container registry 'crailzegpwindevm42aen001'
+Update available: 1.30.0 -> 1.35.1 (Release notes)
+To update, run `winget upgrade Microsoft.Azd`
+PS C:\Users\vijayn\Projects\EGP\EPG-MAF>
