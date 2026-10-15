@@ -1,0 +1,86 @@
+4. Save a rollback copy of what's running now
+
+
+$rg = 'rg-ailz-egpwin-dev-m42-aen-001'
+New-Item -ItemType Directory -Force .azure\snapshots | Out-Null
+az containerapp show -n egpmaf-dev-backend -g $rg -o json > .azure\snapshots\backend-before.json
+az containerapp show -n egpmaf-dev-frontend -g $rg -o json > .azure\snapshots\frontend-before.json
+
+Both files should be non-empty.
+
+5. Set the values in the existing azd environment (don't create a new one)
+
+azd env set AZURE_ENTRA_TENANT_ID 97b5dbfb-9d27-4e61-84a6-04d68a2ef555
+azd env set AZURE_ENTRA_CLIENT_ID e31603af-7beb-486e-8ca5-b268a1aa70b8
+azd env set AZURE_ENTRA_API_SCOPE api://app-reg-egp-window-agent-dev/access_as_user
+azd env set AZURE_ENTRA_ALLOWED_AUDIENCES api://app-reg-egp-window-agent-dev
+azd env set AZURE_ENTRA_EXPECTED_AUDIENCE e31603af-7beb-486e-8ca5-b268a1aa70b8
+azd env set AZURE_ENTRA_EXPECTED_ISSUER https://login.microsoftonline.com/97b5dbfb-9d27-4e61-84a6-04d68a2ef555/v2.0
+azd env set AZURE_ENTRA_JWKS_URL https://login.microsoftonline.com/97b5dbfb-9d27-4e61-84a6-04d68a2ef555/discovery/v2.0/keys
+azd env set AZURE_ENTRA_AUTH_ENABLED true
+azd env set AZURE_AUTH_STUB_ENABLED false
+azd env set AZURE_AUTHZ_BACKEND cosmos
+
+
+6. Remove the dev identity from the environment
+
+$envName = azd env get-value AZURE_ENV_NAME
+$f = ".azure\$envName\.env"
+(Get-Content $f) | Where-Object { $_ -notmatch '^NEXT_PUBLIC_DEV_BEARER=' } | Set-Content $f -Encoding ASCII
+Select-String -Path $f -Pattern 'DEV_BEARER'
+
+
+7. Set the secrets and the allowlist in this window only
+Replace the angle-bracket values. Donal and Santosh get the two patients shown; change them if you want. You need no entry for yourself, because Admin bypasses the list.
+
+$env:AZURE_ENTRA_CLIENT_SECRET = '<client secret>'
+$env:AZURE_LLM_API_KEY = '<Compass key>'
+$env:AZURE_AUTHZ_ALLOWLIST_JSON = '{"version":1,"clinicians":{"<donal-oid>":["PGP001","HG04001"],"<santosh-oid>":["PGP001","HG04001"]}}'
+
+With the Cosmos backend, this list is copied into the database once, on the first start. After that the admin API owns it.
+
+
+8. Run the check
+
+pwsh ./scripts/preflight.ps1
+
+It must end with Preflight passed. Read any warnings. If it prints an error, fix it before going on, or send me the line.
+
+
+9. Open the registry and check the address pins
+
+az acr update -n crailzegpwindevm42aen001 --allow-exports true
+az acr update -n crailzegpwindevm42aen001 --public-network-enabled true --default-action Allow
+Resolve-DnsName crailzegpwindevm42aen001.azurecr.io -Server 8.8.8.8 -Type A
+Get-Content "$env:windir\System32\drivers\etc\hosts" | Select-String azurecr
+Test-NetConnection crailzegpwindevm42aen001.azurecr.io -Port 443
+Test-NetConnection crailzegpwindevm42aen001.uaenorth.data.azurecr.io -Port 443
+
+The address from DNS must match the one in hosts, and both connection tests must say TcpTestSucceeded : True. If not, fix the pins as your handoff notes describe before going on.
+
+10. Build and push the images
+
+azd deploy backend
+azd deploy frontend
+
+11. Apply the settings
+
+azd env get-value SERVICE_BACKEND_IMAGE_NAME
+azd env get-value SERVICE_FRONTEND_IMAGE_NAME
+
+Both must print a real registry address (crailzegpwindevm42aen001.azurecr.io/...). Then:
+
+azd provision
+
+13. Check the apps started
+
+az containerapp revision list -n egpmaf-dev-backend -g $rg -o table
+az containerapp revision list -n egpmaf-dev-frontend -g $rg -o table
+az containerapp logs show -n egpmaf-dev-backend -g $rg --tail 60
+
+The newest revision of each must be Running and healthy.
+A backend that won't start has a missing or bad Entra setting. The log names it.
+The backend log should also show the allowlist being seeded.
+
+
+
