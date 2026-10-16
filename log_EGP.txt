@@ -1,362 +1,96 @@
-Connecting to stream...
-2026-10-16T16:48:16.04928  Connecting to the container 'backend'...
-
-2026-10-16T16:48:16.30696  Successfully Connected to container: 'backend' [Revision: 'egpmaf-dev-backend--azd-1792168840', Replica: 'egpmaf-dev-backend--azd-1792168840-7ddb96c66f-4fcd6']
-2026-10-16T16:46:44.4626461Z stdout F 2026-10-16T16:46:44.462336Z [warning  ] authz.cosmos.refresh_failed    env=dev error_type=TypeError service=egp-maf service_version=0.1.0-dev
-2026-10-16T16:46:44.4836237Z stdout F 2026-10-16T16:46:44.483373Z [warning  ] authz.cosmos.refresh_failed    env=dev error_type=TypeError service=egp-maf service_version=0.1.0-dev
-2026-10-16T16:46:51.4390436Z stdout F INFO:     127.0.0.1:42268 - "GET /healthz HTTP/1.1" 200 OK
-2026-10-16T16:46:51.5004674Z stdout F INFO:     127.0.0.1:42282 - "GET /healthz HTTP/1.1" 200 OK
-2026-10-16T16:47:01.4426857Z stdout F INFO:     127.0.0.1:49776 - "GET /healthz HTTP/1.1" 200 OK
-2026-10-16T16:47:11.4404226Z stdout F INFO:     127.0.0.1:34384 - "GET /healthz HTTP/1.1" 200 OK
-2026-10-16T16:47:14.4641425Z stdout F 2026-10-16T16:47:14.463768Z [warning  ] authz.cosmos.refresh_failed    env=dev error_type=TypeError service=egp-maf service_version=0.1.0-dev
-2026-10-16T16:47:14.4852535Z stdout F 2026-10-16T16:47:14.485035Z [warning  ] authz.cosmos.refresh_failed    env=dev error_type=TypeError service=egp-maf service_version=0.1.0-dev
-2026-10-16T16:47:21.4408230Z stdout F INFO:     127.0.0.1:50750 - "GET /healthz HTTP/1.1" 200 OK
-2026-10-16T16:47:21.5005041Z stdout F INFO:     127.0.0.1:50758 - "GET /healthz HTTP/1.1" 200 OK
-2026-10-16T16:47:31.4420783Z stdout F INFO:     127.0.0.1:57140 - "GET /healthz HTTP/1.1" 200 OK
-2026-10-16T16:47:41.4404874Z stdout F INFO:     127.0.0.1:59002 - "GET /healthz HTTP/1.1" 200 OK
-2026-10-16T16:47:44.4651993Z stdout F 2026-10-16T16:47:44.464940Z [warning  ] authz.cosmos.refresh_failed    env=dev error_type=TypeError service=egp-maf service_version=0.1.0-dev
-2026-10-16T16:47:44.4861347Z stdout F 2026-10-16T16:47:44.485882Z [warning  ] authz.cosmos.refresh_failed    env=dev error_type=TypeError service=egp-maf service_version=0.1.0-dev
-2026-10-16T16:47:51.4409600Z stdout F INFO:     127.0.0.1:34088 - "GET /healthz HTTP/1.1" 200 OK
-2026-10-16T16:47:51.4997187Z stdout F INFO:     127.0.0.1:34094 - "GET /healthz HTTP/1.1" 200 OK
-2026-10-16T16:48:01.4413844Z stdout F INFO:     127.0.0.1:57864 - "GET /healthz HTTP/1.1" 200 OK
-2026-10-16T16:48:11.4404543Z stdout F INFO:     127.0.0.1:35970 - "GET /healthz HTTP/1.1" 200 OK
-2026-10-16T16:48:14.4657157Z stdout F 2026-10-16T16:48:14.465393Z [warning  ] authz.cosmos.refresh_failed    env=dev error_type=TypeError service=egp-maf service_version=0.1.0-dev
-2026-10-16T16:48:14.4874865Z stdout F 2026-10-16T16:48:14.487203Z [warning  ] authz.cosmos.refresh_failed    env=dev error_type=TypeError service=egp-maf service_version=0.1.0-dev
-
-2026-10-16T16:48:21.4410937Z stdout F INFO:     127.0.0.1:55408 - "GET /healthz HTTP/1.1" 200 OK
-2026-10-16T16:48:21.5010999Z stdout F INFO:     127.0.0.1:55422 - "GET /healthz HTTP/1.1" 200 OK
-
-2026-10-16T16:48:31.4404323Z stdout F INFO:     127.0.0.1:45770 - "GET /healthz HTTP/1.1" 200 OK
-
-2026-10-16T16:48:40.3849702Z stdout F 2026-10-16T16:48:40.382581Z [error    ] http.unhandled_error           env=dev error_code=internal_error service=egp-maf service_version=0.1.0-dev trace_id=None
-2026-10-16T16:48:40.3850217Z stdout F Traceback (most recent call last):
-2026-10-16T16:48:40.3850356Z stdout F   File "/usr/local/lib/python3.12/site-packages/starlette/middleware/errors.py", line 164, in __call__
-2026-10-16T16:48:40.3850371Z stdout F     await self.app(scope, receive, _send)
-2026-10-16T16:48:40.3850380Z stdout F   File "/usr/local/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
-2026-10-16T16:48:40.3850390Z stdout F     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
-2026-10-16T16:48:40.3850445Z stdout F   File "/usr/local/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
-2026-10-16T16:48:40.3850453Z stdout F     raise exc
-2026-10-16T16:48:40.3850460Z stdout F   File "/usr/local/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
-2026-10-16T16:48:40.3850467Z stdout F     await app(scope, receive, sender)
-2026-10-16T16:48:40.3850475Z stdout F   File "/usr/local/lib/python3.12/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
-2026-10-16T16:48:40.3851199Z stdout F     await self.app(scope, receive, send)
-2026-10-16T16:48:40.3851271Z stdout F   File "/usr/local/lib/python3.12/site-packages/starlette/routing.py", line 676, in __call__
-2026-10-16T16:48:40.3851308Z stdout F     await self.middleware_stack(scope, receive, send)
-2026-10-16T16:48:40.3851325Z stdout F   File "/usr/local/lib/python3.12/site-packages/fastapi/routing.py", line 2734, in app
-2026-10-16T16:48:40.3851340Z stdout F     await route.handle(scope, receive, send)
-2026-10-16T16:48:40.3851353Z stdout F   File "/usr/local/lib/python3.12/site-packages/fastapi/routing.py", line 1281, in handle
-2026-10-16T16:48:40.3851386Z stdout F     await super().handle(scope, receive, send)
-2026-10-16T16:48:40.3851400Z stdout F   File "/usr/local/lib/python3.12/site-packages/starlette/routing.py", line 282, in handle
-2026-10-16T16:48:40.3851412Z stdout F     await self.app(scope, receive, send)
-2026-10-16T16:48:40.3851425Z stdout F   File "/usr/local/lib/python3.12/site-packages/fastapi/routing.py", line 158, in app
-2026-10-16T16:48:40.3851436Z stdout F     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
-2026-10-16T16:48:40.3851448Z stdout F   File "/usr/local/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
-2026-10-16T16:48:40.3851460Z stdout F     raise exc
-2026-10-16T16:48:40.3851472Z stdout F   File "/usr/local/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
-2026-10-16T16:48:40.3851483Z stdout F     await app(scope, receive, sender)
-2026-10-16T16:48:40.3851692Z stdout F   File "/usr/local/lib/python3.12/site-packages/fastapi/routing.py", line 144, in app
-2026-10-16T16:48:40.3851733Z stdout F     response = await f(request)
-2026-10-16T16:48:40.3851758Z stdout F                ^^^^^^^^^^^^^^^^
-2026-10-16T16:48:40.3851772Z stdout F   File "/usr/local/lib/python3.12/site-packages/fastapi/routing.py", line 706, in app
-2026-10-16T16:48:40.3851796Z stdout F     raw_response = await run_endpoint_function(
-2026-10-16T16:48:40.3851810Z stdout F                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-10-16T16:48:40.3851822Z stdout F   File "/usr/local/lib/python3.12/site-packages/fastapi/routing.py", line 352, in run_endpoint_function
-2026-10-16T16:48:40.3851833Z stdout F     return await dependant.call(**values)
-2026-10-16T16:48:40.3851844Z stdout F            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-10-16T16:48:40.3851855Z stdout F   File "/usr/local/lib/python3.12/site-packages/egp_maf/api/admin.py", line 155, in list_clinicians
-2026-10-16T16:48:40.3851985Z stdout F     everyone = await store.load_all()
-2026-10-16T16:48:40.3852004Z stdout F                ^^^^^^^^^^^^^^^^^^^^^^
-2026-10-16T16:48:40.3852016Z stdout F   File "/usr/local/lib/python3.12/site-packages/egp_maf/services/authz_cosmos.py", line 147, in load_all
-2026-10-16T16:48:40.3852538Z stdout F     async for item in container.query_items(
-2026-10-16T16:48:40.3852575Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/core/async_paging.py", line 142, in __anext__
-2026-10-16T16:48:40.3852587Z stdout F     return await self.__anext__()
-2026-10-16T16:48:40.3852600Z stdout F            ^^^^^^^^^^^^^^^^^^^^^^
-2026-10-16T16:48:40.3852745Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/core/async_paging.py", line 145, in __anext__
-2026-10-16T16:48:40.3852771Z stdout F     self._page = await self._page_iterator.__anext__()
-2026-10-16T16:48:40.3852788Z stdout F                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-10-16T16:48:40.3852816Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/core/async_paging.py", line 94, in __anext__
-2026-10-16T16:48:40.3852828Z stdout F     self._response = await self._get_next(self.continuation_token)
-2026-10-16T16:48:40.3852841Z stdout F                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-10-16T16:48:40.3852853Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/aio/_query_iterable_async.py", line 124, in _fetch_next
-2026-10-16T16:48:40.3852864Z stdout F     block = await self._ex_context.fetch_next_block()
-2026-10-16T16:48:40.3852878Z stdout F             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-10-16T16:48:40.3852890Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/_execution_context/aio/execution_dispatcher.py", line 113, in fetch_next_block
-2026-10-16T16:48:40.3852903Z stdout F     return await self._execution_context.fetch_next_block()
-2026-10-16T16:48:40.3852915Z stdout F            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-10-16T16:48:40.3852996Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/_execution_context/aio/base_execution_context.py", line 87, in fetch_next_block
-2026-10-16T16:48:40.3853021Z stdout F     await self._ensure()
-2026-10-16T16:48:40.3853037Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/_execution_context/aio/base_execution_context.py", line 72, in _ensure
-2026-10-16T16:48:40.3853049Z stdout F     results = await self._fetch_next_block()
-2026-10-16T16:48:40.3853059Z stdout F               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-10-16T16:48:40.3853070Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/_execution_context/aio/base_execution_context.py", line 270, in _fetch_next_block
-2026-10-16T16:48:40.3853082Z stdout F     return await self._fetch_items_helper_with_retries(self._fetch_function)
-2026-10-16T16:48:40.3853094Z stdout F            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-10-16T16:48:40.3853106Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/_execution_context/aio/base_execution_context.py", line 176, in _fetch_items_helper_with_retries
-2026-10-16T16:48:40.3853118Z stdout F     return await execute_fetch()
-2026-10-16T16:48:40.3853130Z stdout F            ^^^^^^^^^^^^^^^^^^^^^
-2026-10-16T16:48:40.3853164Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/_execution_context/aio/base_execution_context.py", line 157, in execute_fetch
-2026-10-16T16:48:40.3853177Z stdout F     return await _retry_utility_async.ExecuteAsync(
-2026-10-16T16:48:40.3853213Z stdout F            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-10-16T16:48:40.3853229Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/aio/_retry_utility_async.py", line 142, in ExecuteAsync
-2026-10-16T16:48:40.3853243Z stdout F     result = await ExecuteFunctionAsync(function, *args, **kwargs)
-2026-10-16T16:48:40.3853255Z stdout F              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-10-16T16:48:40.3853267Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/aio/_retry_utility_async.py", line 348, in ExecuteFunctionAsync
-2026-10-16T16:48:40.3853294Z stdout F     return await function(*args, **kwargs)
-2026-10-16T16:48:40.3853457Z stdout F            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-10-16T16:48:40.3853473Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/_execution_context/aio/base_execution_context.py", line 155, in callback
-2026-10-16T16:48:40.3853486Z stdout F     return await self._fetch_items_helper_no_retries(fetch_function)
-2026-10-16T16:48:40.3853498Z stdout F            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-10-16T16:48:40.3853511Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/_execution_context/aio/base_execution_context.py", line 136, in _fetch_items_helper_no_retries
-2026-10-16T16:48:40.3853523Z stdout F     (fetched_items, response_headers) = await fetch_function(new_options)
-2026-10-16T16:48:40.3853569Z stdout F                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-10-16T16:48:40.3853584Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/aio/_cosmos_client_connection_async.py", line 2434, in fetch_fn
-2026-10-16T16:48:40.3853596Z stdout F     await self.__QueryFeed(
-2026-10-16T16:48:40.3853608Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/aio/_cosmos_client_connection_async.py", line 3492, in __QueryFeed
-2026-10-16T16:48:40.3853620Z stdout F     result, last_response_headers = await self.__Post(path, request_params, query, req_headers, **kwargs)
-2026-10-16T16:48:40.3853632Z stdout F                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-10-16T16:48:40.3853644Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/aio/_cosmos_client_connection_async.py", line 1034, in __Post
-2026-10-16T16:48:40.3853656Z stdout F     return await asynchronous_request.AsynchronousRequest(
-2026-10-16T16:48:40.3853680Z stdout F            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-10-16T16:48:40.3853692Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/aio/_asynchronous_request.py", line 287, in AsynchronousRequest
-2026-10-16T16:48:40.3853704Z stdout F     return await _retry_utility_async.ExecuteAsync(
-2026-10-16T16:48:40.3853715Z stdout F            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-10-16T16:48:40.3853776Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/aio/_retry_utility_async.py", line 139, in ExecuteAsync
-2026-10-16T16:48:40.3853791Z stdout F     result = await ExecuteFunctionAsync(function, global_endpoint_manager, *args, **kwargs)
-2026-10-16T16:48:40.3853805Z stdout F              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-2026-10-16T16:48:40.3853816Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/aio/_retry_utility_async.py", line 348, in ExecuteFunctionAsync
-2026-10-16T16:48:40.3853829Z stdout F     return await function(*args, **kwargs)
-2026-10-16T16:48:40.3853840Z stdout F            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-10-16T16:48:40.3853851Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/aio/_asynchronous_request.py", line 139, in _Request
-2026-10-16T16:48:40.3853862Z stdout F     response = await _PipelineRunFunction(
-2026-10-16T16:48:40.3853873Z stdout F                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-10-16T16:48:40.3853885Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/aio/_asynchronous_request.py", line 205, in _PipelineRunFunction
-2026-10-16T16:48:40.3853908Z stdout F     return await pipeline_client._pipeline.run(request, **kwargs)
-2026-10-16T16:48:40.3853920Z stdout F            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-10-16T16:48:40.3853958Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/core/pipeline/_base_async.py", line 229, in run
-2026-10-16T16:48:40.3853973Z stdout F     return await first_node.send(pipeline_request)
-2026-10-16T16:48:40.3853986Z stdout F            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-10-16T16:48:40.3853997Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/core/pipeline/_base_async.py", line 77, in send
-2026-10-16T16:48:40.3854078Z stdout F     response = await self.next.send(request)
-2026-10-16T16:48:40.3854092Z stdout F                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-10-16T16:48:40.3854104Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/core/pipeline/_base_async.py", line 77, in send
-2026-10-16T16:48:40.3854116Z stdout F     response = await self.next.send(request)
-2026-10-16T16:48:40.3854127Z stdout F                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-10-16T16:48:40.3854139Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/core/pipeline/_base_async.py", line 77, in send
-2026-10-16T16:48:40.3854151Z stdout F     response = await self.next.send(request)
-2026-10-16T16:48:40.3854162Z stdout F                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-10-16T16:48:40.3854185Z stdout F   [Previous line repeated 1 more time]
-2026-10-16T16:48:40.3854197Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/aio/_retry_utility_async.py", line 381, in send
-2026-10-16T16:48:40.3854208Z stdout F     response = await self.next.send(request)
-2026-10-16T16:48:40.3854219Z stdout F                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-10-16T16:48:40.3854259Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/core/pipeline/policies/_authentication_async.py", line 108, in send
-2026-10-16T16:48:40.3854273Z stdout F     response = await self.next.send(request)
-2026-10-16T16:48:40.3854297Z stdout F                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-10-16T16:48:40.3854309Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/core/pipeline/_base_async.py", line 77, in send
-2026-10-16T16:48:40.3854321Z stdout F     response = await self.next.send(request)
-2026-10-16T16:48:40.3854332Z stdout F                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-10-16T16:48:40.3854343Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/core/pipeline/_base_async.py", line 77, in send
-2026-10-16T16:48:40.3854354Z stdout F     response = await self.next.send(request)
-2026-10-16T16:48:40.3854366Z stdout F                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-10-16T16:48:40.3854377Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/core/pipeline/_base_async.py", line 77, in send
-2026-10-16T16:48:40.3854388Z stdout F     response = await self.next.send(request)
-2026-10-16T16:48:40.3854399Z stdout F                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-10-16T16:48:40.3854409Z stdout F   [Previous line repeated 1 more time]
-2026-10-16T16:48:40.3854432Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/core/pipeline/_base_async.py", line 111, in send
-2026-10-16T16:48:40.3854444Z stdout F     await self._sender.send(request.http_request, **request.context.options),
-2026-10-16T16:48:40.3854457Z stdout F     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-10-16T16:48:40.3854503Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/core/pipeline/transport/_aiohttp.py", line 352, in send
-2026-10-16T16:48:40.3854520Z stdout F     result = await self.session.request(  # type: ignore
-2026-10-16T16:48:40.3854532Z stdout F                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-10-16T16:48:40.3854545Z stdout F   File "/usr/local/lib/python3.12/site-packages/aiohttp/client.py", line 550, in request
-2026-10-16T16:48:40.3854557Z stdout F     return _RequestContextManager(self._request(method, url, **kwargs))
-2026-10-16T16:48:40.3854569Z stdout F                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-10-16T16:48:40.3854590Z stdout F TypeError: ClientSession._request() got an unexpected keyword argument 'enable_cross_partition_query'
-2026-10-16T16:48:40.3854603Z stdout F INFO:     100.100.209.4:0 - "GET /admin/allowlist/clinicians HTTP/1.1" 500 Internal Server Error
-2026-10-16T16:48:40.3882101Z stderr F ERROR:    Exception in ASGI application
-2026-10-16T16:48:40.3882374Z stderr F Traceback (most recent call last):
-2026-10-16T16:48:40.3882925Z stderr F   File "/usr/local/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 422, in run_asgi
-2026-10-16T16:48:40.3882959Z stderr F     result = await app(  # type: ignore[func-returns-value]
-2026-10-16T16:48:40.3882971Z stderr F              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-10-16T16:48:40.3882982Z stderr F   File "/usr/local/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 63, in __call__
-2026-10-16T16:48:40.3882994Z stderr F     return await self.app(scope, receive, send)
-2026-10-16T16:48:40.3883006Z stderr F            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-10-16T16:48:40.3883019Z stderr F   File "/usr/local/lib/python3.12/site-packages/fastapi/applications.py", line 1163, in __call__
-2026-10-16T16:48:40.3883030Z stderr F     await super().__call__(scope, receive, send)
-2026-10-16T16:48:40.3883044Z stderr F   File "/usr/local/lib/python3.12/site-packages/starlette/applications.py", line 96, in __call__
-2026-10-16T16:48:40.3883069Z stderr F     await self.middleware_stack(scope, receive, send)
-2026-10-16T16:48:40.3883082Z stderr F   File "/usr/local/lib/python3.12/site-packages/starlette/middleware/errors.py", line 186, in __call__
-2026-10-16T16:48:40.3883094Z stderr F     raise exc
-2026-10-16T16:48:40.3883636Z stderr F   File "/usr/local/lib/python3.12/site-packages/starlette/middleware/errors.py", line 164, in __call__
-2026-10-16T16:48:40.3883883Z stderr F     await self.app(scope, receive, _send)
-2026-10-16T16:48:40.3883978Z stderr F   File "/usr/local/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
-2026-10-16T16:48:40.3883998Z stderr F     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
-2026-10-16T16:48:40.3884007Z stderr F   File "/usr/local/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
-2026-10-16T16:48:40.3884017Z stderr F     raise exc
-2026-10-16T16:48:40.3884028Z stderr F   File "/usr/local/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
-2026-10-16T16:48:40.3884071Z stderr F     await app(scope, receive, sender)
-2026-10-16T16:48:40.3884078Z stderr F   File "/usr/local/lib/python3.12/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
-2026-10-16T16:48:40.3884087Z stderr F     await self.app(scope, receive, send)
-2026-10-16T16:48:40.3884095Z stderr F   File "/usr/local/lib/python3.12/site-packages/starlette/routing.py", line 676, in __call__
-2026-10-16T16:48:40.3884103Z stderr F     await self.middleware_stack(scope, receive, send)
-2026-10-16T16:48:40.3884111Z stderr F   File "/usr/local/lib/python3.12/site-packages/fastapi/routing.py", line 2734, in app
-2026-10-16T16:48:40.3884119Z stderr F     await route.handle(scope, receive, send)
-2026-10-16T16:48:40.3884126Z stderr F   File "/usr/local/lib/python3.12/site-packages/fastapi/routing.py", line 1281, in handle
-2026-10-16T16:48:40.3884476Z stderr F     await super().handle(scope, receive, send)
-2026-10-16T16:48:40.3884503Z stderr F   File "/usr/local/lib/python3.12/site-packages/starlette/routing.py", line 282, in handle
-2026-10-16T16:48:40.3884524Z stderr F     await self.app(scope, receive, send)
-2026-10-16T16:48:40.3884532Z stderr F   File "/usr/local/lib/python3.12/site-packages/fastapi/routing.py", line 158, in app
-2026-10-16T16:48:40.3884540Z stderr F     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
-2026-10-16T16:48:40.3884549Z stderr F   File "/usr/local/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
-2026-10-16T16:48:40.3884557Z stderr F     raise exc
-2026-10-16T16:48:40.3884565Z stderr F   File "/usr/local/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
-2026-10-16T16:48:40.3884572Z stderr F     await app(scope, receive, sender)
-2026-10-16T16:48:40.3884580Z stderr F   File "/usr/local/lib/python3.12/site-packages/fastapi/routing.py", line 144, in app
-2026-10-16T16:48:40.3884587Z stderr F     response = await f(request)
-2026-10-16T16:48:40.3884873Z stderr F                ^^^^^^^^^^^^^^^^
-2026-10-16T16:48:40.3884940Z stderr F   File "/usr/local/lib/python3.12/site-packages/fastapi/routing.py", line 706, in app
-2026-10-16T16:48:40.3884956Z stderr F     raw_response = await run_endpoint_function(
-2026-10-16T16:48:40.3884969Z stderr F                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-10-16T16:48:40.3885614Z stderr F   File "/usr/local/lib/python3.12/site-packages/fastapi/routing.py", line 352, in run_endpoint_function
-2026-10-16T16:48:40.3885690Z stderr F     return await dependant.call(**values)
-2026-10-16T16:48:40.3885717Z stderr F            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-10-16T16:48:40.3885730Z stderr F   File "/usr/local/lib/python3.12/site-packages/egp_maf/api/admin.py", line 155, in list_clinicians
-2026-10-16T16:48:40.3885742Z stderr F     everyone = await store.load_all()
-2026-10-16T16:48:40.3885753Z stderr F                ^^^^^^^^^^^^^^^^^^^^^^
-2026-10-16T16:48:40.3885763Z stderr F   File "/usr/local/lib/python3.12/site-packages/egp_maf/services/authz_cosmos.py", line 147, in load_all
-2026-10-16T16:48:40.3885776Z stderr F     async for item in container.query_items(
-2026-10-16T16:48:40.3885788Z stderr F   File "/usr/local/lib/python3.12/site-packages/azure/core/async_paging.py", line 142, in __anext__
-2026-10-16T16:48:40.3885800Z stderr F     return await self.__anext__()
-2026-10-16T16:48:40.3885812Z stderr F            ^^^^^^^^^^^^^^^^^^^^^^
-2026-10-16T16:48:40.3885824Z stderr F   File "/usr/local/lib/python3.12/site-packages/azure/core/async_paging.py", line 145, in __anext__
-2026-10-16T16:48:40.3885834Z stderr F     self._page = await self._page_iterator.__anext__()
-2026-10-16T16:48:40.3885862Z stderr F                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-10-16T16:48:40.3885873Z stderr F   File "/usr/local/lib/python3.12/site-packages/azure/core/async_paging.py", line 94, in __anext__
-2026-10-16T16:48:40.3885884Z stderr F     self._response = await self._get_next(self.continuation_token)
-2026-10-16T16:48:40.3885896Z stderr F                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-10-16T16:48:40.3886129Z stderr F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/aio/_query_iterable_async.py", line 124, in _fetch_next
-2026-10-16T16:48:40.3886196Z stderr F     block = await self._ex_context.fetch_next_block()
-2026-10-16T16:48:40.3886222Z stderr F             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-10-16T16:48:40.3886263Z stderr F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/_execution_context/aio/execution_dispatcher.py", line 113, in fetch_next_block
-2026-10-16T16:48:40.3886273Z stderr F     return await self._execution_context.fetch_next_block()
-2026-10-16T16:48:40.3886280Z stderr F            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-10-16T16:48:40.3886288Z stderr F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/_execution_context/aio/base_execution_context.py", line 87, in fetch_next_block
-2026-10-16T16:48:40.3886296Z stderr F     await self._ensure()
-2026-10-16T16:48:40.3886303Z stderr F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/_execution_context/aio/base_execution_context.py", line 72, in _ensure
-2026-10-16T16:48:40.3886310Z stderr F     results = await self._fetch_next_block()
-2026-10-16T16:48:40.3886317Z stderr F               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-10-16T16:48:40.3886324Z stderr F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/_execution_context/aio/base_execution_context.py", line 270, in _fetch_next_block
-2026-10-16T16:48:40.3886561Z stderr F     return await self._fetch_items_helper_with_retries(self._fetch_function)
-2026-10-16T16:48:40.3886610Z stderr F            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-10-16T16:48:40.3886636Z stderr F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/_execution_context/aio/base_execution_context.py", line 176, in _fetch_items_helper_with_retries
-2026-10-16T16:48:40.3886649Z stderr F     return await execute_fetch()
-2026-10-16T16:48:40.3886922Z stderr F            ^^^^^^^^^^^^^^^^^^^^^
-2026-10-16T16:48:40.3886956Z stderr F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/_execution_context/aio/base_execution_context.py", line 157, in execute_fetch
-2026-10-16T16:48:40.3886969Z stderr F     return await _retry_utility_async.ExecuteAsync(
-2026-10-16T16:48:40.3886981Z stderr F            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-10-16T16:48:40.3887145Z stderr F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/aio/_retry_utility_async.py", line 142, in ExecuteAsync
-2026-10-16T16:48:40.3887165Z stderr F     result = await ExecuteFunctionAsync(function, *args, **kwargs)
-2026-10-16T16:48:40.3887172Z stderr F              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-10-16T16:48:40.3887180Z stderr F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/aio/_retry_utility_async.py", line 348, in ExecuteFunctionAsync
-2026-10-16T16:48:40.3887390Z stderr F     return await function(*args, **kwargs)
-2026-10-16T16:48:40.3887426Z stderr F            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-10-16T16:48:40.3887461Z stderr F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/_execution_context/aio/base_execution_context.py", line 155, in callback
-2026-10-16T16:48:40.3887473Z stderr F     return await self._fetch_items_helper_no_retries(fetch_function)
-2026-10-16T16:48:40.3887484Z stderr F            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-10-16T16:48:40.3887495Z stderr F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/_execution_context/aio/base_execution_context.py", line 136, in _fetch_items_helper_no_retries
-2026-10-16T16:48:40.3887507Z stderr F     (fetched_items, response_headers) = await fetch_function(new_options)
-2026-10-16T16:48:40.3887520Z stderr F                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-10-16T16:48:40.3887532Z stderr F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/aio/_cosmos_client_connection_async.py", line 2434, in fetch_fn
-2026-10-16T16:48:40.3887542Z stderr F     await self.__QueryFeed(
-2026-10-16T16:48:40.3887553Z stderr F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/aio/_cosmos_client_connection_async.py", line 3492, in __QueryFeed
-2026-10-16T16:48:40.3887577Z stderr F     result, last_response_headers = await self.__Post(path, request_params, query, req_headers, **kwargs)
-2026-10-16T16:48:40.3887782Z stderr F                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-10-16T16:48:40.3887826Z stderr F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/aio/_cosmos_client_connection_async.py", line 1034, in __Post
-2026-10-16T16:48:40.3887849Z stderr F     return await asynchronous_request.AsynchronousRequest(
-2026-10-16T16:48:40.3887863Z stderr F            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-10-16T16:48:40.3887875Z stderr F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/aio/_asynchronous_request.py", line 287, in AsynchronousRequest
-2026-10-16T16:48:40.3887886Z stderr F     return await _retry_utility_async.ExecuteAsync(
-2026-10-16T16:48:40.3887898Z stderr F            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-10-16T16:48:40.3887909Z stderr F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/aio/_retry_utility_async.py", line 139, in ExecuteAsync
-2026-10-16T16:48:40.3887921Z stderr F     result = await ExecuteFunctionAsync(function, global_endpoint_manager, *args, **kwargs)
-2026-10-16T16:48:40.3887932Z stderr F              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-10-16T16:48:40.3887959Z stderr F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/aio/_retry_utility_async.py", line 348, in ExecuteFunctionAsync
-2026-10-16T16:48:40.3888019Z stderr F     return await function(*args, **kwargs)
-2026-10-16T16:48:40.3888037Z stderr F            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-10-16T16:48:40.3888053Z stderr F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/aio/_asynchronous_request.py", line 139, in _Request
-2026-10-16T16:48:40.3888151Z stderr F     response = await _PipelineRunFunction(
-2026-10-16T16:48:40.3888165Z stderr F                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-10-16T16:48:40.3888178Z stderr F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/aio/_asynchronous_request.py", line 205, in _PipelineRunFunction
-2026-10-16T16:48:40.3888190Z stderr F     return await pipeline_client._pipeline.run(request, **kwargs)
-2026-10-16T16:48:40.3888204Z stderr F            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-10-16T16:48:40.3888215Z stderr F   File "/usr/local/lib/python3.12/site-packages/azure/core/pipeline/_base_async.py", line 229, in run
-2026-10-16T16:48:40.3888227Z stderr F     return await first_node.send(pipeline_request)
-2026-10-16T16:48:40.3888238Z stderr F            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-10-16T16:48:40.3888305Z stderr F   File "/usr/local/lib/python3.12/site-packages/azure/core/pipeline/_base_async.py", line 77, in send
-2026-10-16T16:48:40.3888320Z stderr F     response = await self.next.send(request)
-2026-10-16T16:48:40.3888328Z stderr F                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-10-16T16:48:40.3888335Z stderr F   File "/usr/local/lib/python3.12/site-packages/azure/core/pipeline/_base_async.py", line 77, in send
-2026-10-16T16:48:40.3888525Z stderr F     response = await self.next.send(request)
-2026-10-16T16:48:40.3888560Z stderr F                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-10-16T16:48:40.3888584Z stderr F   File "/usr/local/lib/python3.12/site-packages/azure/core/pipeline/_base_async.py", line 77, in send
-2026-10-16T16:48:40.3888598Z stderr F     response = await self.next.send(request)
-2026-10-16T16:48:40.3888612Z stderr F                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-10-16T16:48:40.3888626Z stderr F   [Previous line repeated 1 more time]
-2026-10-16T16:48:40.3888653Z stderr F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/aio/_retry_utility_async.py", line 381, in send
-2026-10-16T16:48:40.3888667Z stderr F     response = await self.next.send(request)
-2026-10-16T16:48:40.3888679Z stderr F                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-10-16T16:48:40.3888692Z stderr F   File "/usr/local/lib/python3.12/site-packages/azure/core/pipeline/policies/_authentication_async.py", line 108, in send
-2026-10-16T16:48:40.3888704Z stderr F     response = await self.next.send(request)
-2026-10-16T16:48:40.3888717Z stderr F                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-10-16T16:48:40.3888729Z stderr F   File "/usr/local/lib/python3.12/site-packages/azure/core/pipeline/_base_async.py", line 77, in send
-2026-10-16T16:48:40.3888741Z stderr F     response = await self.next.send(request)
-2026-10-16T16:48:40.3888752Z stderr F                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-10-16T16:48:40.3888763Z stderr F   File "/usr/local/lib/python3.12/site-packages/azure/core/pipeline/_base_async.py", line 77, in send
-2026-10-16T16:48:40.3888867Z stderr F     response = await self.next.send(request)
-2026-10-16T16:48:40.3888881Z stderr F                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-10-16T16:48:40.3888895Z stderr F   File "/usr/local/lib/python3.12/site-packages/azure/core/pipeline/_base_async.py", line 77, in send
-2026-10-16T16:48:40.3888908Z stderr F     response = await self.next.send(request)
-2026-10-16T16:48:40.3888920Z stderr F                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-10-16T16:48:40.3888932Z stderr F   [Previous line repeated 1 more time]
-2026-10-16T16:48:40.3888945Z stderr F   File "/usr/local/lib/python3.12/site-packages/azure/core/pipeline/_base_async.py", line 111, in send
-2026-10-16T16:48:40.3888958Z stderr F     await self._sender.send(request.http_request, **request.context.options),
-2026-10-16T16:48:40.3888971Z stderr F     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-10-16T16:48:40.3888984Z stderr F   File "/usr/local/lib/python3.12/site-packages/azure/core/pipeline/transport/_aiohttp.py", line 352, in send
-2026-10-16T16:48:40.3888998Z stderr F     result = await self.session.request(  # type: ignore
-2026-10-16T16:48:40.3889197Z stderr F                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-10-16T16:48:40.3889229Z stderr F   File "/usr/local/lib/python3.12/site-packages/aiohttp/client.py", line 550, in request
-2026-10-16T16:48:40.3889242Z stderr F     return _RequestContextManager(self._request(method, url, **kwargs))
-2026-10-16T16:48:40.3889255Z stderr F                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-10-16T16:48:40.3889491Z stderr F TypeError: ClientSession._request() got an unexpected keyword argument 'enable_cross_partition_query'
-
-2026-10-16T16:48:41.4422269Z stdout F INFO:     127.0.0.1:51524 - "GET /healthz HTTP/1.1" 200 OK
-
-2026-10-16T16:48:44.4672727Z stdout F 2026-10-16T16:48:44.466987Z [warning  ] authz.cosmos.refresh_failed    env=dev error_type=TypeError service=egp-maf service_version=0.1.0-dev
-2026-10-16T16:48:44.4883844Z stdout F 2026-10-16T16:48:44.488111Z [warning  ] authz.cosmos.refresh_failed    env=dev error_type=TypeError service=egp-maf service_version=0.1.0-dev
-
-2026-10-16T16:48:51.4417557Z stdout F INFO:     127.0.0.1:52390 - "GET /healthz HTTP/1.1" 200 OK
-2026-10-16T16:48:51.5015077Z stdout F INFO:     127.0.0.1:52400 - "GET /healthz HTTP/1.1" 200 OK
-
-2026-10-16T16:49:01.4421653Z stdout F INFO:     127.0.0.1:42644 - "GET /healthz HTTP/1.1" 200 OK
-
-2026-10-16T16:49:11.4403329Z stdout F INFO:     127.0.0.1:59826 - "GET /healthz HTTP/1.1" 200 OK
-
-2026-10-16T16:49:14.4679362Z stdout F 2026-10-16T16:49:14.467623Z [warning  ] authz.cosmos.refresh_failed    env=dev error_type=TypeError service=egp-maf service_version=0.1.0-dev
-2026-10-16T16:49:14.4888887Z stdout F 2026-10-16T16:49:14.488657Z [warning  ] authz.cosmos.refresh_failed    env=dev error_type=TypeError service=egp-maf service_version=0.1.0-dev
-
-2026-10-16T16:49:21.4415743Z stdout F INFO:     127.0.0.1:36664 - "GET /healthz HTTP/1.1" 200 OK
-2026-10-16T16:49:21.5024745Z stdout F INFO:     127.0.0.1:36680 - "GET /healthz HTTP/1.1" 200 OK
-
-2026-10-16T16:49:28.5829536Z stdout F INFO:     100.100.209.4:0 - "GET /api/me HTTP/1.1" 200 OK
-
-2026-10-16T16:49:31.4429978Z stdout F INFO:     127.0.0.1:52998 - "GET /healthz HTTP/1.1" 200 OK
-
-2026-10-16T16:49:32.2320101Z stdout F INFO:     100.100.209.4:0 - "GET /api/me HTTP/1.1" 200 OK
-
-2026-10-16T16:49:41.4366922Z stdout F INFO:     127.0.0.1:50646 - "GET /healthz HTTP/1.1" 200 OK
-
-2026-10-16T16:49:44.4691666Z stdout F 2026-10-16T16:49:44.468878Z [warning  ] authz.cosmos.refresh_failed    env=dev error_type=TypeError service=egp-maf service_version=0.1.0-dev
-2026-10-16T16:49:44.4899194Z stdout F 2026-10-16T16:49:44.489666Z [warning  ] authz.cosmos.refresh_failed    env=dev error_type=TypeError service=egp-maf service_version=0.1.0-dev
-
-2026-10-16T16:49:51.4392389Z stdout F INFO:     127.0.0.1:60072 - "GET /healthz HTTP/1.1" 200 OK
-2026-10-16T16:49:51.4979657Z stdout F INFO:     127.0.0.1:60086 - "GET /healthz HTTP/1.1" 200 OK
+[
+  {
+    "access_token": "ey-ekl2Q",
+    "expires_on": "2026-10-16T18:21:49.8855883Z",
+    "id_token": "eyJ-Vj6HJYw",
+    "provider_name": "aad",
+    "refresh_token": "1.Aa8A-9u1lyedYU6E-onMYzcYl1eapA",
+    "user_claims": [
+      {
+        "typ": "aud",
+        "val": "e31603af-7beb-486e-8ca5-b268a1aa70b8"
+      },
+      {
+        "typ": "iss",
+        "val": "https://login.microsoftonline.com/97b5dbfb-9d27-4e61-84a6-04d68a2ef555/v2.0"
+      },
+      {
+        "typ": "iat",
+        "val": "1792169968"
+      },
+      {
+        "typ": "nbf",
+        "val": "1792169968"
+      },
+      {
+        "typ": "exp",
+        "val": "1792173868"
+      },
+      {
+        "typ": "aio",
+        "val": "ATQBy/4eAAAAaeCRVfuQ8sMaeI8hQ3Nzl+282MWU7dlRBvTHGRl51wL083xxHKcnGMJsMYDnZWZXOlxpzJUSZ3lm52Mq1yfa0OX2mvOQ7Rerh7eULkd4M3y39sUj1FeuPy/YNnLt/BVv4qGHOq4/LfoUAPZHEJF2dkQB/oNaKdJdN/XT5ZxX1vK+8RwV2X0jkAZ5HuMJ34N+9Br+ED2mvpgZLPMyaZEPLyRWJw8C+eUQnW9zYi0c4OxPsTk3WCn64w4PlSxFIRaoKB5tsKGpO7hP6FDzHd+Qy7HMEsScbZTzlTAWTA07up+uobd3MIpRtw/7p2eWqR9KiIgeRzyoQpdcFDvuroO1udToLDnMlAjLU2DwzZVnHbRA7QnU0z9sAzChcQt68s36ye07xRyElvwBKE1hNhMSzw=="
+      },
+      {
+        "typ": "c_hash",
+        "val": "W_zN9lBWthaxEIcN-XCj6g"
+      },
+      {
+        "typ": "http://schemas.microsoft.com/identity/claims/identityprovider",
+        "val": "https://sts.windows.net/439f1ece-c497-4554-ac3f-63c52548b42d/"
+      },
+      {
+        "typ": "name",
+        "val": "Vijay Nandyapgol (Microsoft)"
+      },
+      {
+        "typ": "nonce",
+        "val": "5d969efd861c4e0aa7f16232b8158193_20261016170927"
+      },
+      {
+        "typ": "http://schemas.microsoft.com/identity/claims/objectidentifier",
+        "val": "06fe101c-2c76-4599-978d-1a3ec1ead3ad"
+      },
+      {
+        "typ": "preferred_username",
+        "val": "v-vijaynan@mubadalahealth.info"
+      },
+      {
+        "typ": "rh",
+        "val": "1.AU4A-9u1lyedYU6EpgTWii71Va8DFuPre25IjKWyaKGqcLgAAMpOAA."
+      },
+      {
+        "typ": "roles",
+        "val": "Clinician"
+      },
+      {
+        "typ": "roles",
+        "val": "Admin"
+      },
+      {
+        "typ": "roles",
+        "val": "AccessManager"
+      },
+      {
+        "typ": "sid",
+        "val": "009ae85a-e163-0b7b-dcd6-4501c7340132"
+      },
+      {
+        "typ": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier",
+        "val": "g3gTUbPqlbGm2ctmBkwZyu90vKmBPZ-cGQ23z9a7Te4"
+      },
+      {
+        "typ": "http://schemas.microsoft.com/identity/claims/tenantid",
+        "val": "97b5dbfb-9d27-4e61-84a6-04d68a2ef555"
+      },
+      {
+        "typ": "uti",
+        "val": "oGeVhU6zVk6ejNCQr8nGAA"
+      },
+      {
+        "typ": "ver",
+        "val": "2.0"
+      }
+    ],
+    "user_id": "Vijay Nandyapgol (Microsoft)"
+  }
+]
