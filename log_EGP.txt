@@ -1,1129 +1,362 @@
-PS C:\Users\vijayn\Projects\EGP\EPG-MAF> azd deploy backend
+Connecting to stream...
+2026-10-16T16:48:16.04928  Connecting to the container 'backend'...
 
-Deploying services (azd deploy)
+2026-10-16T16:48:16.30696  Successfully Connected to container: 'backend' [Revision: 'egpmaf-dev-backend--azd-1792168840', Replica: 'egpmaf-dev-backend--azd-1792168840-7ddb96c66f-4fcd6']
+2026-10-16T16:46:44.4626461Z stdout F 2026-10-16T16:46:44.462336Z [warning  ] authz.cosmos.refresh_failed    env=dev error_type=TypeError service=egp-maf service_version=0.1.0-dev
+2026-10-16T16:46:44.4836237Z stdout F 2026-10-16T16:46:44.483373Z [warning  ] authz.cosmos.refresh_failed    env=dev error_type=TypeError service=egp-maf service_version=0.1.0-dev
+2026-10-16T16:46:51.4390436Z stdout F INFO:     127.0.0.1:42268 - "GET /healthz HTTP/1.1" 200 OK
+2026-10-16T16:46:51.5004674Z stdout F INFO:     127.0.0.1:42282 - "GET /healthz HTTP/1.1" 200 OK
+2026-10-16T16:47:01.4426857Z stdout F INFO:     127.0.0.1:49776 - "GET /healthz HTTP/1.1" 200 OK
+2026-10-16T16:47:11.4404226Z stdout F INFO:     127.0.0.1:34384 - "GET /healthz HTTP/1.1" 200 OK
+2026-10-16T16:47:14.4641425Z stdout F 2026-10-16T16:47:14.463768Z [warning  ] authz.cosmos.refresh_failed    env=dev error_type=TypeError service=egp-maf service_version=0.1.0-dev
+2026-10-16T16:47:14.4852535Z stdout F 2026-10-16T16:47:14.485035Z [warning  ] authz.cosmos.refresh_failed    env=dev error_type=TypeError service=egp-maf service_version=0.1.0-dev
+2026-10-16T16:47:21.4408230Z stdout F INFO:     127.0.0.1:50750 - "GET /healthz HTTP/1.1" 200 OK
+2026-10-16T16:47:21.5005041Z stdout F INFO:     127.0.0.1:50758 - "GET /healthz HTTP/1.1" 200 OK
+2026-10-16T16:47:31.4420783Z stdout F INFO:     127.0.0.1:57140 - "GET /healthz HTTP/1.1" 200 OK
+2026-10-16T16:47:41.4404874Z stdout F INFO:     127.0.0.1:59002 - "GET /healthz HTTP/1.1" 200 OK
+2026-10-16T16:47:44.4651993Z stdout F 2026-10-16T16:47:44.464940Z [warning  ] authz.cosmos.refresh_failed    env=dev error_type=TypeError service=egp-maf service_version=0.1.0-dev
+2026-10-16T16:47:44.4861347Z stdout F 2026-10-16T16:47:44.485882Z [warning  ] authz.cosmos.refresh_failed    env=dev error_type=TypeError service=egp-maf service_version=0.1.0-dev
+2026-10-16T16:47:51.4409600Z stdout F INFO:     127.0.0.1:34088 - "GET /healthz HTTP/1.1" 200 OK
+2026-10-16T16:47:51.4997187Z stdout F INFO:     127.0.0.1:34094 - "GET /healthz HTTP/1.1" 200 OK
+2026-10-16T16:48:01.4413844Z stdout F INFO:     127.0.0.1:57864 - "GET /healthz HTTP/1.1" 200 OK
+2026-10-16T16:48:11.4404543Z stdout F INFO:     127.0.0.1:35970 - "GET /healthz HTTP/1.1" 200 OK
+2026-10-16T16:48:14.4657157Z stdout F 2026-10-16T16:48:14.465393Z [warning  ] authz.cosmos.refresh_failed    env=dev error_type=TypeError service=egp-maf service_version=0.1.0-dev
+2026-10-16T16:48:14.4874865Z stdout F 2026-10-16T16:48:14.487203Z [warning  ] authz.cosmos.refresh_failed    env=dev error_type=TypeError service=egp-maf service_version=0.1.0-dev
 
-  Service  Phase         Elapsed   Detail
-  ───────  ────────────  ────────  ────────────────────
-  ◐ backend  Publishing    2m13s     Running remote build
-WARNING: Remote build failed: remote build failed: 2026/10/16 14:46:26 Downloading source code...
-2026/10/16 14:46:27 Finished downloading source code
-2026/10/16 14:46:27 Using acb_vol_ed3bb898-bc55-4351-99e0-14926b753032 as the home volume
-2026/10/16 14:46:27 Setting up Docker configuration...
-2026/10/16 14:46:28 Successfully set up Docker configuration
-2026/10/16 14:46:28 Logging in to registry: crailzegpwindevm42aen001.azurecr.io
-2026/10/16 14:46:28 Successfully logged into crailzegpwindevm42aen001.azurecr.io
-2026/10/16 14:46:28 Executing step ID: build. Timeout(sec): 28800, Working directory: '', Network: ''
-2026/10/16 14:46:28 Scanning for dependencies...
-2026/10/16 14:46:29 Successfully scanned dependencies
-2026/10/16 14:46:29 Launching container with name: build
-Sending build context to Docker daemon  813.6kB
-Step 1/17 : FROM python:3.12-slim-bookworm AS builder
-3.12-slim-bookworm: Pulling from library/python
-7fd1ebe418b5: Pulling fs layer
-6e0ba8ba0487: Pulling fs layer
-86a9e13e035d: Pulling fs layer
-f9d2fb07d6f0: Pulling fs layer
-f9d2fb07d6f0: Waiting
-6e0ba8ba0487: Verifying Checksum
-6e0ba8ba0487: Download complete
-86a9e13e035d: Verifying Checksum
-86a9e13e035d: Download complete
-7fd1ebe418b5: Verifying Checksum
-7fd1ebe418b5: Download complete
-f9d2fb07d6f0: Verifying Checksum
-f9d2fb07d6f0: Download complete
-7fd1ebe418b5: Pull complete
-6e0ba8ba0487: Pull complete
-86a9e13e035d: Pull complete
-f9d2fb07d6f0: Pull complete
-Digest: sha256:34386ef0cb081344d7ec1c103ba398e6e9f64e9ab3a1509accc92a4e24a07258
-Status: Downloaded newer image for python:3.12-slim-bookworm
- ---> 4f228bc1cbcf
-Step 2/17 : ENV PYTHONDONTWRITEBYTECODE=1     PYTHONUNBUFFERED=1     PIP_NO_CACHE_DIR=1     PIP_DISABLE_PIP_VERSION_CHECK=1
- ---> Running in 545aa4121c15
-Removing intermediate container 545aa4121c15
- ---> f8db1d67555f
-Step 3/17 : WORKDIR /build
- ---> Running in 95c7dee3379e
-Removing intermediate container 95c7dee3379e
- ---> 41640ed4f181
-Step 4/17 : COPY pyproject.toml README.md ./
- ---> 3a02c3289d80
-Step 5/17 : COPY src ./src
- ---> 53b2406852ba
-Step 6/17 : RUN pip install --upgrade pip  && pip wheel --wheel-dir /wheels .
- ---> Running in 9035ff8c9030
-Requirement already satisfied: pip in /usr/local/lib/python3.12/site-packages (25.0.1)
-Collecting pip
-  Downloading pip-26.2.1-py3-none-any.whl.metadata (4.6 kB)
-Downloading pip-26.2.1-py3-none-any.whl (1.8 MB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.8/1.8 MB 6.3 MB/s eta 0:00:00
-Installing collected packages: pip
-  Attempting uninstall: pip
-    Found existing installation: pip 25.0.1
-    Uninstalling pip-25.0.1:
-      Successfully uninstalled pip-25.0.1
-Successfully installed pip-26.2.1
-WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
-Processing ./.
-  Installing build dependencies: started
-  Installing build dependencies: finished with status 'done'
-  Getting requirements to build wheel: started
-  Getting requirements to build wheel: finished with status 'done'
-  Preparing metadata (pyproject.toml): started
-  Preparing metadata (pyproject.toml): finished with status 'done'
-Collecting agent-framework>=1.0.0b1 (from egp-maf==0.1.0)
-  Downloading agent_framework-1.22.0-py3-none-any.whl.metadata (11 kB)
-Collecting alembic<2,>=1.14.0 (from egp-maf==0.1.0)
-  Downloading alembic-1.20.0-py3-none-any.whl.metadata (7.3 kB)
-Collecting azure-cosmos<5,>=4.9.0 (from egp-maf==0.1.0)
-  Downloading azure_cosmos-4.17.1-py3-none-any.whl.metadata (129 kB)
-Collecting azure-identity<2,>=1.19.0 (from egp-maf==0.1.0)
-  Downloading azure_identity-1.26.0-py3-none-any.whl.metadata (93 kB)
-Collecting fastapi<1,>=0.115.0 (from egp-maf==0.1.0)
-  Downloading fastapi-0.143.3-py3-none-any.whl.metadata (26 kB)
-Collecting opentelemetry-api>=1.28.0 (from egp-maf==0.1.0)
-  Downloading opentelemetry_api-1.45.1-py3-none-any.whl.metadata (1.4 kB)
-Collecting opentelemetry-sdk>=1.28.0 (from egp-maf==0.1.0)
-  Downloading opentelemetry_sdk-1.45.1-py3-none-any.whl.metadata (1.6 kB)
-Collecting psycopg<4,>=3.2.0 (from psycopg[binary,pool]<4,>=3.2.0->egp-maf==0.1.0)
-  Downloading psycopg-3.3.6-py3-none-any.whl.metadata (4.4 kB)
-Collecting pydantic-settings<3,>=2.6.0 (from egp-maf==0.1.0)
-  Downloading pydantic_settings-2.16.0-py3-none-any.whl.metadata (4.0 kB)
-Collecting pydantic<3,>=2.9.0 (from egp-maf==0.1.0)
-  Downloading pydantic-2.14.1-py3-none-any.whl.metadata (133 kB)
-Collecting pyjwt<3,>=2.13.0 (from pyjwt[crypto]<3,>=2.13.0->egp-maf==0.1.0)
-  Downloading pyjwt-2.15.1-py3-none-any.whl.metadata (3.5 kB)
-Collecting python-dotenv<2,>=1.0.1 (from egp-maf==0.1.0)
-  Downloading python_dotenv-1.2.4-py3-none-any.whl.metadata (29 kB)
-Collecting sqlalchemy<3,>=2.0.0 (from egp-maf==0.1.0)
-  Downloading sqlalchemy-2.1.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (9.7 kB)
-Collecting structlog<25,>=24.4.0 (from egp-maf==0.1.0)
-  Downloading structlog-24.4.0-py3-none-any.whl.metadata (7.3 kB)
-Collecting uvicorn<1,>=0.32.0 (from uvicorn[standard]<1,>=0.32.0->egp-maf==0.1.0)
-  Downloading uvicorn-0.54.0-py3-none-any.whl.metadata (6.6 kB)
-Collecting Mako (from alembic<2,>=1.14.0->egp-maf==0.1.0)
-  Downloading mako-1.4.3-py3-none-any.whl.metadata (2.9 kB)
-Collecting typing-extensions>=4.12 (from alembic<2,>=1.14.0->egp-maf==0.1.0)
-  Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
-Collecting azure-core>=1.30.0 (from azure-cosmos<5,>=4.9.0->egp-maf==0.1.0)
-  Downloading azure_core-1.41.0-py3-none-any.whl.metadata (49 kB)
-Collecting cryptography>=2.5 (from azure-identity<2,>=1.19.0->egp-maf==0.1.0)
-  Downloading cryptography-50.0.2-cp311-abi3-manylinux_2_34_x86_64.whl.metadata (4.4 kB)
-Collecting msal>=1.39.0 (from azure-identity<2,>=1.19.0->egp-maf==0.1.0)
-  Downloading msal-1.39.0-py3-none-any.whl.metadata (11 kB)
-Collecting msal-extensions>=1.2.0 (from azure-identity<2,>=1.19.0->egp-maf==0.1.0)
-  Downloading msal_extensions-1.3.1-py3-none-any.whl.metadata (7.8 kB)
-Collecting starlette>=0.46.0 (from fastapi<1,>=0.115.0->egp-maf==0.1.0)
-  Downloading starlette-1.8.0-py3-none-any.whl.metadata (6.6 kB)
-Collecting typing-inspection>=0.4.2 (from fastapi<1,>=0.115.0->egp-maf==0.1.0)
-  Downloading typing_inspection-0.4.4-py3-none-any.whl.metadata (2.6 kB)
-Collecting annotated-doc>=0.0.2 (from fastapi<1,>=0.115.0->egp-maf==0.1.0)
-  Downloading annotated_doc-0.0.5-py3-none-any.whl.metadata (6.5 kB)
-Collecting psycopg-binary==3.3.6 (from psycopg[binary,pool]<4,>=3.2.0->egp-maf==0.1.0)
-  Downloading psycopg_binary-3.3.6-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (2.7 kB)
-Collecting psycopg-pool (from psycopg[binary,pool]<4,>=3.2.0->egp-maf==0.1.0)
-  Downloading psycopg_pool-3.3.3-py3-none-any.whl.metadata (2.8 kB)
-Collecting annotated-types>=0.6.0 (from pydantic<3,>=2.9.0->egp-maf==0.1.0)
-  Downloading annotated_types-0.8.0-py3-none-any.whl.metadata (15 kB)
-Collecting pydantic-core==2.50.1 (from pydantic<3,>=2.9.0->egp-maf==0.1.0)
-  Downloading pydantic_core-2.50.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.5 kB)
-Collecting click>=7.0 (from uvicorn<1,>=0.32.0->uvicorn[standard]<1,>=0.32.0->egp-maf==0.1.0)
-  Downloading click-8.5.0-py3-none-any.whl.metadata (2.6 kB)
-Collecting h11>=0.8 (from uvicorn<1,>=0.32.0->uvicorn[standard]<1,>=0.32.0->egp-maf==0.1.0)
-  Downloading h11-0.16.0-py3-none-any.whl.metadata (8.3 kB)
-Collecting httptools>=0.8.0 (from uvicorn[standard]<1,>=0.32.0->egp-maf==0.1.0)
-  Downloading httptools-0.9.0-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (3.5 kB)
-Collecting pyyaml>=5.1 (from uvicorn[standard]<1,>=0.32.0->egp-maf==0.1.0)
-  Downloading pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.4 kB)
-Collecting uvloop>=0.15.1 (from uvicorn[standard]<1,>=0.32.0->egp-maf==0.1.0)
-  Downloading uvloop-0.23.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (5.1 kB)
-Collecting watchfiles>=0.20 (from uvicorn[standard]<1,>=0.32.0->egp-maf==0.1.0)
-  Downloading watchfiles-1.3.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.9 kB)
-Collecting websockets>=13.0 (from uvicorn[standard]<1,>=0.32.0->egp-maf==0.1.0)
-  Downloading websockets-17.2-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (6.3 kB)
-Collecting agent-framework-core==1.22.0 (from agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading agent_framework_core-1.22.0-py3-none-any.whl.metadata (13 kB)
-Collecting msgspec<0.23,>=0.20.0 (from agent-framework-core==1.22.0->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading msgspec-0.22.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (6.0 kB)
-Collecting regex>=2024.11.6 (from agent-framework-core==1.22.0->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading regex-2026.9.29-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (40 kB)
-Collecting mcp<2,>=1.24.0 (from agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading mcp-1.30.0-py3-none-any.whl.metadata (9.3 kB)
-Collecting agent-framework-a2a<2,>=1.0.0b261015 (from agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading agent_framework_a2a-1.0.0b261015-py3-none-any.whl.metadata (4.5 kB)
-Collecting agent-framework-ag-ui<2,>=1.6.0 (from agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading agent_framework_ag_ui-1.6.0-py3-none-any.whl.metadata (31 kB)
-Collecting agent-framework-anthropic<2,>=1.0.0b261015 (from agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading agent_framework_anthropic-1.0.0b261015-py3-none-any.whl.metadata (3.0 kB)
-Collecting agent-framework-azure-ai-search<2,>=1.0.0b261015 (from agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading agent_framework_azure_ai_search-1.0.0b261015-py3-none-any.whl.metadata (8.2 kB)
-Collecting agent-framework-azure-contentunderstanding<2,>=1.0.0b261015 (from agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading agent_framework_azure_contentunderstanding-1.0.0b261015-py3-none-any.whl.metadata (7.6 kB)
-Collecting agent-framework-azure-cosmos<2,>=1.0.0b261015 (from agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading agent_framework_azure_cosmos-1.0.0b261015-py3-none-any.whl.metadata (8.0 kB)
-Collecting agent-framework-azurefunctions<2,>=1.0.0b260922 (from agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading agent_framework_azurefunctions-1.0.0b260922-py3-none-any.whl.metadata (2.2 kB)
-Collecting agent-framework-bedrock<2,>=1.0.0b261015 (from agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading agent_framework_bedrock-1.0.0b261015-py3-none-any.whl.metadata (1.9 kB)
-Collecting agent-framework-chatkit<2,>=1.0.0b261015 (from agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading agent_framework_chatkit-1.0.0b261015-py3-none-any.whl.metadata (7.2 kB)
-Collecting agent-framework-claude<2,>=1.0.0b261015 (from agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading agent_framework_claude-1.0.0b261015-py3-none-any.whl.metadata (1.6 kB)
-Collecting agent-framework-copilotstudio<2,>=1.0.0b261015 (from agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading agent_framework_copilotstudio-1.0.0b261015-py3-none-any.whl.metadata (4.8 kB)
-Collecting agent-framework-declarative<2,>=1.3.0 (from agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading agent_framework_declarative-1.3.0-py3-none-any.whl.metadata (6.2 kB)
-Collecting agent-framework-devui<2,>=1.0.0b261015 (from agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading agent_framework_devui-1.0.0b261015-py3-none-any.whl.metadata (19 kB)
-Collecting agent-framework-durabletask<2,>=1.0.0b260922 (from agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading agent_framework_durabletask-1.0.0b260922-py3-none-any.whl.metadata (2.6 kB)
-Collecting agent-framework-foundry<2,>=1.15.0 (from agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading agent_framework_foundry-1.15.0-py3-none-any.whl.metadata (20 kB)
-Collecting agent-framework-foundry-hosting<2,>=1.0.0b261015 (from agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading agent_framework_foundry_hosting-1.0.0b261015-py3-none-any.whl.metadata (37 kB)
-Collecting agent-framework-foundry-local<2,>=1.0.0b261015 (from agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading agent_framework_foundry_local-1.0.0b261015-py3-none-any.whl.metadata (1.8 kB)
-Collecting agent-framework-gemini<2,>=1.0.0b261015 (from agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading agent_framework_gemini-1.0.0b261015-py3-none-any.whl.metadata (7.2 kB)
-Collecting agent-framework-github-copilot<3,>=2.1.0 (from agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading agent_framework_github_copilot-2.1.0-py3-none-any.whl.metadata (6.5 kB)
-Collecting agent-framework-hyperlight<2,>=1.0.0b261015 (from agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading agent_framework_hyperlight-1.0.0b261015-py3-none-any.whl.metadata (11 kB)
-Collecting agent-framework-mem0<2,>=1.0.0b261015 (from agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading agent_framework_mem0-1.0.0b261015-py3-none-any.whl.metadata (3.1 kB)
-Collecting agent-framework-mistral<2,>=1.0.0b261015 (from agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading agent_framework_mistral-1.0.0b261015-py3-none-any.whl.metadata (4.0 kB)
-Collecting agent-framework-monty<2,>=1.0.0b261015 (from agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading agent_framework_monty-1.0.0b261015-py3-none-any.whl.metadata (11 kB)
-Collecting agent-framework-ollama<2,>=1.0.0b261015 (from agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading agent_framework_ollama-1.0.0b261015-py3-none-any.whl.metadata (1.7 kB)
-Collecting agent-framework-openai<2,>=1.17.0 (from agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading agent_framework_openai-1.17.0-py3-none-any.whl.metadata (7.9 kB)
-Collecting agent-framework-orchestrations<2,>=1.3.2 (from agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading agent_framework_orchestrations-1.3.2-py3-none-any.whl.metadata (6.5 kB)
-Collecting agent-framework-purview<2,>=1.0.0b261015 (from agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading agent_framework_purview-1.0.0b261015-py3-none-any.whl.metadata (25 kB)
-Collecting agent-framework-redis<2,>=1.0.0b261015 (from agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading agent_framework_redis-1.0.0b261015-py3-none-any.whl.metadata (10 kB)
-Collecting agent-framework-tools<2,>=1.0.0b261015 (from agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading agent_framework_tools-1.0.0b261015-py3-none-any.whl.metadata (8.7 kB)
-Collecting a2a-sdk<2,>=1.0.0 (from agent-framework-a2a<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading a2a_sdk-1.2.2-py3-none-any.whl.metadata (9.6 kB)
-Collecting culsans>=0.11.0 (from a2a-sdk<2,>=1.0.0->agent-framework-a2a<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading culsans-0.11.0-py3-none-any.whl.metadata (13 kB)
-Collecting google-api-core>=1.26.0 (from a2a-sdk<2,>=1.0.0->agent-framework-a2a<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading google_api_core-2.42.0-py3-none-any.whl.metadata (3.2 kB)
-Collecting googleapis-common-protos>=1.70.0 (from a2a-sdk<2,>=1.0.0->agent-framework-a2a<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading googleapis_common_protos-1.75.5-py3-none-any.whl.metadata (8.5 kB)
-Collecting httpx>=0.28.1 (from a2a-sdk<2,>=1.0.0->agent-framework-a2a<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading httpx-0.28.1-py3-none-any.whl.metadata (7.1 kB)
-Collecting json-rpc>=1.15.0 (from a2a-sdk<2,>=1.0.0->agent-framework-a2a<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading json_rpc-1.15.0-py2.py3-none-any.whl.metadata (7.2 kB)
-Collecting packaging>=24.0 (from a2a-sdk<2,>=1.0.0->agent-framework-a2a<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
-Collecting protobuf>=5.29.5 (from a2a-sdk<2,>=1.0.0->agent-framework-a2a<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading protobuf-7.36.2-cp310-abi3-manylinux2014_x86_64.whl.metadata (595 bytes)
-Collecting ag-ui-protocol<0.2,>=0.1.19 (from agent-framework-ag-ui<2,>=1.6.0->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading ag_ui_protocol-0.1.22-py3-none-any.whl.metadata (3.8 kB)
-Collecting fastapi<1,>=0.115.0 (from egp-maf==0.1.0)
-  Downloading fastapi-0.141.1-py3-none-any.whl.metadata (27 kB)
-Collecting sse-starlette<4,>=3.4.5 (from agent-framework-ag-ui<2,>=1.6.0->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading sse_starlette-3.5.0-py3-none-any.whl.metadata (15 kB)
-Collecting anthropic<2,>=1.11.0 (from agent-framework-anthropic<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading anthropic-1.15.0-py3-none-any.whl.metadata (5.8 kB)
-Collecting aiohttp<4,>=3.11.11 (from agent-framework-azure-ai-search<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading aiohttp-3.14.5-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (8.3 kB)
-Collecting azure-search-documents<13,>=12.0.0 (from agent-framework-azure-ai-search<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading azure_search_documents-12.0.0-py3-none-any.whl.metadata (83 kB)
-Collecting azure-ai-contentunderstanding<2,>=1.2.0b2 (from agent-framework-azure-contentunderstanding<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading azure_ai_contentunderstanding-1.2.0b3-py3-none-any.whl.metadata (43 kB)
-Collecting filetype<2,>=1.2 (from agent-framework-azure-contentunderstanding<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading filetype-1.2.0-py2.py3-none-any.whl.metadata (6.5 kB)
-Collecting six<2,>=1.17.0 (from agent-framework-azure-cosmos<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading six-1.17.0-py2.py3-none-any.whl.metadata (1.7 kB)
-Collecting azure-functions<2,>=1.24.0 (from agent-framework-azurefunctions<2,>=1.0.0b260922->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading azure_functions-1.25.0-py3-none-any.whl.metadata (6.8 kB)
-Collecting azure-functions-durable<2,>=1.3.1 (from agent-framework-azurefunctions<2,>=1.0.0b260922->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading azure_functions_durable-1.7.0-py3-none-any.whl.metadata (5.0 kB)
-Collecting boto3<2.0.0,>=1.35.0 (from agent-framework-bedrock<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading boto3-1.43.114-py3-none-any.whl.metadata (6.6 kB)
-Collecting botocore<2.0.0,>=1.35.0 (from agent-framework-bedrock<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading botocore-1.43.114-py3-none-any.whl.metadata (5.6 kB)
-Collecting openai-chatkit<2.0.0,>=1.6.4 (from agent-framework-chatkit<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading openai_chatkit-1.6.5-py3-none-any.whl.metadata (432 bytes)
-Collecting claude-agent-sdk<0.3,>=0.1.46 (from agent-framework-claude<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading claude_agent_sdk-0.2.168-py3-none-manylinux_2_17_x86_64.whl.metadata (14 kB)
-Collecting microsoft-agents-copilotstudio-client<2,>=1.2.0 (from agent-framework-copilotstudio<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading microsoft_agents_copilotstudio_client-1.8.0-py3-none-any.whl.metadata (23 kB)
-Collecting powerfx<0.0.35,>=0.0.32 (from agent-framework-declarative<2,>=1.3.0->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading powerfx-0.0.34-py3-none-any.whl.metadata (795 bytes)
-Collecting openai<4,>=2.45.0 (from agent-framework-devui<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading openai-3.31.0-py3-none-any.whl.metadata (44 kB)
-Collecting durabletask<2,>=1.5.0 (from agent-framework-durabletask<2,>=1.0.0b260922->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading durabletask-1.12.0-py3-none-any.whl.metadata (5.9 kB)
-Collecting durabletask-azuremanaged<2,>=1.4.0 (from agent-framework-durabletask<2,>=1.0.0b260922->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading durabletask_azuremanaged-1.12.0-py3-none-any.whl.metadata (1.1 kB)
-Collecting python-dateutil<3,>=2.8.0 (from agent-framework-durabletask<2,>=1.0.0b260922->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl.metadata (8.4 kB)
-Collecting azure-ai-inference<1.0.0b10,>=1.0.0b9 (from agent-framework-foundry<2,>=1.15.0->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading azure_ai_inference-1.0.0b9-py3-none-any.whl.metadata (34 kB)
-Collecting azure-ai-projects<2.8.0,>=2.2.0 (from agent-framework-foundry<2,>=1.15.0->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading azure_ai_projects-2.7.0-py3-none-any.whl.metadata (81 kB)
-Collecting azure-ai-agentserver-core<3,>=2.1.0 (from agent-framework-foundry-hosting<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading azure_ai_agentserver_core-2.2.0-py3-none-any.whl.metadata (13 kB)
-Collecting azure-ai-agentserver-responses<3,>=2.2.0b1 (from agent-framework-foundry-hosting<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading azure_ai_agentserver_responses-2.4.0b1-py3-none-any.whl.metadata (21 kB)
-Collecting azure-ai-agentserver-invocations<2,>=1.1.0 (from agent-framework-foundry-hosting<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading azure_ai_agentserver_invocations-1.2.0-py3-none-any.whl.metadata (24 kB)
-Collecting foundry-local-sdk<0.5.2,>=0.5.1 (from agent-framework-foundry-local<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading foundry_local_sdk-0.5.1-py3-none-any.whl.metadata (6.1 kB)
-Collecting google-genai<3.0.0,>=2.25.0 (from agent-framework-gemini<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading google_genai-2.31.0-py3-none-any.whl.metadata (58 kB)
-Collecting github-copilot-sdk<2.0,>=1.0.16 (from agent-framework-github-copilot<3,>=2.1.0->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading github_copilot_sdk-1.0.22-py3-none-any.whl.metadata (62 kB)
-Collecting hyperlight-sandbox<0.8,>=0.7.0 (from agent-framework-hyperlight<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading hyperlight_sandbox-0.7.0-py3-none-any.whl.metadata (3.1 kB)
-Collecting hyperlight-sandbox-backend-wasm<0.8,>=0.7.0 (from agent-framework-hyperlight<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading hyperlight_sandbox_backend_wasm-0.7.0-cp312-cp312-manylinux_2_28_x86_64.whl.metadata (895 bytes)
-Collecting hyperlight-sandbox-python-guest<0.8,>=0.7.0 (from agent-framework-hyperlight<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading hyperlight_sandbox_python_guest-0.7.0-py3-none-any.whl.metadata (768 bytes)
-Collecting mem0ai<3,>=2.0.0 (from agent-framework-mem0<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading mem0ai-2.2.1-py3-none-any.whl.metadata (15 kB)
-Collecting mistralai<3,>=2.9.2 (from agent-framework-mistral<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading mistralai-2.10.1-py3-none-any.whl.metadata (78 kB)
-Collecting pydantic-monty<0.1,>=0.0.23 (from agent-framework-monty<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading pydantic_monty-0.0.23-py3-none-any.whl.metadata (14 kB)
-Collecting ollama<0.5.4,>=0.5.3 (from agent-framework-ollama<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading ollama-0.5.3-py3-none-any.whl.metadata (4.3 kB)
-Collecting redis<7.2.1,>=6.4.0 (from agent-framework-redis<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading redis-7.2.0-py3-none-any.whl.metadata (12 kB)
-Collecting redisvl<0.16,>=0.11.0 (from agent-framework-redis<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading redisvl-0.15.0-py3-none-any.whl.metadata (22 kB)
-Collecting numpy<3,>=2.2.6 (from agent-framework-redis<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading numpy-2.5.4-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (6.6 kB)
-Collecting psutil>=5.9 (from agent-framework-tools<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading psutil-7.2.2-cp36-abi3-manylinux2010_x86_64.manylinux_2_12_x86_64.manylinux_2_28_x86_64.whl.metadata (22 kB)
-Collecting aiohappyeyeballs>=2.5.0 (from aiohttp<4,>=3.11.11->agent-framework-azure-ai-search<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading aiohappyeyeballs-2.7.1-py3-none-any.whl.metadata (5.9 kB)
-Collecting aiosignal>=1.4.0 (from aiohttp<4,>=3.11.11->agent-framework-azure-ai-search<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading aiosignal-1.4.0-py3-none-any.whl.metadata (3.7 kB)
-Collecting attrs>=17.3.0 (from aiohttp<4,>=3.11.11->agent-framework-azure-ai-search<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading attrs-26.1.0-py3-none-any.whl.metadata (8.8 kB)
-Collecting frozenlist>=1.1.1 (from aiohttp<4,>=3.11.11->agent-framework-azure-ai-search<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading frozenlist-1.8.0-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (20 kB)
-Collecting multidict<8.0,>=4.5 (from aiohttp<4,>=3.11.11->agent-framework-azure-ai-search<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading multidict-7.1.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (6.2 kB)
-Collecting propcache>=0.2.0 (from aiohttp<4,>=3.11.11->agent-framework-azure-ai-search<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading propcache-0.5.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (25 kB)
-Collecting yarl<2.0,>=1.25.1 (from aiohttp<4,>=3.11.11->agent-framework-azure-ai-search<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading yarl-1.25.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (111 kB)
-Collecting anyio<5,>=4.1.0 (from anthropic<2,>=1.11.0->agent-framework-anthropic<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading anyio-4.15.1-py3-none-any.whl.metadata (4.7 kB)
-Collecting docstring-parser<1,>=0.15 (from anthropic<2,>=1.11.0->agent-framework-anthropic<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading docstring_parser-0.18.0-py3-none-any.whl.metadata (3.5 kB)
-Collecting httpx2<3,>=2.0.0 (from anthropic<2,>=1.11.0->agent-framework-anthropic<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading httpx2-2.13.1-py3-none-any.whl.metadata (9.8 kB)
-Collecting jiter<1,>=0.4.0 (from anthropic<2,>=1.11.0->agent-framework-anthropic<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading jiter-0.17.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (5.2 kB)
-Collecting sniffio<2,>=1 (from anthropic<2,>=1.11.0->agent-framework-anthropic<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading sniffio-1.3.1-py3-none-any.whl.metadata (3.9 kB)
-Collecting idna>=2.8 (from anyio<5,>=4.1.0->anthropic<2,>=1.11.0->agent-framework-anthropic<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading idna-3.20-py3-none-any.whl.metadata (7.2 kB)
-Collecting isodate<1.0.0,>=0.6.1 (from azure-ai-agentserver-core<3,>=2.1.0->agent-framework-foundry-hosting<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading isodate-0.7.2-py3-none-any.whl.metadata (11 kB)
-Collecting hypercorn<1.0.0,>=0.17.0 (from azure-ai-agentserver-core<3,>=2.1.0->agent-framework-foundry-hosting<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading hypercorn-0.18.0-py3-none-any.whl.metadata (5.1 kB)
-Collecting microsoft-opentelemetry<2.0.0,>=1.3.5 (from azure-ai-agentserver-core<3,>=2.1.0->agent-framework-foundry-hosting<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading microsoft_opentelemetry-1.4.0-py3-none-any.whl.metadata (26 kB)
-Collecting azure-ai-agentserver-core<3,>=2.1.0 (from agent-framework-foundry-hosting<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading azure_ai_agentserver_core-2.3.0b1-py3-none-any.whl.metadata (16 kB)
-Collecting azure-storage-blob>=12.15.0 (from azure-ai-projects<2.8.0,>=2.2.0->agent-framework-foundry<2,>=1.15.0->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading azure_storage_blob-12.31.0-py3-none-any.whl.metadata (26 kB)
-Collecting requests>=2.21.0 (from azure-core>=1.30.0->azure-cosmos<5,>=4.9.0->egp-maf==0.1.0)
-  Downloading requests-2.34.2-py3-none-any.whl.metadata (4.8 kB)
-Collecting werkzeug~=3.1.3 (from azure-functions<2,>=1.24.0->agent-framework-azurefunctions<2,>=1.0.0b260922->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading werkzeug-3.1.9-py3-none-any.whl.metadata (4.1 kB)
-Collecting furl>=2.1.0 (from azure-functions-durable<2,>=1.3.1->agent-framework-azurefunctions<2,>=1.0.0b260922->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading furl-2.1.4-py2.py3-none-any.whl.metadata (25 kB)
-Collecting jmespath<2.0.0,>=0.7.1 (from boto3<2.0.0,>=1.35.0->agent-framework-bedrock<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading jmespath-1.1.0-py3-none-any.whl.metadata (7.6 kB)
-Collecting s3transfer<0.20.0,>=0.19.0 (from boto3<2.0.0,>=1.35.0->agent-framework-bedrock<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading s3transfer-0.19.2-py3-none-any.whl.metadata (1.7 kB)
-Collecting urllib3!=2.2.0,<3,>=1.25.4 (from botocore<2.0.0,>=1.35.0->agent-framework-bedrock<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading urllib3-2.8.0-py3-none-any.whl.metadata (7.4 kB)
-Collecting jsonschema>=4.20.0 (from claude-agent-sdk<0.3,>=0.1.46->agent-framework-claude<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading jsonschema-4.26.0-py3-none-any.whl.metadata (7.6 kB)
-Collecting grpcio (from durabletask<2,>=1.5.0->agent-framework-durabletask<2,>=1.0.0b260922->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading grpcio-1.84.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (3.8 kB)
-Collecting asyncio (from durabletask<2,>=1.5.0->agent-framework-durabletask<2,>=1.0.0b260922->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading asyncio-4.0.0-py3-none-any.whl.metadata (994 bytes)
-Collecting tqdm (from foundry-local-sdk<0.5.2,>=0.5.1->agent-framework-foundry-local<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading tqdm-4.70.1-py3-none-any.whl.metadata (57 kB)
-Collecting google-auth<3.0.0,>=2.56.0 (from google-auth[requests]<3.0.0,>=2.56.0->google-genai<3.0.0,>=2.25.0->agent-framework-gemini<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading google_auth-2.62.0-py3-none-any.whl.metadata (6.0 kB)
-Collecting tenacity<9.2.0,>=8.2.3 (from google-genai<3.0.0,>=2.25.0->agent-framework-gemini<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading tenacity-9.1.4-py3-none-any.whl.metadata (1.2 kB)
-Collecting websockets>=13.0 (from uvicorn[standard]<1,>=0.32.0->egp-maf==0.1.0)
-  Downloading websockets-16.1.1-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (6.8 kB)
-Collecting distro<2,>=1.7.0 (from google-genai<3.0.0,>=2.25.0->agent-framework-gemini<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading distro-1.9.0-py3-none-any.whl.metadata (6.8 kB)
-Collecting pyasn1-modules>=0.2.1 (from google-auth<3.0.0,>=2.56.0->google-auth[requests]<3.0.0,>=2.56.0->google-genai<3.0.0,>=2.25.0->agent-framework-gemini<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading pyasn1_modules-0.4.2-py3-none-any.whl.metadata (3.5 kB)
-Collecting certifi (from httpx>=0.28.1->a2a-sdk<2,>=1.0.0->agent-framework-a2a<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading certifi-2026.7.22-py3-none-any.whl.metadata (2.5 kB)
-Collecting httpcore==1.* (from httpx>=0.28.1->a2a-sdk<2,>=1.0.0->agent-framework-a2a<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading httpcore-1.0.9-py3-none-any.whl.metadata (21 kB)
-Collecting httpcore2==2.13.1 (from httpx2<3,>=2.0.0->anthropic<2,>=1.11.0->agent-framework-anthropic<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading httpcore2-2.13.1-py3-none-any.whl.metadata (26 kB)
-Collecting truststore>=0.10 (from httpx2<3,>=2.0.0->anthropic<2,>=1.11.0->agent-framework-anthropic<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading truststore-0.10.5-py3-none-any.whl.metadata (4.5 kB)
-Collecting h2>=4.3.0 (from hypercorn<1.0.0,>=0.17.0->azure-ai-agentserver-core<3,>=2.1.0->agent-framework-foundry-hosting<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading h2-4.4.1-py3-none-any.whl.metadata (3.8 kB)
-Collecting priority (from hypercorn<1.0.0,>=0.17.0->azure-ai-agentserver-core<3,>=2.1.0->agent-framework-foundry-hosting<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading priority-2.0.0-py3-none-any.whl.metadata (6.6 kB)
-Collecting wsproto>=0.14.0 (from hypercorn<1.0.0,>=0.17.0->azure-ai-agentserver-core<3,>=2.1.0->agent-framework-foundry-hosting<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading wsproto-1.3.2-py3-none-any.whl.metadata (5.2 kB)
-Collecting httpx-sse>=0.4 (from mcp<2,>=1.24.0->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading httpx_sse-0.4.3-py3-none-any.whl.metadata (9.7 kB)
-Collecting python-multipart>=0.0.9 (from mcp<2,>=1.24.0->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading python_multipart-0.0.32-py3-none-any.whl.metadata (2.1 kB)
-Collecting posthog>=7.14.0 (from mem0ai<3,>=2.0.0->agent-framework-mem0<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading posthog-7.70.2-py3-none-any.whl.metadata (5.8 kB)
-Collecting protobuf>=5.29.5 (from a2a-sdk<2,>=1.0.0->agent-framework-a2a<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading protobuf-6.33.6-cp39-abi3-manylinux2014_x86_64.whl.metadata (593 bytes)
-Collecting pytz>=2024.1 (from mem0ai<3,>=2.0.0->agent-framework-mem0<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading pytz-2026.5-py2.py3-none-any.whl.metadata (22 kB)
-Collecting qdrant-client>=1.12.0 (from mem0ai<3,>=2.0.0->agent-framework-mem0<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading qdrant_client-1.19.1-py3-none-any.whl.metadata (11 kB)
-Collecting microsoft-agents-hosting-core==1.8.0 (from microsoft-agents-copilotstudio-client<2,>=1.2.0->agent-framework-copilotstudio<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading microsoft_agents_hosting_core-1.8.0-py3-none-any.whl.metadata (14 kB)
-Collecting microsoft-agents-activity==1.8.0 (from microsoft-agents-hosting-core==1.8.0->microsoft-agents-copilotstudio-client<2,>=1.2.0->agent-framework-copilotstudio<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading microsoft_agents_activity-1.8.0-py3-none-any.whl.metadata (13 kB)
-Collecting azure-core-tracing-opentelemetry~=1.0.0b11 (from microsoft-opentelemetry<2.0.0,>=1.3.5->azure-ai-agentserver-core<3,>=2.1.0->agent-framework-foundry-hosting<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading azure_core_tracing_opentelemetry-1.0.0b13-py3-none-any.whl.metadata (11 kB)
-Collecting azure-monitor-opentelemetry-exporter~=1.0.0b58 (from microsoft-opentelemetry<2.0.0,>=1.3.5->azure-ai-agentserver-core<3,>=2.1.0->agent-framework-foundry-hosting<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading azure_monitor_opentelemetry_exporter-1.0.0b58-py2.py3-none-any.whl.metadata (33 kB)
-Collecting opentelemetry-exporter-otlp-proto-http~=1.45.0 (from microsoft-opentelemetry<2.0.0,>=1.3.5->azure-ai-agentserver-core<3,>=2.1.0->agent-framework-foundry-hosting<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading opentelemetry_exporter_otlp_proto_http-1.45.1-py3-none-any.whl.metadata (3.0 kB)
-Collecting opentelemetry-instrumentation<0.67b0,>=0.66b0 (from microsoft-opentelemetry<2.0.0,>=1.3.5->azure-ai-agentserver-core<3,>=2.1.0->agent-framework-foundry-hosting<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading opentelemetry_instrumentation-0.66b1-py3-none-any.whl.metadata (7.2 kB)
-Collecting opentelemetry-instrumentation-django<0.67b0,>=0.66b0 (from microsoft-opentelemetry<2.0.0,>=1.3.5->azure-ai-agentserver-core<3,>=2.1.0->agent-framework-foundry-hosting<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading opentelemetry_instrumentation_django-0.66b1-py3-none-any.whl.metadata (2.3 kB)
-Collecting opentelemetry-instrumentation-fastapi<0.67b0,>=0.66b0 (from microsoft-opentelemetry<2.0.0,>=1.3.5->azure-ai-agentserver-core<3,>=2.1.0->agent-framework-foundry-hosting<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading opentelemetry_instrumentation_fastapi-0.66b1-py3-none-any.whl.metadata (2.2 kB)
-Collecting opentelemetry-instrumentation-flask<0.67b0,>=0.66b0 (from microsoft-opentelemetry<2.0.0,>=1.3.5->azure-ai-agentserver-core<3,>=2.1.0->agent-framework-foundry-hosting<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading opentelemetry_instrumentation_flask-0.66b1-py3-none-any.whl.metadata (2.2 kB)
-Collecting opentelemetry-instrumentation-httpx<0.67b0,>=0.66b0 (from microsoft-opentelemetry<2.0.0,>=1.3.5->azure-ai-agentserver-core<3,>=2.1.0->agent-framework-foundry-hosting<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading opentelemetry_instrumentation_httpx-0.66b1-py3-none-any.whl.metadata (9.0 kB)
-Collecting opentelemetry-instrumentation-psycopg2<0.67b0,>=0.66b0 (from microsoft-opentelemetry<2.0.0,>=1.3.5->azure-ai-agentserver-core<3,>=2.1.0->agent-framework-foundry-hosting<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading opentelemetry_instrumentation_psycopg2-0.66b1-py3-none-any.whl.metadata (2.1 kB)
-Collecting opentelemetry-instrumentation-requests<0.67b0,>=0.66b0 (from microsoft-opentelemetry<2.0.0,>=1.3.5->azure-ai-agentserver-core<3,>=2.1.0->agent-framework-foundry-hosting<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading opentelemetry_instrumentation_requests-0.66b1-py3-none-any.whl.metadata (2.6 kB)
-Collecting opentelemetry-instrumentation-urllib<0.67b0,>=0.66b0 (from microsoft-opentelemetry<2.0.0,>=1.3.5->azure-ai-agentserver-core<3,>=2.1.0->agent-framework-foundry-hosting<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading opentelemetry_instrumentation_urllib-0.66b1-py3-none-any.whl.metadata (3.4 kB)
-Collecting opentelemetry-instrumentation-urllib3<0.67b0,>=0.66b0 (from microsoft-opentelemetry<2.0.0,>=1.3.5->azure-ai-agentserver-core<3,>=2.1.0->agent-framework-foundry-hosting<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading opentelemetry_instrumentation_urllib3-0.66b1-py3-none-any.whl.metadata (4.2 kB)
-Collecting opentelemetry-instrumentation-logging<0.67b0,>=0.66b0 (from microsoft-opentelemetry<2.0.0,>=1.3.5->azure-ai-agentserver-core<3,>=2.1.0->agent-framework-foundry-hosting<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading opentelemetry_instrumentation_logging-0.66b1-py3-none-any.whl.metadata (1.9 kB)
-Collecting opentelemetry-instrumentation-openai-agents-v2==0.1.0 (from microsoft-opentelemetry<2.0.0,>=1.3.5->azure-ai-agentserver-core<3,>=2.1.0->agent-framework-foundry-hosting<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading opentelemetry_instrumentation_openai_agents_v2-0.1.0-py3-none-any.whl.metadata (1.3 kB)
-Collecting opentelemetry-instrumentation-openai-v2==2.3b0 (from microsoft-opentelemetry<2.0.0,>=1.3.5->azure-ai-agentserver-core<3,>=2.1.0->agent-framework-foundry-hosting<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading opentelemetry_instrumentation_openai_v2-2.3b0-py3-none-any.whl.metadata (5.2 kB)
-Collecting opentelemetry-resource-detector-azure<1.0.0,>=0.3.0 (from microsoft-opentelemetry<2.0.0,>=1.3.5->azure-ai-agentserver-core<3,>=2.1.0->agent-framework-foundry-hosting<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading opentelemetry_resource_detector_azure-0.3.0-py3-none-any.whl.metadata (7.0 kB)
-Collecting wrapt<2.0.0,>=1.0.0 (from microsoft-opentelemetry<2.0.0,>=1.3.5->azure-ai-agentserver-core<3,>=2.1.0->agent-framework-foundry-hosting<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading wrapt-1.17.3-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (6.4 kB)
-Collecting opentelemetry-util-genai==0.3b0 (from microsoft-opentelemetry<2.0.0,>=1.3.5->azure-ai-agentserver-core<3,>=2.1.0->agent-framework-foundry-hosting<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading opentelemetry_util_genai-0.3b0-py3-none-any.whl.metadata (4.6 kB)
-Collecting opentelemetry-semantic-conventions>=0.58b0 (from opentelemetry-instrumentation-openai-agents-v2==0.1.0->microsoft-opentelemetry<2.0.0,>=1.3.5->azure-ai-agentserver-core<3,>=2.1.0->agent-framework-foundry-hosting<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading opentelemetry_semantic_conventions-0.66b1-py3-none-any.whl.metadata (2.4 kB)
-Collecting msrest>=0.6.10 (from azure-monitor-opentelemetry-exporter~=1.0.0b58->microsoft-opentelemetry<2.0.0,>=1.3.5->azure-ai-agentserver-core<3,>=2.1.0->agent-framework-foundry-hosting<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading msrest-0.7.1-py3-none-any.whl.metadata (21 kB)
-Collecting eval-type-backport>=0.2.0 (from mistralai<3,>=2.9.2->agent-framework-mistral<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading eval_type_backport-0.4.0-py3-none-any.whl.metadata (3.1 kB)
-Collecting jsonpath-python>=1.0.6 (from mistralai<3,>=2.9.2->agent-framework-mistral<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading jsonpath_python-1.1.6-py3-none-any.whl.metadata (17 kB)
-Collecting cffi>=2.0.0 (from cryptography>=2.5->azure-identity<2,>=1.19.0->egp-maf==0.1.0)
-  Downloading cffi-2.1.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (2.5 kB)
-Collecting openai-agents>=0.3.2 (from openai-chatkit<2.0.0,>=1.6.4->agent-framework-chatkit<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading openai_agents-0.24.0-py3-none-any.whl.metadata (13 kB)
-Collecting jinja2<4,>=3.1 (from openai-chatkit<2.0.0,>=1.6.4->agent-framework-chatkit<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
-Collecting MarkupSafe>=2.0 (from jinja2<4,>=3.1->openai-chatkit<2.0.0,>=1.6.4->agent-framework-chatkit<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading markupsafe-3.0.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.7 kB)
-Collecting opentelemetry-exporter-http-transport==0.66b1 (from opentelemetry-exporter-http-transport[requests]==0.66b1->opentelemetry-exporter-otlp-proto-http~=1.45.0->microsoft-opentelemetry<2.0.0,>=1.3.5->azure-ai-agentserver-core<3,>=2.1.0->agent-framework-foundry-hosting<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading opentelemetry_exporter_http_transport-0.66b1-py3-none-any.whl.metadata (2.3 kB)
-Collecting opentelemetry-exporter-otlp-common==0.66b1 (from opentelemetry-exporter-otlp-proto-http~=1.45.0->microsoft-opentelemetry<2.0.0,>=1.3.5->azure-ai-agentserver-core<3,>=2.1.0->agent-framework-foundry-hosting<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading opentelemetry_exporter_otlp_common-0.66b1-py3-none-any.whl.metadata (1.9 kB)
-Collecting opentelemetry-exporter-otlp-proto-common==1.45.1 (from opentelemetry-exporter-otlp-proto-http~=1.45.0->microsoft-opentelemetry<2.0.0,>=1.3.5->azure-ai-agentserver-core<3,>=2.1.0->agent-framework-foundry-hosting<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading opentelemetry_exporter_otlp_proto_common-1.45.1-py3-none-any.whl.metadata (1.8 kB)
-Collecting opentelemetry-proto==1.45.1 (from opentelemetry-exporter-otlp-proto-http~=1.45.0->microsoft-opentelemetry<2.0.0,>=1.3.5->azure-ai-agentserver-core<3,>=2.1.0->agent-framework-foundry-hosting<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading opentelemetry_proto-1.45.1-py3-none-any.whl.metadata (2.3 kB)
-Collecting opentelemetry-instrumentation-wsgi==0.66b1 (from opentelemetry-instrumentation-django<0.67b0,>=0.66b0->microsoft-opentelemetry<2.0.0,>=1.3.5->azure-ai-agentserver-core<3,>=2.1.0->agent-framework-foundry-hosting<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading opentelemetry_instrumentation_wsgi-0.66b1-py3-none-any.whl.metadata (2.1 kB)
-Collecting opentelemetry-util-http==0.66b1 (from opentelemetry-instrumentation-django<0.67b0,>=0.66b0->microsoft-opentelemetry<2.0.0,>=1.3.5->azure-ai-agentserver-core<3,>=2.1.0->agent-framework-foundry-hosting<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading opentelemetry_util_http-0.66b1-py3-none-any.whl.metadata (2.6 kB)
-Collecting opentelemetry-instrumentation-asgi==0.66b1 (from opentelemetry-instrumentation-fastapi<0.67b0,>=0.66b0->microsoft-opentelemetry<2.0.0,>=1.3.5->azure-ai-agentserver-core<3,>=2.1.0->agent-framework-foundry-hosting<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading opentelemetry_instrumentation_asgi-0.66b1-py3-none-any.whl.metadata (2.0 kB)
-Collecting asgiref~=3.0 (from opentelemetry-instrumentation-asgi==0.66b1->opentelemetry-instrumentation-fastapi<0.67b0,>=0.66b0->microsoft-opentelemetry<2.0.0,>=1.3.5->azure-ai-agentserver-core<3,>=2.1.0->agent-framework-foundry-hosting<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading asgiref-3.12.1-py3-none-any.whl.metadata (9.4 kB)
-Collecting opentelemetry-instrumentation-dbapi==0.66b1 (from opentelemetry-instrumentation-psycopg2<0.67b0,>=0.66b0->microsoft-opentelemetry<2.0.0,>=1.3.5->azure-ai-agentserver-core<3,>=2.1.0->agent-framework-foundry-hosting<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading opentelemetry_instrumentation_dbapi-0.66b1-py3-none-any.whl.metadata (2.0 kB)
-Collecting pythonnet==3.0.5 (from powerfx<0.0.35,>=0.0.32->agent-framework-declarative<2,>=1.3.0->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading pythonnet-3.0.5-py3-none-any.whl.metadata (6.6 kB)
-Collecting cffi>=2.0.0 (from cryptography>=2.5->azure-identity<2,>=1.19.0->egp-maf==0.1.0)
-  Downloading cffi-2.0.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (2.6 kB)
-Collecting pycparser (from cffi>=2.0.0->cryptography>=2.5->azure-identity<2,>=1.19.0->egp-maf==0.1.0)
-  Downloading pycparser-3.11-py3-none-any.whl.metadata (8.2 kB)
-Collecting clr_loader<0.3.0,>=0.2.7 (from pythonnet==3.0.5->powerfx<0.0.35,>=0.0.32->agent-framework-declarative<2,>=1.3.0->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading clr_loader-0.2.10-py3-none-any.whl.metadata (1.5 kB)
-Collecting pydantic-monty-client==0.0.23 (from pydantic-monty<0.1,>=0.0.23->agent-framework-monty<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading pydantic_monty_client-0.0.23-cp312-cp312-manylinux_2_28_x86_64.whl.metadata (3.7 kB)
-Collecting pydantic-monty-runtime==0.0.23 (from pydantic-monty<0.1,>=0.0.23->agent-framework-monty<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading pydantic_monty_runtime-0.0.23-py3-none-manylinux_2_28_x86_64.whl.metadata (2.8 kB)
-Collecting jsonpath-ng>=1.5.0 (from redisvl<0.16,>=0.11.0->agent-framework-redis<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading jsonpath_ng-1.10.1-py3-none-any.whl.metadata (18 kB)
-Collecting ml-dtypes<1.0.0,>=0.4.0 (from redisvl<0.16,>=0.11.0->agent-framework-redis<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading ml_dtypes-0.6.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (8.8 kB)
-Collecting python-ulid>=3.0.0 (from redisvl<0.16,>=0.11.0->agent-framework-redis<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading python_ulid-4.0.1-py3-none-any.whl.metadata (8.8 kB)
-Collecting redis<7.2.1,>=6.4.0 (from agent-framework-redis<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading redis-7.1.1-py3-none-any.whl.metadata (12 kB)
-Collecting charset_normalizer<4,>=2 (from requests>=2.21.0->azure-core>=1.30.0->azure-cosmos<5,>=4.9.0->egp-maf==0.1.0)
-  Downloading charset_normalizer-3.5.2-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (46 kB)
-Collecting aiologic<0.18.0,>=0.16.0 (from culsans>=0.11.0->a2a-sdk<2,>=1.0.0->agent-framework-a2a<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading aiologic-0.17.1-py3-none-any.whl.metadata (10 kB)
-Collecting orderedmultidict>=1.0.1 (from furl>=2.1.0->azure-functions-durable<2,>=1.3.1->agent-framework-azurefunctions<2,>=1.0.0b260922->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading orderedmultidict-1.0.2-py2.py3-none-any.whl.metadata (1.2 kB)
-Collecting proto-plus<2.0.0,>=1.26.1 (from google-api-core>=1.26.0->a2a-sdk<2,>=1.0.0->agent-framework-a2a<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading proto_plus-1.29.0-py3-none-any.whl.metadata (2.2 kB)
-Collecting hyperframe<7,>=6.1 (from h2>=4.3.0->hypercorn<1.0.0,>=0.17.0->azure-ai-agentserver-core<3,>=2.1.0->agent-framework-foundry-hosting<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading hyperframe-6.1.0-py3-none-any.whl.metadata (4.3 kB)
-Collecting hpack<5,>=4.2 (from h2>=4.3.0->hypercorn<1.0.0,>=0.17.0->azure-ai-agentserver-core<3,>=2.1.0->agent-framework-foundry-hosting<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading hpack-4.2.0-py3-none-any.whl.metadata (3.3 kB)
-Collecting jsonschema-specifications>=2023.03.6 (from jsonschema>=4.20.0->claude-agent-sdk<0.3,>=0.1.46->agent-framework-claude<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading jsonschema_specifications-2025.9.1-py3-none-any.whl.metadata (2.9 kB)
-Collecting referencing>=0.28.4 (from jsonschema>=4.20.0->claude-agent-sdk<0.3,>=0.1.46->agent-framework-claude<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading referencing-0.37.0-py3-none-any.whl.metadata (2.8 kB)
-Collecting rpds-py>=0.25.0 (from jsonschema>=4.20.0->claude-agent-sdk<0.3,>=0.1.46->agent-framework-claude<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading rpds_py-2026.9.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.1 kB)
-Collecting requests-oauthlib>=0.5.0 (from msrest>=0.6.10->azure-monitor-opentelemetry-exporter~=1.0.0b58->microsoft-opentelemetry<2.0.0,>=1.3.5->azure-ai-agentserver-core<3,>=2.1.0->agent-framework-foundry-hosting<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading requests_oauthlib-2.0.0-py2.py3-none-any.whl.metadata (11 kB)
-Collecting griffelib<3,>=2 (from openai-agents>=0.3.2->openai-chatkit<2.0.0,>=1.6.4->agent-framework-chatkit<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading griffelib-2.3.2-py3-none-any.whl.metadata (1.3 kB)
-Collecting backoff>=1.10.0 (from posthog>=7.14.0->mem0ai<3,>=2.0.0->agent-framework-mem0<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading backoff-2.2.1-py3-none-any.whl.metadata (14 kB)
-Collecting pyasn1<0.7.0,>=0.6.1 (from pyasn1-modules>=0.2.1->google-auth<3.0.0,>=2.56.0->google-auth[requests]<3.0.0,>=2.56.0->google-genai<3.0.0,>=2.25.0->agent-framework-gemini<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading pyasn1-0.6.4-py3-none-any.whl.metadata (8.4 kB)
-Collecting portalocker<4.0,>=2.7.0 (from qdrant-client>=1.12.0->mem0ai<3,>=2.0.0->agent-framework-mem0<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading portalocker-3.2.0-py3-none-any.whl.metadata (8.7 kB)
-Collecting oauthlib>=3.0.0 (from requests-oauthlib>=0.5.0->msrest>=0.6.10->azure-monitor-opentelemetry-exporter~=1.0.0b58->microsoft-opentelemetry<2.0.0,>=1.3.5->azure-ai-agentserver-core<3,>=2.1.0->agent-framework-foundry-hosting<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf==0.1.0)
-  Downloading oauthlib-4.0.0-py3-none-any.whl.metadata (8.6 kB)
-Downloading alembic-1.20.0-py3-none-any.whl (268 kB)
-Downloading azure_cosmos-4.17.1-py3-none-any.whl (505 kB)
-Downloading azure_identity-1.26.0-py3-none-any.whl (195 kB)
-Downloading psycopg-3.3.6-py3-none-any.whl (215 kB)
-Downloading psycopg_binary-3.3.6-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (5.2 MB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.2/5.2 MB 20.8 MB/s  0:00:00
-Downloading pydantic-2.14.1-py3-none-any.whl (488 kB)
-Downloading pydantic_core-2.50.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (2.2 MB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.2/2.2 MB 126.3 MB/s  0:00:00
-Downloading pydantic_settings-2.16.0-py3-none-any.whl (80 kB)
-Downloading pyjwt-2.15.1-py3-none-any.whl (33 kB)
-Downloading python_dotenv-1.2.4-py3-none-any.whl (23 kB)
-Downloading sqlalchemy-2.1.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (4.7 MB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.7/4.7 MB 38.3 MB/s  0:00:00
-Downloading structlog-24.4.0-py3-none-any.whl (67 kB)
-Downloading uvicorn-0.54.0-py3-none-any.whl (87 kB)
-Downloading agent_framework-1.22.0-py3-none-any.whl (6.4 kB)
-Downloading agent_framework_core-1.22.0-py3-none-any.whl (831 kB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 831.7/831.7 kB 160.6 MB/s  0:00:00
-Downloading agent_framework_a2a-1.0.0b261015-py3-none-any.whl (22 kB)
-Downloading a2a_sdk-1.2.2-py3-none-any.whl (275 kB)
-Downloading agent_framework_ag_ui-1.6.0-py3-none-any.whl (221 kB)
-Downloading ag_ui_protocol-0.1.22-py3-none-any.whl (22 kB)
-Downloading agent_framework_anthropic-1.0.0b261015-py3-none-any.whl (26 kB)
-Downloading agent_framework_azure_ai_search-1.0.0b261015-py3-none-any.whl (29 kB)
-Downloading agent_framework_azure_contentunderstanding-1.0.0b261015-py3-none-any.whl (22 kB)
-Downloading agent_framework_azure_cosmos-1.0.0b261015-py3-none-any.whl (28 kB)
-Downloading agent_framework_azurefunctions-1.0.0b260922-py3-none-any.whl (39 kB)
-Downloading agent_framework_bedrock-1.0.0b261015-py3-none-any.whl (18 kB)
-Downloading agent_framework_chatkit-1.0.0b261015-py3-none-any.whl (12 kB)
-Downloading agent_framework_claude-1.0.0b261015-py3-none-any.whl (15 kB)
-Downloading agent_framework_copilotstudio-1.0.0b261015-py3-none-any.whl (10 kB)
-Downloading agent_framework_declarative-1.3.0-py3-none-any.whl (120 kB)
-Downloading agent_framework_devui-1.0.0b261015-py3-none-any.whl (366 kB)
-Downloading agent_framework_durabletask-1.0.0b260922-py3-none-any.whl (87 kB)
-Downloading agent_framework_foundry-1.15.0-py3-none-any.whl (62 kB)
-Downloading agent_framework_foundry_hosting-1.0.0b261015-py3-none-any.whl (104 kB)
-Downloading agent_framework_foundry_local-1.0.0b261015-py3-none-any.whl (7.6 kB)
-Downloading agent_framework_gemini-1.0.0b261015-py3-none-any.whl (27 kB)
-Downloading agent_framework_github_copilot-2.1.0-py3-none-any.whl (25 kB)
-Downloading agent_framework_hyperlight-1.0.0b261015-py3-none-any.whl (29 kB)
-Downloading agent_framework_mem0-1.0.0b261015-py3-none-any.whl (8.1 kB)
-Downloading agent_framework_mistral-1.0.0b261015-py3-none-any.whl (19 kB)
-Downloading agent_framework_monty-1.0.0b261015-py3-none-any.whl (24 kB)
-Downloading agent_framework_ollama-1.0.0b261015-py3-none-any.whl (13 kB)
-Downloading agent_framework_openai-1.17.0-py3-none-any.whl (81 kB)
-Downloading agent_framework_orchestrations-1.3.2-py3-none-any.whl (73 kB)
-Downloading agent_framework_purview-1.0.0b261015-py3-none-any.whl (35 kB)
-Downloading agent_framework_redis-1.0.0b261015-py3-none-any.whl (27 kB)
-Downloading agent_framework_tools-1.0.0b261015-py3-none-any.whl (45 kB)
-Downloading aiohttp-3.14.5-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (1.9 MB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.9/1.9 MB 137.9 MB/s  0:00:00
-Downloading anthropic-1.15.0-py3-none-any.whl (2.0 MB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.0/2.0 MB 134.4 MB/s  0:00:00
-Downloading anyio-4.15.1-py3-none-any.whl (132 kB)
-Downloading azure_ai_agentserver_invocations-1.2.0-py3-none-any.whl (59 kB)
-Downloading azure_ai_agentserver_responses-2.4.0b1-py3-none-any.whl (447 kB)
-Downloading azure_ai_agentserver_core-2.3.0b1-py3-none-any.whl (220 kB)
-Downloading azure_ai_contentunderstanding-1.2.0b3-py3-none-any.whl (127 kB)
-Downloading azure_ai_inference-1.0.0b9-py3-none-any.whl (124 kB)
-Downloading azure_ai_projects-2.7.0-py3-none-any.whl (517 kB)
-Downloading azure_core-1.41.0-py3-none-any.whl (220 kB)
-Downloading azure_functions-1.25.0-py3-none-any.whl (113 kB)
-Downloading azure_functions_durable-1.7.0-py3-none-any.whl (165 kB)
-Downloading azure_search_documents-12.0.0-py3-none-any.whl (352 kB)
-Downloading boto3-1.43.114-py3-none-any.whl (140 kB)
-Downloading botocore-1.43.114-py3-none-any.whl (16.1 MB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 16.1/16.1 MB 29.4 MB/s  0:00:00
-Downloading claude_agent_sdk-0.2.168-py3-none-manylinux_2_17_x86_64.whl (114.4 MB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 114.4/114.4 MB 30.0 MB/s  0:00:03
-Downloading docstring_parser-0.18.0-py3-none-any.whl (22 kB)
-Downloading durabletask-1.12.0-py3-none-any.whl (217 kB)
-Downloading durabletask_azuremanaged-1.12.0-py3-none-any.whl (30 kB)
-Downloading fastapi-0.141.1-py3-none-any.whl (131 kB)
-Downloading filetype-1.2.0-py2.py3-none-any.whl (19 kB)
-Downloading foundry_local_sdk-0.5.1-py3-none-any.whl (14 kB)
-Downloading github_copilot_sdk-1.0.22-py3-none-any.whl (870 kB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 870.1/870.1 kB 147.9 MB/s  0:00:00
-Downloading google_genai-2.31.0-py3-none-any.whl (1.2 MB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.2/1.2 MB 144.4 MB/s  0:00:00
-Downloading distro-1.9.0-py3-none-any.whl (20 kB)
-Downloading google_auth-2.62.0-py3-none-any.whl (267 kB)
-Downloading httpx-0.28.1-py3-none-any.whl (73 kB)
-Downloading httpcore-1.0.9-py3-none-any.whl (78 kB)
-Downloading httpx2-2.13.1-py3-none-any.whl (95 kB)
-Downloading httpcore2-2.13.1-py3-none-any.whl (83 kB)
-Downloading hypercorn-0.18.0-py3-none-any.whl (61 kB)
-Downloading hyperlight_sandbox-0.7.0-py3-none-any.whl (6.4 kB)
-Downloading hyperlight_sandbox_backend_wasm-0.7.0-cp312-cp312-manylinux_2_28_x86_64.whl (4.0 MB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.0/4.0 MB 33.6 MB/s  0:00:00
-Downloading hyperlight_sandbox_python_guest-0.7.0-py3-none-any.whl (21.8 MB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 21.8/21.8 MB 32.8 MB/s  0:00:00
-Downloading isodate-0.7.2-py3-none-any.whl (22 kB)
-Downloading jiter-0.17.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (345 kB)
-Downloading jmespath-1.1.0-py3-none-any.whl (20 kB)
-Downloading mcp-1.30.0-py3-none-any.whl (234 kB)
-Downloading mem0ai-2.2.1-py3-none-any.whl (351 kB)
-Downloading microsoft_agents_copilotstudio_client-1.8.0-py3-none-any.whl (24 kB)
-Downloading microsoft_agents_hosting_core-1.8.0-py3-none-any.whl (234 kB)
-Downloading microsoft_agents_activity-1.8.0-py3-none-any.whl (148 kB)
-Downloading microsoft_opentelemetry-1.4.0-py3-none-any.whl (242 kB)
-Downloading opentelemetry_instrumentation_openai_agents_v2-0.1.0-py3-none-any.whl (25 kB)
-Downloading opentelemetry_instrumentation_openai_v2-2.3b0-py3-none-any.whl (18 kB)
-Downloading opentelemetry_util_genai-0.3b0-py3-none-any.whl (28 kB)
-Downloading azure_core_tracing_opentelemetry-1.0.0b13-py3-none-any.whl (12 kB)
-Downloading azure_monitor_opentelemetry_exporter-1.0.0b58-py2.py3-none-any.whl (257 kB)
-Downloading mistralai-2.10.1-py3-none-any.whl (1.4 MB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.4/1.4 MB 138.2 MB/s  0:00:00
-Downloading msal-1.39.0-py3-none-any.whl (131 kB)
-Downloading cryptography-50.0.2-cp311-abi3-manylinux_2_34_x86_64.whl (4.8 MB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.8/4.8 MB 38.5 MB/s  0:00:00
-Downloading msgspec-0.22.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (230 kB)
-Downloading multidict-7.1.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (483 kB)
-Downloading numpy-2.5.4-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (16.7 MB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 16.7/16.7 MB 30.9 MB/s  0:00:00
-Downloading ollama-0.5.3-py3-none-any.whl (13 kB)
-Downloading openai-3.31.0-py3-none-any.whl (2.2 MB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.2/2.2 MB 135.6 MB/s  0:00:00
-Downloading openai_chatkit-1.6.5-py3-none-any.whl (44 kB)
-Downloading jinja2-3.1.6-py3-none-any.whl (134 kB)
-Downloading opentelemetry_api-1.45.1-py3-none-any.whl (60 kB)
-Downloading opentelemetry_exporter_otlp_proto_http-1.45.1-py3-none-any.whl (22 kB)
-Downloading opentelemetry_exporter_http_transport-0.66b1-py3-none-any.whl (12 kB)
-Downloading opentelemetry_exporter_otlp_common-0.66b1-py3-none-any.whl (12 kB)
-Downloading opentelemetry_exporter_otlp_proto_common-1.45.1-py3-none-any.whl (15 kB)
-Downloading opentelemetry_proto-1.45.1-py3-none-any.whl (72 kB)
-Downloading googleapis_common_protos-1.75.5-py3-none-any.whl (307 kB)
-Downloading opentelemetry_instrumentation-0.66b1-py3-none-any.whl (36 kB)
-Downloading opentelemetry_semantic_conventions-0.66b1-py3-none-any.whl (206 kB)
-Downloading opentelemetry_instrumentation_django-0.66b1-py3-none-any.whl (18 kB)
-Downloading opentelemetry_instrumentation_wsgi-0.66b1-py3-none-any.whl (13 kB)
-Downloading opentelemetry_util_http-0.66b1-py3-none-any.whl (8.4 kB)
-Downloading opentelemetry_instrumentation_fastapi-0.66b1-py3-none-any.whl (14 kB)
-Downloading opentelemetry_instrumentation_asgi-0.66b1-py3-none-any.whl (15 kB)
-Downloading asgiref-3.12.1-py3-none-any.whl (25 kB)
-Downloading opentelemetry_instrumentation_flask-0.66b1-py3-none-any.whl (14 kB)
-Downloading opentelemetry_instrumentation_httpx-0.66b1-py3-none-any.whl (17 kB)
-Downloading opentelemetry_instrumentation_logging-0.66b1-py3-none-any.whl (15 kB)
-Downloading opentelemetry_instrumentation_psycopg2-0.66b1-py3-none-any.whl (11 kB)
-Downloading opentelemetry_instrumentation_dbapi-0.66b1-py3-none-any.whl (14 kB)
-Downloading opentelemetry_instrumentation_requests-0.66b1-py3-none-any.whl (13 kB)
-Downloading opentelemetry_instrumentation_urllib-0.66b1-py3-none-any.whl (13 kB)
-Downloading opentelemetry_instrumentation_urllib3-0.66b1-py3-none-any.whl (13 kB)
-Downloading opentelemetry_resource_detector_azure-0.3.0-py3-none-any.whl (14 kB)
-Downloading opentelemetry_sdk-1.45.1-py3-none-any.whl (140 kB)
-Downloading powerfx-0.0.34-py3-none-any.whl (3.5 MB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.5/3.5 MB 30.3 MB/s  0:00:00
-Downloading cffi-2.0.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (219 kB)
-Downloading pythonnet-3.0.5-py3-none-any.whl (297 kB)
-Downloading clr_loader-0.2.10-py3-none-any.whl (56 kB)
-Downloading protobuf-6.33.6-cp39-abi3-manylinux2014_x86_64.whl (323 kB)
-Downloading psutil-7.2.2-cp36-abi3-manylinux2010_x86_64.manylinux_2_12_x86_64.manylinux_2_28_x86_64.whl (155 kB)
-Downloading pydantic_monty-0.0.23-py3-none-any.whl (6.3 kB)
-Downloading pydantic_monty_client-0.0.23-cp312-cp312-manylinux_2_28_x86_64.whl (4.0 MB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.0/4.0 MB 33.8 MB/s  0:00:00
-Downloading pydantic_monty_runtime-0.0.23-py3-none-manylinux_2_28_x86_64.whl (12.4 MB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 12.4/12.4 MB 35.8 MB/s  0:00:00
-Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
-Downloading pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (807 kB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 807.9/807.9 kB 149.2 MB/s  0:00:00
-Downloading redisvl-0.15.0-py3-none-any.whl (197 kB)
-Downloading ml_dtypes-0.6.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (409 kB)
-Downloading redis-7.1.1-py3-none-any.whl (356 kB)
-Downloading requests-2.34.2-py3-none-any.whl (73 kB)
-Downloading charset_normalizer-3.5.2-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (257 kB)
-Downloading idna-3.20-py3-none-any.whl (69 kB)
-Downloading s3transfer-0.19.2-py3-none-any.whl (90 kB)
-Downloading six-1.17.0-py2.py3-none-any.whl (11 kB)
-Downloading sniffio-1.3.1-py3-none-any.whl (10 kB)
-Downloading sse_starlette-3.5.0-py3-none-any.whl (17 kB)
-Downloading starlette-1.8.0-py3-none-any.whl (79 kB)
-Downloading tenacity-9.1.4-py3-none-any.whl (28 kB)
-Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
-Downloading urllib3-2.8.0-py3-none-any.whl (135 kB)
-Downloading websockets-16.1.1-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (187 kB)
-Downloading werkzeug-3.1.9-py3-none-any.whl (228 kB)
-Downloading wrapt-1.17.3-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (88 kB)
-Downloading yarl-1.25.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (117 kB)
-Downloading aiohappyeyeballs-2.7.1-py3-none-any.whl (15 kB)
-Downloading aiosignal-1.4.0-py3-none-any.whl (7.5 kB)
-Downloading annotated_doc-0.0.5-py3-none-any.whl (5.3 kB)
-Downloading annotated_types-0.8.0-py3-none-any.whl (13 kB)
-Downloading attrs-26.1.0-py3-none-any.whl (67 kB)
-Downloading azure_storage_blob-12.31.0-py3-none-any.whl (455 kB)
-Downloading certifi-2026.7.22-py3-none-any.whl (136 kB)
-Downloading click-8.5.0-py3-none-any.whl (125 kB)
-Downloading culsans-0.11.0-py3-none-any.whl (21 kB)
-Downloading aiologic-0.17.1-py3-none-any.whl (161 kB)
-Downloading eval_type_backport-0.4.0-py3-none-any.whl (6.4 kB)
-Downloading frozenlist-1.8.0-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (242 kB)
-Downloading furl-2.1.4-py2.py3-none-any.whl (27 kB)
-Downloading google_api_core-2.42.0-py3-none-any.whl (221 kB)
-Downloading proto_plus-1.29.0-py3-none-any.whl (50 kB)
-Downloading h11-0.16.0-py3-none-any.whl (37 kB)
-Downloading h2-4.4.1-py3-none-any.whl (62 kB)
-Downloading hpack-4.2.0-py3-none-any.whl (34 kB)
-Downloading hyperframe-6.1.0-py3-none-any.whl (13 kB)
-Downloading httptools-0.9.0-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (552 kB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 552.8/552.8 kB 187.2 MB/s  0:00:00
-Downloading httpx_sse-0.4.3-py3-none-any.whl (9.0 kB)
-Downloading json_rpc-1.15.0-py2.py3-none-any.whl (39 kB)
-Downloading jsonpath_ng-1.10.1-py3-none-any.whl (75 kB)
-Downloading jsonpath_python-1.1.6-py3-none-any.whl (14 kB)
-Downloading jsonschema-4.26.0-py3-none-any.whl (90 kB)
-Downloading jsonschema_specifications-2025.9.1-py3-none-any.whl (18 kB)
-Downloading markupsafe-3.0.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (22 kB)
-Downloading msal_extensions-1.3.1-py3-none-any.whl (20 kB)
-Downloading msrest-0.7.1-py3-none-any.whl (85 kB)
-Downloading openai_agents-0.24.0-py3-none-any.whl (1.2 MB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.2/1.2 MB 141.0 MB/s  0:00:00
-Downloading griffelib-2.3.2-py3-none-any.whl (169 kB)
-Downloading orderedmultidict-1.0.2-py2.py3-none-any.whl (11 kB)
-Downloading packaging-26.3-py3-none-any.whl (129 kB)
-Downloading posthog-7.70.2-py3-none-any.whl (890 kB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 890.5/890.5 kB 121.4 MB/s  0:00:00
-Downloading backoff-2.2.1-py3-none-any.whl (15 kB)
-Downloading propcache-0.5.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (250 kB)
-Downloading pyasn1_modules-0.4.2-py3-none-any.whl (181 kB)
-Downloading pyasn1-0.6.4-py3-none-any.whl (84 kB)
-Downloading python_multipart-0.0.32-py3-none-any.whl (30 kB)
-Downloading python_ulid-4.0.1-py3-none-any.whl (14 kB)
-Downloading pytz-2026.5-py2.py3-none-any.whl (506 kB)
-Downloading qdrant_client-1.19.1-py3-none-any.whl (406 kB)
-Downloading portalocker-3.2.0-py3-none-any.whl (22 kB)
-Downloading grpcio-1.84.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (7.2 MB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 7.2/7.2 MB 31.7 MB/s  0:00:00
-Downloading referencing-0.37.0-py3-none-any.whl (26 kB)
-Downloading regex-2026.9.29-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (807 kB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 807.8/807.8 kB 155.7 MB/s  0:00:00
-Downloading requests_oauthlib-2.0.0-py2.py3-none-any.whl (24 kB)
-Downloading oauthlib-4.0.0-py3-none-any.whl (159 kB)
-Downloading rpds_py-2026.9.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (371 kB)
-Downloading truststore-0.10.5-py3-none-any.whl (19 kB)
-Downloading typing_inspection-0.4.4-py3-none-any.whl (14 kB)
-Downloading uvloop-0.23.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (4.5 MB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.5/4.5 MB 37.2 MB/s  0:00:00
-Downloading watchfiles-1.3.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (458 kB)
-Downloading wsproto-1.3.2-py3-none-any.whl (24 kB)
-Downloading asyncio-4.0.0-py3-none-any.whl (5.6 kB)
-Downloading mako-1.4.3-py3-none-any.whl (80 kB)
-Downloading priority-2.0.0-py3-none-any.whl (8.9 kB)
-Downloading psycopg_pool-3.3.3-py3-none-any.whl (40 kB)
-Downloading pycparser-3.11-py3-none-any.whl (51 kB)
-Downloading tqdm-4.70.1-py3-none-any.whl (80 kB)
-Saved /wheels/alembic-1.20.0-py3-none-any.whl
-Saved /wheels/azure_cosmos-4.17.1-py3-none-any.whl
-Saved /wheels/azure_identity-1.26.0-py3-none-any.whl
-Saved /wheels/psycopg-3.3.6-py3-none-any.whl
-Saved /wheels/psycopg_binary-3.3.6-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl
-Saved /wheels/pydantic-2.14.1-py3-none-any.whl
-Saved /wheels/pydantic_core-2.50.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
-Saved /wheels/pydantic_settings-2.16.0-py3-none-any.whl
-Saved /wheels/pyjwt-2.15.1-py3-none-any.whl
-Saved /wheels/python_dotenv-1.2.4-py3-none-any.whl
-Saved /wheels/sqlalchemy-2.1.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl
-Saved /wheels/structlog-24.4.0-py3-none-any.whl
-Saved /wheels/uvicorn-0.54.0-py3-none-any.whl
-Saved /wheels/agent_framework-1.22.0-py3-none-any.whl
-Saved /wheels/agent_framework_core-1.22.0-py3-none-any.whl
-Saved /wheels/agent_framework_a2a-1.0.0b261015-py3-none-any.whl
-Saved /wheels/a2a_sdk-1.2.2-py3-none-any.whl
-Saved /wheels/agent_framework_ag_ui-1.6.0-py3-none-any.whl
-Saved /wheels/ag_ui_protocol-0.1.22-py3-none-any.whl
-Saved /wheels/agent_framework_anthropic-1.0.0b261015-py3-none-any.whl
-Saved /wheels/agent_framework_azure_ai_search-1.0.0b261015-py3-none-any.whl
-Saved /wheels/agent_framework_azure_contentunderstanding-1.0.0b261015-py3-none-any.whl
-Saved /wheels/agent_framework_azure_cosmos-1.0.0b261015-py3-none-any.whl
-Saved /wheels/agent_framework_azurefunctions-1.0.0b260922-py3-none-any.whl
-Saved /wheels/agent_framework_bedrock-1.0.0b261015-py3-none-any.whl
-Saved /wheels/agent_framework_chatkit-1.0.0b261015-py3-none-any.whl
-Saved /wheels/agent_framework_claude-1.0.0b261015-py3-none-any.whl
-Saved /wheels/agent_framework_copilotstudio-1.0.0b261015-py3-none-any.whl
-Saved /wheels/agent_framework_declarative-1.3.0-py3-none-any.whl
-Saved /wheels/agent_framework_devui-1.0.0b261015-py3-none-any.whl
-Saved /wheels/agent_framework_durabletask-1.0.0b260922-py3-none-any.whl
-Saved /wheels/agent_framework_foundry-1.15.0-py3-none-any.whl
-Saved /wheels/agent_framework_foundry_hosting-1.0.0b261015-py3-none-any.whl
-Saved /wheels/agent_framework_foundry_local-1.0.0b261015-py3-none-any.whl
-Saved /wheels/agent_framework_gemini-1.0.0b261015-py3-none-any.whl
-Saved /wheels/agent_framework_github_copilot-2.1.0-py3-none-any.whl
-Saved /wheels/agent_framework_hyperlight-1.0.0b261015-py3-none-any.whl
-Saved /wheels/agent_framework_mem0-1.0.0b261015-py3-none-any.whl
-Saved /wheels/agent_framework_mistral-1.0.0b261015-py3-none-any.whl
-Saved /wheels/agent_framework_monty-1.0.0b261015-py3-none-any.whl
-Saved /wheels/agent_framework_ollama-1.0.0b261015-py3-none-any.whl
-Saved /wheels/agent_framework_openai-1.17.0-py3-none-any.whl
-Saved /wheels/agent_framework_orchestrations-1.3.2-py3-none-any.whl
-Saved /wheels/agent_framework_purview-1.0.0b261015-py3-none-any.whl
-Saved /wheels/agent_framework_redis-1.0.0b261015-py3-none-any.whl
-Saved /wheels/agent_framework_tools-1.0.0b261015-py3-none-any.whl
-Saved /wheels/aiohttp-3.14.5-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl
-Saved /wheels/anthropic-1.15.0-py3-none-any.whl
-Saved /wheels/anyio-4.15.1-py3-none-any.whl
-Saved /wheels/azure_ai_agentserver_invocations-1.2.0-py3-none-any.whl
-Saved /wheels/azure_ai_agentserver_responses-2.4.0b1-py3-none-any.whl
-Saved /wheels/azure_ai_agentserver_core-2.3.0b1-py3-none-any.whl
-Saved /wheels/azure_ai_contentunderstanding-1.2.0b3-py3-none-any.whl
-Saved /wheels/azure_ai_inference-1.0.0b9-py3-none-any.whl
-Saved /wheels/azure_ai_projects-2.7.0-py3-none-any.whl
-Saved /wheels/azure_core-1.41.0-py3-none-any.whl
-Saved /wheels/azure_functions-1.25.0-py3-none-any.whl
-Saved /wheels/azure_functions_durable-1.7.0-py3-none-any.whl
-Saved /wheels/azure_search_documents-12.0.0-py3-none-any.whl
-Saved /wheels/boto3-1.43.114-py3-none-any.whl
-Saved /wheels/botocore-1.43.114-py3-none-any.whl
-Saved /wheels/claude_agent_sdk-0.2.168-py3-none-manylinux_2_17_x86_64.whl
-Saved /wheels/docstring_parser-0.18.0-py3-none-any.whl
-Saved /wheels/durabletask-1.12.0-py3-none-any.whl
-Saved /wheels/durabletask_azuremanaged-1.12.0-py3-none-any.whl
-Saved /wheels/fastapi-0.141.1-py3-none-any.whl
-Saved /wheels/filetype-1.2.0-py2.py3-none-any.whl
-Saved /wheels/foundry_local_sdk-0.5.1-py3-none-any.whl
-Saved /wheels/github_copilot_sdk-1.0.22-py3-none-any.whl
-Saved /wheels/google_genai-2.31.0-py3-none-any.whl
-Saved /wheels/distro-1.9.0-py3-none-any.whl
-Saved /wheels/google_auth-2.62.0-py3-none-any.whl
-Saved /wheels/httpx-0.28.1-py3-none-any.whl
-Saved /wheels/httpcore-1.0.9-py3-none-any.whl
-Saved /wheels/httpx2-2.13.1-py3-none-any.whl
-Saved /wheels/httpcore2-2.13.1-py3-none-any.whl
-Saved /wheels/hypercorn-0.18.0-py3-none-any.whl
-Saved /wheels/hyperlight_sandbox-0.7.0-py3-none-any.whl
-Saved /wheels/hyperlight_sandbox_backend_wasm-0.7.0-cp312-cp312-manylinux_2_28_x86_64.whl
-Saved /wheels/hyperlight_sandbox_python_guest-0.7.0-py3-none-any.whl
-Saved /wheels/isodate-0.7.2-py3-none-any.whl
-Saved /wheels/jiter-0.17.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
-Saved /wheels/jmespath-1.1.0-py3-none-any.whl
-Saved /wheels/mcp-1.30.0-py3-none-any.whl
-Saved /wheels/mem0ai-2.2.1-py3-none-any.whl
-Saved /wheels/microsoft_agents_copilotstudio_client-1.8.0-py3-none-any.whl
-Saved /wheels/microsoft_agents_hosting_core-1.8.0-py3-none-any.whl
-Saved /wheels/microsoft_agents_activity-1.8.0-py3-none-any.whl
-Saved /wheels/microsoft_opentelemetry-1.4.0-py3-none-any.whl
-Saved /wheels/opentelemetry_instrumentation_openai_agents_v2-0.1.0-py3-none-any.whl
-Saved /wheels/opentelemetry_instrumentation_openai_v2-2.3b0-py3-none-any.whl
-Saved /wheels/opentelemetry_util_genai-0.3b0-py3-none-any.whl
-Saved /wheels/azure_core_tracing_opentelemetry-1.0.0b13-py3-none-any.whl
-Saved /wheels/azure_monitor_opentelemetry_exporter-1.0.0b58-py2.py3-none-any.whl
-Saved /wheels/mistralai-2.10.1-py3-none-any.whl
-Saved /wheels/msal-1.39.0-py3-none-any.whl
-Saved /wheels/cryptography-50.0.2-cp311-abi3-manylinux_2_34_x86_64.whl
-Saved /wheels/msgspec-0.22.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl
-Saved /wheels/multidict-7.1.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl
-Saved /wheels/numpy-2.5.4-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl
-Saved /wheels/ollama-0.5.3-py3-none-any.whl
-Saved /wheels/openai-3.31.0-py3-none-any.whl
-Saved /wheels/openai_chatkit-1.6.5-py3-none-any.whl
-Saved /wheels/jinja2-3.1.6-py3-none-any.whl
-Saved /wheels/opentelemetry_api-1.45.1-py3-none-any.whl
-Saved /wheels/opentelemetry_exporter_otlp_proto_http-1.45.1-py3-none-any.whl
-Saved /wheels/opentelemetry_exporter_http_transport-0.66b1-py3-none-any.whl
-Saved /wheels/opentelemetry_exporter_otlp_common-0.66b1-py3-none-any.whl
-Saved /wheels/opentelemetry_exporter_otlp_proto_common-1.45.1-py3-none-any.whl
-Saved /wheels/opentelemetry_proto-1.45.1-py3-none-any.whl
-Saved /wheels/googleapis_common_protos-1.75.5-py3-none-any.whl
-Saved /wheels/opentelemetry_instrumentation-0.66b1-py3-none-any.whl
-Saved /wheels/opentelemetry_semantic_conventions-0.66b1-py3-none-any.whl
-Saved /wheels/opentelemetry_instrumentation_django-0.66b1-py3-none-any.whl
-Saved /wheels/opentelemetry_instrumentation_wsgi-0.66b1-py3-none-any.whl
-Saved /wheels/opentelemetry_util_http-0.66b1-py3-none-any.whl
-Saved /wheels/opentelemetry_instrumentation_fastapi-0.66b1-py3-none-any.whl
-Saved /wheels/opentelemetry_instrumentation_asgi-0.66b1-py3-none-any.whl
-Saved /wheels/asgiref-3.12.1-py3-none-any.whl
-Saved /wheels/opentelemetry_instrumentation_flask-0.66b1-py3-none-any.whl
-Saved /wheels/opentelemetry_instrumentation_httpx-0.66b1-py3-none-any.whl
-Saved /wheels/opentelemetry_instrumentation_logging-0.66b1-py3-none-any.whl
-Saved /wheels/opentelemetry_instrumentation_psycopg2-0.66b1-py3-none-any.whl
-Saved /wheels/opentelemetry_instrumentation_dbapi-0.66b1-py3-none-any.whl
-Saved /wheels/opentelemetry_instrumentation_requests-0.66b1-py3-none-any.whl
-Saved /wheels/opentelemetry_instrumentation_urllib-0.66b1-py3-none-any.whl
-Saved /wheels/opentelemetry_instrumentation_urllib3-0.66b1-py3-none-any.whl
-Saved /wheels/opentelemetry_resource_detector_azure-0.3.0-py3-none-any.whl
-Saved /wheels/opentelemetry_sdk-1.45.1-py3-none-any.whl
-Saved /wheels/powerfx-0.0.34-py3-none-any.whl
-Saved /wheels/cffi-2.0.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl
-Saved /wheels/pythonnet-3.0.5-py3-none-any.whl
-Saved /wheels/clr_loader-0.2.10-py3-none-any.whl
-Saved /wheels/protobuf-6.33.6-cp39-abi3-manylinux2014_x86_64.whl
-Saved /wheels/psutil-7.2.2-cp36-abi3-manylinux2010_x86_64.manylinux_2_12_x86_64.manylinux_2_28_x86_64.whl
-Saved /wheels/pydantic_monty-0.0.23-py3-none-any.whl
-Saved /wheels/pydantic_monty_client-0.0.23-cp312-cp312-manylinux_2_28_x86_64.whl
-Saved /wheels/pydantic_monty_runtime-0.0.23-py3-none-manylinux_2_28_x86_64.whl
-Saved /wheels/python_dateutil-2.9.0.post0-py2.py3-none-any.whl
-Saved /wheels/pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl
-Saved /wheels/redisvl-0.15.0-py3-none-any.whl
-Saved /wheels/ml_dtypes-0.6.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl
-Saved /wheels/redis-7.1.1-py3-none-any.whl
-Saved /wheels/requests-2.34.2-py3-none-any.whl
-Saved /wheels/charset_normalizer-3.5.2-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl
-Saved /wheels/idna-3.20-py3-none-any.whl
-Saved /wheels/s3transfer-0.19.2-py3-none-any.whl
-Saved /wheels/six-1.17.0-py2.py3-none-any.whl
-Saved /wheels/sniffio-1.3.1-py3-none-any.whl
-Saved /wheels/sse_starlette-3.5.0-py3-none-any.whl
-Saved /wheels/starlette-1.8.0-py3-none-any.whl
-Saved /wheels/tenacity-9.1.4-py3-none-any.whl
-Saved /wheels/typing_extensions-4.16.0-py3-none-any.whl
-Saved /wheels/urllib3-2.8.0-py3-none-any.whl
-Saved /wheels/websockets-16.1.1-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl
-Saved /wheels/werkzeug-3.1.9-py3-none-any.whl
-Saved /wheels/wrapt-1.17.3-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl
-Saved /wheels/yarl-1.25.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl
-Saved /wheels/aiohappyeyeballs-2.7.1-py3-none-any.whl
-Saved /wheels/aiosignal-1.4.0-py3-none-any.whl
-Saved /wheels/annotated_doc-0.0.5-py3-none-any.whl
-Saved /wheels/annotated_types-0.8.0-py3-none-any.whl
-Saved /wheels/attrs-26.1.0-py3-none-any.whl
-Saved /wheels/azure_storage_blob-12.31.0-py3-none-any.whl
-Saved /wheels/certifi-2026.7.22-py3-none-any.whl
-Saved /wheels/click-8.5.0-py3-none-any.whl
-Saved /wheels/culsans-0.11.0-py3-none-any.whl
-Saved /wheels/aiologic-0.17.1-py3-none-any.whl
-Saved /wheels/eval_type_backport-0.4.0-py3-none-any.whl
-Saved /wheels/frozenlist-1.8.0-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl
-Saved /wheels/furl-2.1.4-py2.py3-none-any.whl
-Saved /wheels/google_api_core-2.42.0-py3-none-any.whl
-Saved /wheels/proto_plus-1.29.0-py3-none-any.whl
-Saved /wheels/h11-0.16.0-py3-none-any.whl
-Saved /wheels/h2-4.4.1-py3-none-any.whl
-Saved /wheels/hpack-4.2.0-py3-none-any.whl
-Saved /wheels/hyperframe-6.1.0-py3-none-any.whl
-Saved /wheels/httptools-0.9.0-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl
-Saved /wheels/httpx_sse-0.4.3-py3-none-any.whl
-Saved /wheels/json_rpc-1.15.0-py2.py3-none-any.whl
-Saved /wheels/jsonpath_ng-1.10.1-py3-none-any.whl
-Saved /wheels/jsonpath_python-1.1.6-py3-none-any.whl
-Saved /wheels/jsonschema-4.26.0-py3-none-any.whl
-Saved /wheels/jsonschema_specifications-2025.9.1-py3-none-any.whl
-Saved /wheels/markupsafe-3.0.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl
-Saved /wheels/msal_extensions-1.3.1-py3-none-any.whl
-Saved /wheels/msrest-0.7.1-py3-none-any.whl
-Saved /wheels/openai_agents-0.24.0-py3-none-any.whl
-Saved /wheels/griffelib-2.3.2-py3-none-any.whl
-Saved /wheels/orderedmultidict-1.0.2-py2.py3-none-any.whl
-Saved /wheels/packaging-26.3-py3-none-any.whl
-Saved /wheels/posthog-7.70.2-py3-none-any.whl
-Saved /wheels/backoff-2.2.1-py3-none-any.whl
-Saved /wheels/propcache-0.5.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl
-Saved /wheels/pyasn1_modules-0.4.2-py3-none-any.whl
-Saved /wheels/pyasn1-0.6.4-py3-none-any.whl
-Saved /wheels/python_multipart-0.0.32-py3-none-any.whl
-Saved /wheels/python_ulid-4.0.1-py3-none-any.whl
-Saved /wheels/pytz-2026.5-py2.py3-none-any.whl
-Saved /wheels/qdrant_client-1.19.1-py3-none-any.whl
-Saved /wheels/portalocker-3.2.0-py3-none-any.whl
-Saved /wheels/grpcio-1.84.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl
-Saved /wheels/referencing-0.37.0-py3-none-any.whl
-Saved /wheels/regex-2026.9.29-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl
-Saved /wheels/requests_oauthlib-2.0.0-py2.py3-none-any.whl
-Saved /wheels/oauthlib-4.0.0-py3-none-any.whl
-Saved /wheels/rpds_py-2026.9.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
-Saved /wheels/truststore-0.10.5-py3-none-any.whl
-Saved /wheels/typing_inspection-0.4.4-py3-none-any.whl
-Saved /wheels/uvloop-0.23.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl
-Saved /wheels/watchfiles-1.3.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
-Saved /wheels/wsproto-1.3.2-py3-none-any.whl
-Saved /wheels/asyncio-4.0.0-py3-none-any.whl
-Saved /wheels/mako-1.4.3-py3-none-any.whl
-Saved /wheels/priority-2.0.0-py3-none-any.whl
-Saved /wheels/psycopg_pool-3.3.3-py3-none-any.whl
-Saved /wheels/pycparser-3.11-py3-none-any.whl
-Saved /wheels/tqdm-4.70.1-py3-none-any.whl
-Building wheels for collected packages: egp-maf
-  Building wheel for egp-maf (pyproject.toml): started
-  Building wheel for egp-maf (pyproject.toml): finished with status 'done'
-  Created wheel for egp-maf: filename=egp_maf-0.1.0-py3-none-any.whl size=246357 sha256=233af6888068e6b077cc9f23938565e9a869ab497c339ee60361f3a072e4fa18
-  Stored in directory: /tmp/pip-ephem-wheel-cache-vil3p6jx/wheels/7f/5c/67/61a4ca28ccbc7df61f55a044560f100aa81c66ef20585de495
-Successfully built egp-maf
-Removing intermediate container 9035ff8c9030
- ---> a14022b2be0e
-Step 7/17 : FROM python:3.12-slim-bookworm AS runtime
-3.12-slim-bookworm: Pulling from library/python
-Digest: sha256:34386ef0cb081344d7ec1c103ba398e6e9f64e9ab3a1509accc92a4e24a07258
-Status: Image is up to date for python:3.12-slim-bookworm
- ---> 4f228bc1cbcf
-Step 8/17 : ENV PYTHONDONTWRITEBYTECODE=1     PYTHONUNBUFFERED=1     PIP_NO_CACHE_DIR=1     PIP_DISABLE_PIP_VERSION_CHECK=1     PORT=8080
- ---> Running in c74db3050442
-Removing intermediate container c74db3050442
- ---> 6a1b58d31f90
-Step 9/17 : RUN groupadd --system --gid 10001 app  && useradd  --system --uid 10001 --gid 10001 --home /home/app --create-home app
- ---> Running in 89fdf2af0c6b
-useradd warning: app's uid 10001 is greater than SYS_UID_MAX 999
-Removing intermediate container 89fdf2af0c6b
- ---> 6d53e3396130
-Step 10/17 : WORKDIR /app
- ---> Running in 7a2474dc6a1e
-Removing intermediate container 7a2474dc6a1e
- ---> cef4d9075971
-Step 11/17 : COPY --from=builder /wheels /wheels
- ---> 30213f9117eb
-Step 12/17 : RUN pip install --no-index --find-links=/wheels egp-maf  && rm -rf /wheels
- ---> Running in 50fef7503b70
-Looking in links: /wheels
-Processing /wheels/egp_maf-0.1.0-py3-none-any.whl
-Processing /wheels/agent_framework-1.22.0-py3-none-any.whl (from egp-maf)
-Processing /wheels/alembic-1.20.0-py3-none-any.whl (from egp-maf)
-Processing /wheels/azure_cosmos-4.17.1-py3-none-any.whl (from egp-maf)
-Processing /wheels/azure_identity-1.26.0-py3-none-any.whl (from egp-maf)
-Processing /wheels/fastapi-0.141.1-py3-none-any.whl (from egp-maf)
-Processing /wheels/opentelemetry_api-1.45.1-py3-none-any.whl (from egp-maf)
-Processing /wheels/opentelemetry_sdk-1.45.1-py3-none-any.whl (from egp-maf)
-Processing /wheels/psycopg-3.3.6-py3-none-any.whl (from psycopg[binary,pool]<4,>=3.2.0->egp-maf)
-Processing /wheels/pydantic_settings-2.16.0-py3-none-any.whl (from egp-maf)
-Processing /wheels/pydantic-2.14.1-py3-none-any.whl (from egp-maf)
-Processing /wheels/pyjwt-2.15.1-py3-none-any.whl (from pyjwt[crypto]<3,>=2.13.0->egp-maf)
-Processing /wheels/python_dotenv-1.2.4-py3-none-any.whl (from egp-maf)
-Processing /wheels/sqlalchemy-2.1.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (from egp-maf)
-Processing /wheels/structlog-24.4.0-py3-none-any.whl (from egp-maf)
-Processing /wheels/uvicorn-0.54.0-py3-none-any.whl (from uvicorn[standard]<1,>=0.32.0->egp-maf)
-Processing /wheels/agent_framework_core-1.22.0-py3-none-any.whl (from agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf)
-Processing /wheels/msgspec-0.22.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (from agent-framework-core==1.22.0->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf)
-Processing /wheels/typing_extensions-4.16.0-py3-none-any.whl (from agent-framework-core==1.22.0->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf)
-Processing /wheels/pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (from agent-framework-core==1.22.0->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf)
-Processing /wheels/regex-2026.9.29-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (from agent-framework-core==1.22.0->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf)
-Processing /wheels/mcp-1.30.0-py3-none-any.whl (from agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf)
-Processing /wheels/agent_framework_a2a-1.0.0b261015-py3-none-any.whl (from agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf)
-Processing /wheels/agent_framework_ag_ui-1.6.0-py3-none-any.whl (from agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf)
-Processing /wheels/agent_framework_anthropic-1.0.0b261015-py3-none-any.whl (from agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf)
-Processing /wheels/agent_framework_azure_ai_search-1.0.0b261015-py3-none-any.whl (from agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf)
-Processing /wheels/agent_framework_azure_contentunderstanding-1.0.0b261015-py3-none-any.whl (from agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf)
-Processing /wheels/agent_framework_azure_cosmos-1.0.0b261015-py3-none-any.whl (from agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf)
-Processing /wheels/agent_framework_azurefunctions-1.0.0b260922-py3-none-any.whl (from agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf)
-Processing /wheels/agent_framework_bedrock-1.0.0b261015-py3-none-any.whl (from agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf)
-Processing /wheels/agent_framework_chatkit-1.0.0b261015-py3-none-any.whl (from agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf)
-Processing /wheels/agent_framework_claude-1.0.0b261015-py3-none-any.whl (from agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf)
-Processing /wheels/agent_framework_copilotstudio-1.0.0b261015-py3-none-any.whl (from agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf)
-Processing /wheels/agent_framework_declarative-1.3.0-py3-none-any.whl (from agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf)
-Processing /wheels/agent_framework_devui-1.0.0b261015-py3-none-any.whl (from agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf)
-Processing /wheels/agent_framework_durabletask-1.0.0b260922-py3-none-any.whl (from agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf)
-Processing /wheels/agent_framework_foundry-1.15.0-py3-none-any.whl (from agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf)
-Processing /wheels/agent_framework_foundry_hosting-1.0.0b261015-py3-none-any.whl (from agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf)
-Processing /wheels/agent_framework_foundry_local-1.0.0b261015-py3-none-any.whl (from agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf)
-Processing /wheels/agent_framework_gemini-1.0.0b261015-py3-none-any.whl (from agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf)
-Processing /wheels/agent_framework_github_copilot-2.1.0-py3-none-any.whl (from agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf)
-Processing /wheels/agent_framework_hyperlight-1.0.0b261015-py3-none-any.whl (from agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf)
-Processing /wheels/agent_framework_mem0-1.0.0b261015-py3-none-any.whl (from agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf)
-Processing /wheels/agent_framework_mistral-1.0.0b261015-py3-none-any.whl (from agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf)
-Processing /wheels/agent_framework_monty-1.0.0b261015-py3-none-any.whl (from agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf)
-Processing /wheels/agent_framework_ollama-1.0.0b261015-py3-none-any.whl (from agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf)
-Processing /wheels/agent_framework_openai-1.17.0-py3-none-any.whl (from agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf)
-Processing /wheels/agent_framework_orchestrations-1.3.2-py3-none-any.whl (from agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf)
-Processing /wheels/agent_framework_purview-1.0.0b261015-py3-none-any.whl (from agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf)
-Processing /wheels/agent_framework_redis-1.0.0b261015-py3-none-any.whl (from agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf)
-Processing /wheels/agent_framework_tools-1.0.0b261015-py3-none-any.whl (from agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf)
-Processing /wheels/mako-1.4.3-py3-none-any.whl (from alembic<2,>=1.14.0->egp-maf)
-Processing /wheels/azure_core-1.41.0-py3-none-any.whl (from azure-cosmos<5,>=4.9.0->egp-maf)
-Processing /wheels/cryptography-50.0.2-cp311-abi3-manylinux_2_34_x86_64.whl (from azure-identity<2,>=1.19.0->egp-maf)
-Processing /wheels/msal-1.39.0-py3-none-any.whl (from azure-identity<2,>=1.19.0->egp-maf)
-Processing /wheels/msal_extensions-1.3.1-py3-none-any.whl (from azure-identity<2,>=1.19.0->egp-maf)
-Processing /wheels/starlette-1.8.0-py3-none-any.whl (from fastapi<1,>=0.115.0->egp-maf)
-Processing /wheels/typing_inspection-0.4.4-py3-none-any.whl (from fastapi<1,>=0.115.0->egp-maf)
-Processing /wheels/annotated_doc-0.0.5-py3-none-any.whl (from fastapi<1,>=0.115.0->egp-maf)
-Processing /wheels/opentelemetry_semantic_conventions-0.66b1-py3-none-any.whl (from opentelemetry-sdk>=1.28.0->egp-maf)
-Processing /wheels/psycopg_binary-3.3.6-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (from psycopg[binary,pool]<4,>=3.2.0->egp-maf)
-Processing /wheels/psycopg_pool-3.3.3-py3-none-any.whl (from psycopg[binary,pool]<4,>=3.2.0->egp-maf)
-Processing /wheels/annotated_types-0.8.0-py3-none-any.whl (from pydantic<3,>=2.9.0->egp-maf)
-Processing /wheels/pydantic_core-2.50.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (from pydantic<3,>=2.9.0->egp-maf)
-Processing /wheels/click-8.5.0-py3-none-any.whl (from uvicorn<1,>=0.32.0->uvicorn[standard]<1,>=0.32.0->egp-maf)
-Processing /wheels/h11-0.16.0-py3-none-any.whl (from uvicorn<1,>=0.32.0->uvicorn[standard]<1,>=0.32.0->egp-maf)
-Processing /wheels/httptools-0.9.0-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (from uvicorn[standard]<1,>=0.32.0->egp-maf)
-Processing /wheels/uvloop-0.23.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (from uvicorn[standard]<1,>=0.32.0->egp-maf)
-Processing /wheels/watchfiles-1.3.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (from uvicorn[standard]<1,>=0.32.0->egp-maf)
-Processing /wheels/websockets-16.1.1-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (from uvicorn[standard]<1,>=0.32.0->egp-maf)
-Processing /wheels/requests-2.34.2-py3-none-any.whl (from azure-core>=1.30.0->azure-cosmos<5,>=4.9.0->egp-maf)
-Processing /wheels/cffi-2.0.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (from cryptography>=2.5->azure-identity<2,>=1.19.0->egp-maf)
-Processing /wheels/anyio-4.15.1-py3-none-any.whl (from starlette>=0.46.0->fastapi<1,>=0.115.0->egp-maf)
-Processing /wheels/markupsafe-3.0.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (from Mako->alembic<2,>=1.14.0->egp-maf)
-Processing /wheels/a2a_sdk-1.2.2-py3-none-any.whl (from agent-framework-a2a<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf)
-Processing /wheels/ag_ui_protocol-0.1.22-py3-none-any.whl (from agent-framework-ag-ui<2,>=1.6.0->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf)
-Processing /wheels/httpx-0.28.1-py3-none-any.whl (from agent-framework-ag-ui<2,>=1.6.0->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf)
-Processing /wheels/sse_starlette-3.5.0-py3-none-any.whl (from agent-framework-ag-ui<2,>=1.6.0->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf)
-Processing /wheels/anthropic-1.15.0-py3-none-any.whl (from agent-framework-anthropic<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf)
-Processing /wheels/aiohttp-3.14.5-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (from agent-framework-azure-ai-search<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf)
-Processing /wheels/azure_search_documents-12.0.0-py3-none-any.whl (from agent-framework-azure-ai-search<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf)
-Processing /wheels/azure_ai_contentunderstanding-1.2.0b3-py3-none-any.whl (from agent-framework-azure-contentunderstanding<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf)
-Processing /wheels/filetype-1.2.0-py2.py3-none-any.whl (from agent-framework-azure-contentunderstanding<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf)
-Processing /wheels/six-1.17.0-py2.py3-none-any.whl (from agent-framework-azure-cosmos<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf)
-Processing /wheels/azure_functions-1.25.0-py3-none-any.whl (from agent-framework-azurefunctions<2,>=1.0.0b260922->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf)
-Processing /wheels/azure_functions_durable-1.7.0-py3-none-any.whl (from agent-framework-azurefunctions<2,>=1.0.0b260922->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf)
-Processing /wheels/boto3-1.43.114-py3-none-any.whl (from agent-framework-bedrock<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf)
-Processing /wheels/botocore-1.43.114-py3-none-any.whl (from agent-framework-bedrock<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf)
-Processing /wheels/openai_chatkit-1.6.5-py3-none-any.whl (from agent-framework-chatkit<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf)
-Processing /wheels/claude_agent_sdk-0.2.168-py3-none-manylinux_2_17_x86_64.whl (from agent-framework-claude<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf)
-Processing /wheels/microsoft_agents_copilotstudio_client-1.8.0-py3-none-any.whl (from agent-framework-copilotstudio<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf)
-Processing /wheels/powerfx-0.0.34-py3-none-any.whl (from agent-framework-declarative<2,>=1.3.0->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf)
-Processing /wheels/openai-3.31.0-py3-none-any.whl (from agent-framework-devui<2,>=1.0.0b261015->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf)
-Processing /wheels/durabletask-1.12.0-py3-none-any.whl (from agent-framework-durabletask<2,>=1.0.0b260922->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf)
-Processing /wheels/durabletask_azuremanaged-1.12.0-py3-none-any.whl (from agent-framework-durabletask<2,>=1.0.0b260922->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf)
-Processing /wheels/python_dateutil-2.9.0.post0-py2.py3-none-any.whl (from agent-framework-durabletask<2,>=1.0.0b260922->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf)
-Processing /wheels/azure_ai_inference-1.0.0b9-py3-none-any.whl (from agent-framework-foundry<2,>=1.15.0->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf)
-Processing /wheels/azure_ai_projects-2.7.0-py3-none-any.whl (from agent-framework-foundry<2,>=1.15.0->agent-framework-core[all]==1.22.0->agent-framework>=1.0.0b1->egp-maf)
-INFO: pip is looking at multiple versions of agent-framework-foundry-hosting to determine which version is compatible with other requirements. This could take a while.
-ERROR: Could not find a version that satisfies the requirement azure-ai-agentserver-core<3,>=2.1.0 (from agent-framework-foundry-hosting) (from versions: 2.3.0b1)
-ERROR: No matching distribution found for azure-ai-agentserver-core<3,>=2.1.0
-The command '/bin/sh -c pip install --no-index --find-links=/wheels egp-maf  && rm -rf /wheels' returned a non-zero code: 1
-2026/10/16 14:48:29 Container failed during run: build. No retries remaining.
-failed to run step ID: build: exit status 1
+2026-10-16T16:48:21.4410937Z stdout F INFO:     127.0.0.1:55408 - "GET /healthz HTTP/1.1" 200 OK
+2026-10-16T16:48:21.5010999Z stdout F INFO:     127.0.0.1:55422 - "GET /healthz HTTP/1.1" 200 OK
 
+2026-10-16T16:48:31.4404323Z stdout F INFO:     127.0.0.1:45770 - "GET /healthz HTTP/1.1" 200 OK
 
-  Service  Status        Duration
-  ───────  ────────────  ──────────
-  ✗ backend  Failed        2m14s
+2026-10-16T16:48:40.3849702Z stdout F 2026-10-16T16:48:40.382581Z [error    ] http.unhandled_error           env=dev error_code=internal_error service=egp-maf service_version=0.1.0-dev trace_id=None
+2026-10-16T16:48:40.3850217Z stdout F Traceback (most recent call last):
+2026-10-16T16:48:40.3850356Z stdout F   File "/usr/local/lib/python3.12/site-packages/starlette/middleware/errors.py", line 164, in __call__
+2026-10-16T16:48:40.3850371Z stdout F     await self.app(scope, receive, _send)
+2026-10-16T16:48:40.3850380Z stdout F   File "/usr/local/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+2026-10-16T16:48:40.3850390Z stdout F     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+2026-10-16T16:48:40.3850445Z stdout F   File "/usr/local/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+2026-10-16T16:48:40.3850453Z stdout F     raise exc
+2026-10-16T16:48:40.3850460Z stdout F   File "/usr/local/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+2026-10-16T16:48:40.3850467Z stdout F     await app(scope, receive, sender)
+2026-10-16T16:48:40.3850475Z stdout F   File "/usr/local/lib/python3.12/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+2026-10-16T16:48:40.3851199Z stdout F     await self.app(scope, receive, send)
+2026-10-16T16:48:40.3851271Z stdout F   File "/usr/local/lib/python3.12/site-packages/starlette/routing.py", line 676, in __call__
+2026-10-16T16:48:40.3851308Z stdout F     await self.middleware_stack(scope, receive, send)
+2026-10-16T16:48:40.3851325Z stdout F   File "/usr/local/lib/python3.12/site-packages/fastapi/routing.py", line 2734, in app
+2026-10-16T16:48:40.3851340Z stdout F     await route.handle(scope, receive, send)
+2026-10-16T16:48:40.3851353Z stdout F   File "/usr/local/lib/python3.12/site-packages/fastapi/routing.py", line 1281, in handle
+2026-10-16T16:48:40.3851386Z stdout F     await super().handle(scope, receive, send)
+2026-10-16T16:48:40.3851400Z stdout F   File "/usr/local/lib/python3.12/site-packages/starlette/routing.py", line 282, in handle
+2026-10-16T16:48:40.3851412Z stdout F     await self.app(scope, receive, send)
+2026-10-16T16:48:40.3851425Z stdout F   File "/usr/local/lib/python3.12/site-packages/fastapi/routing.py", line 158, in app
+2026-10-16T16:48:40.3851436Z stdout F     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+2026-10-16T16:48:40.3851448Z stdout F   File "/usr/local/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+2026-10-16T16:48:40.3851460Z stdout F     raise exc
+2026-10-16T16:48:40.3851472Z stdout F   File "/usr/local/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+2026-10-16T16:48:40.3851483Z stdout F     await app(scope, receive, sender)
+2026-10-16T16:48:40.3851692Z stdout F   File "/usr/local/lib/python3.12/site-packages/fastapi/routing.py", line 144, in app
+2026-10-16T16:48:40.3851733Z stdout F     response = await f(request)
+2026-10-16T16:48:40.3851758Z stdout F                ^^^^^^^^^^^^^^^^
+2026-10-16T16:48:40.3851772Z stdout F   File "/usr/local/lib/python3.12/site-packages/fastapi/routing.py", line 706, in app
+2026-10-16T16:48:40.3851796Z stdout F     raw_response = await run_endpoint_function(
+2026-10-16T16:48:40.3851810Z stdout F                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T16:48:40.3851822Z stdout F   File "/usr/local/lib/python3.12/site-packages/fastapi/routing.py", line 352, in run_endpoint_function
+2026-10-16T16:48:40.3851833Z stdout F     return await dependant.call(**values)
+2026-10-16T16:48:40.3851844Z stdout F            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T16:48:40.3851855Z stdout F   File "/usr/local/lib/python3.12/site-packages/egp_maf/api/admin.py", line 155, in list_clinicians
+2026-10-16T16:48:40.3851985Z stdout F     everyone = await store.load_all()
+2026-10-16T16:48:40.3852004Z stdout F                ^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T16:48:40.3852016Z stdout F   File "/usr/local/lib/python3.12/site-packages/egp_maf/services/authz_cosmos.py", line 147, in load_all
+2026-10-16T16:48:40.3852538Z stdout F     async for item in container.query_items(
+2026-10-16T16:48:40.3852575Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/core/async_paging.py", line 142, in __anext__
+2026-10-16T16:48:40.3852587Z stdout F     return await self.__anext__()
+2026-10-16T16:48:40.3852600Z stdout F            ^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T16:48:40.3852745Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/core/async_paging.py", line 145, in __anext__
+2026-10-16T16:48:40.3852771Z stdout F     self._page = await self._page_iterator.__anext__()
+2026-10-16T16:48:40.3852788Z stdout F                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T16:48:40.3852816Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/core/async_paging.py", line 94, in __anext__
+2026-10-16T16:48:40.3852828Z stdout F     self._response = await self._get_next(self.continuation_token)
+2026-10-16T16:48:40.3852841Z stdout F                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T16:48:40.3852853Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/aio/_query_iterable_async.py", line 124, in _fetch_next
+2026-10-16T16:48:40.3852864Z stdout F     block = await self._ex_context.fetch_next_block()
+2026-10-16T16:48:40.3852878Z stdout F             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T16:48:40.3852890Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/_execution_context/aio/execution_dispatcher.py", line 113, in fetch_next_block
+2026-10-16T16:48:40.3852903Z stdout F     return await self._execution_context.fetch_next_block()
+2026-10-16T16:48:40.3852915Z stdout F            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T16:48:40.3852996Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/_execution_context/aio/base_execution_context.py", line 87, in fetch_next_block
+2026-10-16T16:48:40.3853021Z stdout F     await self._ensure()
+2026-10-16T16:48:40.3853037Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/_execution_context/aio/base_execution_context.py", line 72, in _ensure
+2026-10-16T16:48:40.3853049Z stdout F     results = await self._fetch_next_block()
+2026-10-16T16:48:40.3853059Z stdout F               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T16:48:40.3853070Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/_execution_context/aio/base_execution_context.py", line 270, in _fetch_next_block
+2026-10-16T16:48:40.3853082Z stdout F     return await self._fetch_items_helper_with_retries(self._fetch_function)
+2026-10-16T16:48:40.3853094Z stdout F            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T16:48:40.3853106Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/_execution_context/aio/base_execution_context.py", line 176, in _fetch_items_helper_with_retries
+2026-10-16T16:48:40.3853118Z stdout F     return await execute_fetch()
+2026-10-16T16:48:40.3853130Z stdout F            ^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T16:48:40.3853164Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/_execution_context/aio/base_execution_context.py", line 157, in execute_fetch
+2026-10-16T16:48:40.3853177Z stdout F     return await _retry_utility_async.ExecuteAsync(
+2026-10-16T16:48:40.3853213Z stdout F            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T16:48:40.3853229Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/aio/_retry_utility_async.py", line 142, in ExecuteAsync
+2026-10-16T16:48:40.3853243Z stdout F     result = await ExecuteFunctionAsync(function, *args, **kwargs)
+2026-10-16T16:48:40.3853255Z stdout F              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T16:48:40.3853267Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/aio/_retry_utility_async.py", line 348, in ExecuteFunctionAsync
+2026-10-16T16:48:40.3853294Z stdout F     return await function(*args, **kwargs)
+2026-10-16T16:48:40.3853457Z stdout F            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T16:48:40.3853473Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/_execution_context/aio/base_execution_context.py", line 155, in callback
+2026-10-16T16:48:40.3853486Z stdout F     return await self._fetch_items_helper_no_retries(fetch_function)
+2026-10-16T16:48:40.3853498Z stdout F            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T16:48:40.3853511Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/_execution_context/aio/base_execution_context.py", line 136, in _fetch_items_helper_no_retries
+2026-10-16T16:48:40.3853523Z stdout F     (fetched_items, response_headers) = await fetch_function(new_options)
+2026-10-16T16:48:40.3853569Z stdout F                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T16:48:40.3853584Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/aio/_cosmos_client_connection_async.py", line 2434, in fetch_fn
+2026-10-16T16:48:40.3853596Z stdout F     await self.__QueryFeed(
+2026-10-16T16:48:40.3853608Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/aio/_cosmos_client_connection_async.py", line 3492, in __QueryFeed
+2026-10-16T16:48:40.3853620Z stdout F     result, last_response_headers = await self.__Post(path, request_params, query, req_headers, **kwargs)
+2026-10-16T16:48:40.3853632Z stdout F                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T16:48:40.3853644Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/aio/_cosmos_client_connection_async.py", line 1034, in __Post
+2026-10-16T16:48:40.3853656Z stdout F     return await asynchronous_request.AsynchronousRequest(
+2026-10-16T16:48:40.3853680Z stdout F            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T16:48:40.3853692Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/aio/_asynchronous_request.py", line 287, in AsynchronousRequest
+2026-10-16T16:48:40.3853704Z stdout F     return await _retry_utility_async.ExecuteAsync(
+2026-10-16T16:48:40.3853715Z stdout F            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T16:48:40.3853776Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/aio/_retry_utility_async.py", line 139, in ExecuteAsync
+2026-10-16T16:48:40.3853791Z stdout F     result = await ExecuteFunctionAsync(function, global_endpoint_manager, *args, **kwargs)
+2026-10-16T16:48:40.3853805Z stdout F              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-ERROR: publishing service backend: failed publishing service 'backend': failed retrieving package result details
-Update available: 1.30.0 -> 1.36.0 (Release notes)
-To update, run `winget upgrade Microsoft.Azd`
-PS C:\Users\vijayn\Projects\EGP\EPG-MAF>
+2026-10-16T16:48:40.3853816Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/aio/_retry_utility_async.py", line 348, in ExecuteFunctionAsync
+2026-10-16T16:48:40.3853829Z stdout F     return await function(*args, **kwargs)
+2026-10-16T16:48:40.3853840Z stdout F            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T16:48:40.3853851Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/aio/_asynchronous_request.py", line 139, in _Request
+2026-10-16T16:48:40.3853862Z stdout F     response = await _PipelineRunFunction(
+2026-10-16T16:48:40.3853873Z stdout F                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T16:48:40.3853885Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/aio/_asynchronous_request.py", line 205, in _PipelineRunFunction
+2026-10-16T16:48:40.3853908Z stdout F     return await pipeline_client._pipeline.run(request, **kwargs)
+2026-10-16T16:48:40.3853920Z stdout F            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T16:48:40.3853958Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/core/pipeline/_base_async.py", line 229, in run
+2026-10-16T16:48:40.3853973Z stdout F     return await first_node.send(pipeline_request)
+2026-10-16T16:48:40.3853986Z stdout F            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T16:48:40.3853997Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/core/pipeline/_base_async.py", line 77, in send
+2026-10-16T16:48:40.3854078Z stdout F     response = await self.next.send(request)
+2026-10-16T16:48:40.3854092Z stdout F                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T16:48:40.3854104Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/core/pipeline/_base_async.py", line 77, in send
+2026-10-16T16:48:40.3854116Z stdout F     response = await self.next.send(request)
+2026-10-16T16:48:40.3854127Z stdout F                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T16:48:40.3854139Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/core/pipeline/_base_async.py", line 77, in send
+2026-10-16T16:48:40.3854151Z stdout F     response = await self.next.send(request)
+2026-10-16T16:48:40.3854162Z stdout F                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T16:48:40.3854185Z stdout F   [Previous line repeated 1 more time]
+2026-10-16T16:48:40.3854197Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/aio/_retry_utility_async.py", line 381, in send
+2026-10-16T16:48:40.3854208Z stdout F     response = await self.next.send(request)
+2026-10-16T16:48:40.3854219Z stdout F                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T16:48:40.3854259Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/core/pipeline/policies/_authentication_async.py", line 108, in send
+2026-10-16T16:48:40.3854273Z stdout F     response = await self.next.send(request)
+2026-10-16T16:48:40.3854297Z stdout F                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T16:48:40.3854309Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/core/pipeline/_base_async.py", line 77, in send
+2026-10-16T16:48:40.3854321Z stdout F     response = await self.next.send(request)
+2026-10-16T16:48:40.3854332Z stdout F                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T16:48:40.3854343Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/core/pipeline/_base_async.py", line 77, in send
+2026-10-16T16:48:40.3854354Z stdout F     response = await self.next.send(request)
+2026-10-16T16:48:40.3854366Z stdout F                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T16:48:40.3854377Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/core/pipeline/_base_async.py", line 77, in send
+2026-10-16T16:48:40.3854388Z stdout F     response = await self.next.send(request)
+2026-10-16T16:48:40.3854399Z stdout F                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T16:48:40.3854409Z stdout F   [Previous line repeated 1 more time]
+2026-10-16T16:48:40.3854432Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/core/pipeline/_base_async.py", line 111, in send
+2026-10-16T16:48:40.3854444Z stdout F     await self._sender.send(request.http_request, **request.context.options),
+2026-10-16T16:48:40.3854457Z stdout F     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T16:48:40.3854503Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/core/pipeline/transport/_aiohttp.py", line 352, in send
+2026-10-16T16:48:40.3854520Z stdout F     result = await self.session.request(  # type: ignore
+2026-10-16T16:48:40.3854532Z stdout F                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T16:48:40.3854545Z stdout F   File "/usr/local/lib/python3.12/site-packages/aiohttp/client.py", line 550, in request
+2026-10-16T16:48:40.3854557Z stdout F     return _RequestContextManager(self._request(method, url, **kwargs))
+2026-10-16T16:48:40.3854569Z stdout F                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T16:48:40.3854590Z stdout F TypeError: ClientSession._request() got an unexpected keyword argument 'enable_cross_partition_query'
+2026-10-16T16:48:40.3854603Z stdout F INFO:     100.100.209.4:0 - "GET /admin/allowlist/clinicians HTTP/1.1" 500 Internal Server Error
+2026-10-16T16:48:40.3882101Z stderr F ERROR:    Exception in ASGI application
+2026-10-16T16:48:40.3882374Z stderr F Traceback (most recent call last):
+2026-10-16T16:48:40.3882925Z stderr F   File "/usr/local/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 422, in run_asgi
+2026-10-16T16:48:40.3882959Z stderr F     result = await app(  # type: ignore[func-returns-value]
+2026-10-16T16:48:40.3882971Z stderr F              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T16:48:40.3882982Z stderr F   File "/usr/local/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 63, in __call__
+2026-10-16T16:48:40.3882994Z stderr F     return await self.app(scope, receive, send)
+2026-10-16T16:48:40.3883006Z stderr F            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T16:48:40.3883019Z stderr F   File "/usr/local/lib/python3.12/site-packages/fastapi/applications.py", line 1163, in __call__
+2026-10-16T16:48:40.3883030Z stderr F     await super().__call__(scope, receive, send)
+2026-10-16T16:48:40.3883044Z stderr F   File "/usr/local/lib/python3.12/site-packages/starlette/applications.py", line 96, in __call__
+2026-10-16T16:48:40.3883069Z stderr F     await self.middleware_stack(scope, receive, send)
+2026-10-16T16:48:40.3883082Z stderr F   File "/usr/local/lib/python3.12/site-packages/starlette/middleware/errors.py", line 186, in __call__
+2026-10-16T16:48:40.3883094Z stderr F     raise exc
+2026-10-16T16:48:40.3883636Z stderr F   File "/usr/local/lib/python3.12/site-packages/starlette/middleware/errors.py", line 164, in __call__
+2026-10-16T16:48:40.3883883Z stderr F     await self.app(scope, receive, _send)
+2026-10-16T16:48:40.3883978Z stderr F   File "/usr/local/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+2026-10-16T16:48:40.3883998Z stderr F     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+2026-10-16T16:48:40.3884007Z stderr F   File "/usr/local/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+2026-10-16T16:48:40.3884017Z stderr F     raise exc
+2026-10-16T16:48:40.3884028Z stderr F   File "/usr/local/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+2026-10-16T16:48:40.3884071Z stderr F     await app(scope, receive, sender)
+2026-10-16T16:48:40.3884078Z stderr F   File "/usr/local/lib/python3.12/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+2026-10-16T16:48:40.3884087Z stderr F     await self.app(scope, receive, send)
+2026-10-16T16:48:40.3884095Z stderr F   File "/usr/local/lib/python3.12/site-packages/starlette/routing.py", line 676, in __call__
+2026-10-16T16:48:40.3884103Z stderr F     await self.middleware_stack(scope, receive, send)
+2026-10-16T16:48:40.3884111Z stderr F   File "/usr/local/lib/python3.12/site-packages/fastapi/routing.py", line 2734, in app
+2026-10-16T16:48:40.3884119Z stderr F     await route.handle(scope, receive, send)
+2026-10-16T16:48:40.3884126Z stderr F   File "/usr/local/lib/python3.12/site-packages/fastapi/routing.py", line 1281, in handle
+2026-10-16T16:48:40.3884476Z stderr F     await super().handle(scope, receive, send)
+2026-10-16T16:48:40.3884503Z stderr F   File "/usr/local/lib/python3.12/site-packages/starlette/routing.py", line 282, in handle
+2026-10-16T16:48:40.3884524Z stderr F     await self.app(scope, receive, send)
+2026-10-16T16:48:40.3884532Z stderr F   File "/usr/local/lib/python3.12/site-packages/fastapi/routing.py", line 158, in app
+2026-10-16T16:48:40.3884540Z stderr F     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+2026-10-16T16:48:40.3884549Z stderr F   File "/usr/local/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+2026-10-16T16:48:40.3884557Z stderr F     raise exc
+2026-10-16T16:48:40.3884565Z stderr F   File "/usr/local/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+2026-10-16T16:48:40.3884572Z stderr F     await app(scope, receive, sender)
+2026-10-16T16:48:40.3884580Z stderr F   File "/usr/local/lib/python3.12/site-packages/fastapi/routing.py", line 144, in app
+2026-10-16T16:48:40.3884587Z stderr F     response = await f(request)
+2026-10-16T16:48:40.3884873Z stderr F                ^^^^^^^^^^^^^^^^
+2026-10-16T16:48:40.3884940Z stderr F   File "/usr/local/lib/python3.12/site-packages/fastapi/routing.py", line 706, in app
+2026-10-16T16:48:40.3884956Z stderr F     raw_response = await run_endpoint_function(
+2026-10-16T16:48:40.3884969Z stderr F                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T16:48:40.3885614Z stderr F   File "/usr/local/lib/python3.12/site-packages/fastapi/routing.py", line 352, in run_endpoint_function
+2026-10-16T16:48:40.3885690Z stderr F     return await dependant.call(**values)
+2026-10-16T16:48:40.3885717Z stderr F            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T16:48:40.3885730Z stderr F   File "/usr/local/lib/python3.12/site-packages/egp_maf/api/admin.py", line 155, in list_clinicians
+2026-10-16T16:48:40.3885742Z stderr F     everyone = await store.load_all()
+2026-10-16T16:48:40.3885753Z stderr F                ^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T16:48:40.3885763Z stderr F   File "/usr/local/lib/python3.12/site-packages/egp_maf/services/authz_cosmos.py", line 147, in load_all
+2026-10-16T16:48:40.3885776Z stderr F     async for item in container.query_items(
+2026-10-16T16:48:40.3885788Z stderr F   File "/usr/local/lib/python3.12/site-packages/azure/core/async_paging.py", line 142, in __anext__
+2026-10-16T16:48:40.3885800Z stderr F     return await self.__anext__()
+2026-10-16T16:48:40.3885812Z stderr F            ^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T16:48:40.3885824Z stderr F   File "/usr/local/lib/python3.12/site-packages/azure/core/async_paging.py", line 145, in __anext__
+2026-10-16T16:48:40.3885834Z stderr F     self._page = await self._page_iterator.__anext__()
+2026-10-16T16:48:40.3885862Z stderr F                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T16:48:40.3885873Z stderr F   File "/usr/local/lib/python3.12/site-packages/azure/core/async_paging.py", line 94, in __anext__
+2026-10-16T16:48:40.3885884Z stderr F     self._response = await self._get_next(self.continuation_token)
+2026-10-16T16:48:40.3885896Z stderr F                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T16:48:40.3886129Z stderr F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/aio/_query_iterable_async.py", line 124, in _fetch_next
+2026-10-16T16:48:40.3886196Z stderr F     block = await self._ex_context.fetch_next_block()
+2026-10-16T16:48:40.3886222Z stderr F             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T16:48:40.3886263Z stderr F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/_execution_context/aio/execution_dispatcher.py", line 113, in fetch_next_block
+2026-10-16T16:48:40.3886273Z stderr F     return await self._execution_context.fetch_next_block()
+2026-10-16T16:48:40.3886280Z stderr F            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T16:48:40.3886288Z stderr F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/_execution_context/aio/base_execution_context.py", line 87, in fetch_next_block
+2026-10-16T16:48:40.3886296Z stderr F     await self._ensure()
+2026-10-16T16:48:40.3886303Z stderr F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/_execution_context/aio/base_execution_context.py", line 72, in _ensure
+2026-10-16T16:48:40.3886310Z stderr F     results = await self._fetch_next_block()
+2026-10-16T16:48:40.3886317Z stderr F               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T16:48:40.3886324Z stderr F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/_execution_context/aio/base_execution_context.py", line 270, in _fetch_next_block
+2026-10-16T16:48:40.3886561Z stderr F     return await self._fetch_items_helper_with_retries(self._fetch_function)
+2026-10-16T16:48:40.3886610Z stderr F            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T16:48:40.3886636Z stderr F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/_execution_context/aio/base_execution_context.py", line 176, in _fetch_items_helper_with_retries
+2026-10-16T16:48:40.3886649Z stderr F     return await execute_fetch()
+2026-10-16T16:48:40.3886922Z stderr F            ^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T16:48:40.3886956Z stderr F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/_execution_context/aio/base_execution_context.py", line 157, in execute_fetch
+2026-10-16T16:48:40.3886969Z stderr F     return await _retry_utility_async.ExecuteAsync(
+2026-10-16T16:48:40.3886981Z stderr F            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T16:48:40.3887145Z stderr F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/aio/_retry_utility_async.py", line 142, in ExecuteAsync
+2026-10-16T16:48:40.3887165Z stderr F     result = await ExecuteFunctionAsync(function, *args, **kwargs)
+2026-10-16T16:48:40.3887172Z stderr F              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T16:48:40.3887180Z stderr F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/aio/_retry_utility_async.py", line 348, in ExecuteFunctionAsync
+2026-10-16T16:48:40.3887390Z stderr F     return await function(*args, **kwargs)
+2026-10-16T16:48:40.3887426Z stderr F            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T16:48:40.3887461Z stderr F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/_execution_context/aio/base_execution_context.py", line 155, in callback
+2026-10-16T16:48:40.3887473Z stderr F     return await self._fetch_items_helper_no_retries(fetch_function)
+2026-10-16T16:48:40.3887484Z stderr F            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T16:48:40.3887495Z stderr F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/_execution_context/aio/base_execution_context.py", line 136, in _fetch_items_helper_no_retries
+2026-10-16T16:48:40.3887507Z stderr F     (fetched_items, response_headers) = await fetch_function(new_options)
+2026-10-16T16:48:40.3887520Z stderr F                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T16:48:40.3887532Z stderr F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/aio/_cosmos_client_connection_async.py", line 2434, in fetch_fn
+2026-10-16T16:48:40.3887542Z stderr F     await self.__QueryFeed(
+2026-10-16T16:48:40.3887553Z stderr F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/aio/_cosmos_client_connection_async.py", line 3492, in __QueryFeed
+2026-10-16T16:48:40.3887577Z stderr F     result, last_response_headers = await self.__Post(path, request_params, query, req_headers, **kwargs)
+2026-10-16T16:48:40.3887782Z stderr F                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T16:48:40.3887826Z stderr F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/aio/_cosmos_client_connection_async.py", line 1034, in __Post
+2026-10-16T16:48:40.3887849Z stderr F     return await asynchronous_request.AsynchronousRequest(
+2026-10-16T16:48:40.3887863Z stderr F            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T16:48:40.3887875Z stderr F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/aio/_asynchronous_request.py", line 287, in AsynchronousRequest
+2026-10-16T16:48:40.3887886Z stderr F     return await _retry_utility_async.ExecuteAsync(
+2026-10-16T16:48:40.3887898Z stderr F            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T16:48:40.3887909Z stderr F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/aio/_retry_utility_async.py", line 139, in ExecuteAsync
+2026-10-16T16:48:40.3887921Z stderr F     result = await ExecuteFunctionAsync(function, global_endpoint_manager, *args, **kwargs)
+2026-10-16T16:48:40.3887932Z stderr F              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T16:48:40.3887959Z stderr F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/aio/_retry_utility_async.py", line 348, in ExecuteFunctionAsync
+2026-10-16T16:48:40.3888019Z stderr F     return await function(*args, **kwargs)
+2026-10-16T16:48:40.3888037Z stderr F            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T16:48:40.3888053Z stderr F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/aio/_asynchronous_request.py", line 139, in _Request
+2026-10-16T16:48:40.3888151Z stderr F     response = await _PipelineRunFunction(
+2026-10-16T16:48:40.3888165Z stderr F                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T16:48:40.3888178Z stderr F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/aio/_asynchronous_request.py", line 205, in _PipelineRunFunction
+2026-10-16T16:48:40.3888190Z stderr F     return await pipeline_client._pipeline.run(request, **kwargs)
+2026-10-16T16:48:40.3888204Z stderr F            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T16:48:40.3888215Z stderr F   File "/usr/local/lib/python3.12/site-packages/azure/core/pipeline/_base_async.py", line 229, in run
+2026-10-16T16:48:40.3888227Z stderr F     return await first_node.send(pipeline_request)
+2026-10-16T16:48:40.3888238Z stderr F            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T16:48:40.3888305Z stderr F   File "/usr/local/lib/python3.12/site-packages/azure/core/pipeline/_base_async.py", line 77, in send
+2026-10-16T16:48:40.3888320Z stderr F     response = await self.next.send(request)
+2026-10-16T16:48:40.3888328Z stderr F                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T16:48:40.3888335Z stderr F   File "/usr/local/lib/python3.12/site-packages/azure/core/pipeline/_base_async.py", line 77, in send
+2026-10-16T16:48:40.3888525Z stderr F     response = await self.next.send(request)
+2026-10-16T16:48:40.3888560Z stderr F                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T16:48:40.3888584Z stderr F   File "/usr/local/lib/python3.12/site-packages/azure/core/pipeline/_base_async.py", line 77, in send
+2026-10-16T16:48:40.3888598Z stderr F     response = await self.next.send(request)
+2026-10-16T16:48:40.3888612Z stderr F                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T16:48:40.3888626Z stderr F   [Previous line repeated 1 more time]
+2026-10-16T16:48:40.3888653Z stderr F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/aio/_retry_utility_async.py", line 381, in send
+2026-10-16T16:48:40.3888667Z stderr F     response = await self.next.send(request)
+2026-10-16T16:48:40.3888679Z stderr F                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T16:48:40.3888692Z stderr F   File "/usr/local/lib/python3.12/site-packages/azure/core/pipeline/policies/_authentication_async.py", line 108, in send
+2026-10-16T16:48:40.3888704Z stderr F     response = await self.next.send(request)
+2026-10-16T16:48:40.3888717Z stderr F                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T16:48:40.3888729Z stderr F   File "/usr/local/lib/python3.12/site-packages/azure/core/pipeline/_base_async.py", line 77, in send
+2026-10-16T16:48:40.3888741Z stderr F     response = await self.next.send(request)
+2026-10-16T16:48:40.3888752Z stderr F                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T16:48:40.3888763Z stderr F   File "/usr/local/lib/python3.12/site-packages/azure/core/pipeline/_base_async.py", line 77, in send
+2026-10-16T16:48:40.3888867Z stderr F     response = await self.next.send(request)
+2026-10-16T16:48:40.3888881Z stderr F                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T16:48:40.3888895Z stderr F   File "/usr/local/lib/python3.12/site-packages/azure/core/pipeline/_base_async.py", line 77, in send
+2026-10-16T16:48:40.3888908Z stderr F     response = await self.next.send(request)
+2026-10-16T16:48:40.3888920Z stderr F                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T16:48:40.3888932Z stderr F   [Previous line repeated 1 more time]
+2026-10-16T16:48:40.3888945Z stderr F   File "/usr/local/lib/python3.12/site-packages/azure/core/pipeline/_base_async.py", line 111, in send
+2026-10-16T16:48:40.3888958Z stderr F     await self._sender.send(request.http_request, **request.context.options),
+2026-10-16T16:48:40.3888971Z stderr F     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T16:48:40.3888984Z stderr F   File "/usr/local/lib/python3.12/site-packages/azure/core/pipeline/transport/_aiohttp.py", line 352, in send
+2026-10-16T16:48:40.3888998Z stderr F     result = await self.session.request(  # type: ignore
+2026-10-16T16:48:40.3889197Z stderr F                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T16:48:40.3889229Z stderr F   File "/usr/local/lib/python3.12/site-packages/aiohttp/client.py", line 550, in request
+2026-10-16T16:48:40.3889242Z stderr F     return _RequestContextManager(self._request(method, url, **kwargs))
+2026-10-16T16:48:40.3889255Z stderr F                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T16:48:40.3889491Z stderr F TypeError: ClientSession._request() got an unexpected keyword argument 'enable_cross_partition_query'
+
+2026-10-16T16:48:41.4422269Z stdout F INFO:     127.0.0.1:51524 - "GET /healthz HTTP/1.1" 200 OK
+
+2026-10-16T16:48:44.4672727Z stdout F 2026-10-16T16:48:44.466987Z [warning  ] authz.cosmos.refresh_failed    env=dev error_type=TypeError service=egp-maf service_version=0.1.0-dev
+2026-10-16T16:48:44.4883844Z stdout F 2026-10-16T16:48:44.488111Z [warning  ] authz.cosmos.refresh_failed    env=dev error_type=TypeError service=egp-maf service_version=0.1.0-dev
+
+2026-10-16T16:48:51.4417557Z stdout F INFO:     127.0.0.1:52390 - "GET /healthz HTTP/1.1" 200 OK
+2026-10-16T16:48:51.5015077Z stdout F INFO:     127.0.0.1:52400 - "GET /healthz HTTP/1.1" 200 OK
+
+2026-10-16T16:49:01.4421653Z stdout F INFO:     127.0.0.1:42644 - "GET /healthz HTTP/1.1" 200 OK
+
+2026-10-16T16:49:11.4403329Z stdout F INFO:     127.0.0.1:59826 - "GET /healthz HTTP/1.1" 200 OK
+
+2026-10-16T16:49:14.4679362Z stdout F 2026-10-16T16:49:14.467623Z [warning  ] authz.cosmos.refresh_failed    env=dev error_type=TypeError service=egp-maf service_version=0.1.0-dev
+2026-10-16T16:49:14.4888887Z stdout F 2026-10-16T16:49:14.488657Z [warning  ] authz.cosmos.refresh_failed    env=dev error_type=TypeError service=egp-maf service_version=0.1.0-dev
+
+2026-10-16T16:49:21.4415743Z stdout F INFO:     127.0.0.1:36664 - "GET /healthz HTTP/1.1" 200 OK
+2026-10-16T16:49:21.5024745Z stdout F INFO:     127.0.0.1:36680 - "GET /healthz HTTP/1.1" 200 OK
+
+2026-10-16T16:49:28.5829536Z stdout F INFO:     100.100.209.4:0 - "GET /api/me HTTP/1.1" 200 OK
+
+2026-10-16T16:49:31.4429978Z stdout F INFO:     127.0.0.1:52998 - "GET /healthz HTTP/1.1" 200 OK
+
+2026-10-16T16:49:32.2320101Z stdout F INFO:     100.100.209.4:0 - "GET /api/me HTTP/1.1" 200 OK
+
+2026-10-16T16:49:41.4366922Z stdout F INFO:     127.0.0.1:50646 - "GET /healthz HTTP/1.1" 200 OK
+
+2026-10-16T16:49:44.4691666Z stdout F 2026-10-16T16:49:44.468878Z [warning  ] authz.cosmos.refresh_failed    env=dev error_type=TypeError service=egp-maf service_version=0.1.0-dev
+2026-10-16T16:49:44.4899194Z stdout F 2026-10-16T16:49:44.489666Z [warning  ] authz.cosmos.refresh_failed    env=dev error_type=TypeError service=egp-maf service_version=0.1.0-dev
+
+2026-10-16T16:49:51.4392389Z stdout F INFO:     127.0.0.1:60072 - "GET /healthz HTTP/1.1" 200 OK
+2026-10-16T16:49:51.4979657Z stdout F INFO:     127.0.0.1:60086 - "GET /healthz HTTP/1.1" 200 OK
