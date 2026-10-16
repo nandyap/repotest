@@ -1,215 +1,79 @@
-PowerShell 7.6.6
-PS C:\Users\vijayn> cd .\Projects\
-PS C:\Users\vijayn\Projects> cd .\EGP\
-PS C:\Users\vijayn\Projects\EGP> cd .\EPG-MAF\
-PS C:\Users\vijayn\Projects\EGP\EPG-MAF> ls
+2026-10-16T06:57:25.8167741Z stdout F INFO:     127.0.0.1:44458 - "GET /healthz HTTP/1.1" 200 OK
 
-    Directory: C:\Users\vijayn\Projects\EGP\EPG-MAF
+2026-10-16T06:57:29.6114463Z stdout F authz.granted
+2026-10-16T06:57:29.6114909Z stdout F authz.granted
 
-Mode                 LastWriteTime         Length Name
-----                 -------------         ------ ----
-d----          10/15/2026 12:04 PM                .azure
-d----           8/11/2026  6:07 AM                .github
-d----           8/11/2026  6:07 AM                agents
-d----           8/11/2026  6:07 AM                config
-d----           8/11/2026  6:07 AM                dashboards
-d----           8/26/2026  8:37 AM                docs
-d----           8/11/2026  6:07 AM                epg-maf
-d----           9/11/2026 12:23 PM                infra
-d----           8/11/2026  6:07 AM                scripts
-d----           8/11/2026  6:07 AM                test_data
-d----           8/11/2026  6:07 AM                tests
--a---           8/11/2026  6:07 AM             68 .env.example
--a---           8/24/2026  6:44 AM           1732 .gitignore
--a---           8/19/2026 11:25 AM           1906 azure.yaml
--a---           8/11/2026  6:07 AM          14269 egp-window-agent-discovery.md
--a---           8/11/2026  6:07 AM            153 langgraph.json
--a---           9/14/2026  5:08 PM         101691 log2.txt
--a---           8/11/2026  6:07 AM          15274 README.md
--a---           8/11/2026  6:07 AM            240 requirements.txt
+2026-10-16T06:57:30.1318279Z stdout F 2026-10-16T06:57:30.130317Z [error    ] http.egp_error                 env=dev error_code=cosmos_unavailable http_status=503 service=egp-maf service_version=0.1.0-dev trace_id=None
+2026-10-16T06:57:30.1318831Z stdout F Traceback (most recent call last):
+2026-10-16T06:57:30.1318951Z stdout F   File "/usr/local/lib/python3.12/site-packages/egp_maf/services/thread_state.py", line 95, in save
+2026-10-16T06:57:30.1318966Z stdout F     response = await container.upsert_item(body=payload)
+2026-10-16T06:57:30.1318977Z stdout F                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T06:57:30.1318985Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/core/tracing/decorator_async.py", line 119, in wrapper_use_tracer
+2026-10-16T06:57:30.1318993Z stdout F     return await func(*args, **kwargs)
+2026-10-16T06:57:30.1319000Z stdout F            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T06:57:30.1319010Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/aio/_container.py", line 1331, in upsert_item
+2026-10-16T06:57:30.1319018Z stdout F     await self._get_properties_with_options(request_options)
+2026-10-16T06:57:30.1319800Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/aio/_container.py", line 113, in _get_properties_with_options
+2026-10-16T06:57:30.1320280Z stdout F     return await self._get_properties(**kwargs)
+2026-10-16T06:57:30.1320315Z stdout F            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T06:57:30.1320329Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/aio/_container.py", line 119, in _get_properties
+2026-10-16T06:57:30.1320342Z stdout F     await self.read(**kwargs)
+2026-10-16T06:57:30.1320356Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/core/tracing/decorator_async.py", line 119, in wrapper_use_tracer
+2026-10-16T06:57:30.1320370Z stdout F     return await func(*args, **kwargs)
+2026-10-16T06:57:30.1320383Z stdout F            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T06:57:30.1320395Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/aio/_container.py", line 212, in read
+2026-10-16T06:57:30.1320407Z stdout F     container = await self.client_connection.ReadContainer(self.container_link, options=request_options, **kwargs)
+2026-10-16T06:57:30.1320434Z stdout F                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T06:57:30.1320447Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/aio/_cosmos_client_connection_async.py", line 1094, in ReadContainer
+2026-10-16T06:57:30.1321315Z stdout F     return await self.Read(path, http_constants.ResourceType.Collection, collection_id, None, options, **kwargs)
+2026-10-16T06:57:30.1321571Z stdout F            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T06:57:30.1321697Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/aio/_cosmos_client_connection_async.py", line 1316, in Read
+2026-10-16T06:57:30.1321712Z stdout F     result, last_response_headers = await self.__Get(path, request_params, headers, **kwargs)
+2026-10-16T06:57:30.1321720Z stdout F                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T06:57:30.1321729Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/aio/_cosmos_client_connection_async.py", line 1340, in __Get
 
-PS C:\Users\vijayn\Projects\EGP\EPG-MAF> $rg = 'rg-ailz-egpwin-dev-m42-aen-001'
->> New-Item -ItemType Directory -Force .azure\snapshots | Out-Null
->> az containerapp show -n egpmaf-dev-backend -g $rg -o json > .azure\snapshots\backend-before.json
->> az containerapp show -n egpmaf-dev-frontend -g $rg -o json > .azure\snapshots\frontend-before.json
-ERROR: Decryption failed: [WinError 87]  App developer may consider this guidance: https://github.com/AzureAD/microsoft-authentication-extensions-for-python/wiki/PersistenceDecryptionError
-ERROR: Decryption failed: [WinError 87]  App developer may consider this guidance: https://github.com/AzureAD/microsoft-authentication-extensions-for-python/wiki/PersistenceDecryptionError
-PS C:\Users\vijayn\Projects\EGP\EPG-MAF> azd env set AZURE_ENTRA_TENANT_ID 97b5dbfb-9d27-4e61-84a6-04d68a2ef555
->> azd env set AZURE_ENTRA_CLIENT_ID e31603af-7beb-486e-8ca5-b268a1aa70b8
->> azd env set AZURE_ENTRA_API_SCOPE api://app-reg-egp-window-agent-dev/access_as_user
->> azd env set AZURE_ENTRA_ALLOWED_AUDIENCES api://app-reg-egp-window-agent-dev
->> azd env set AZURE_ENTRA_EXPECTED_AUDIENCE e31603af-7beb-486e-8ca5-b268a1aa70b8
->> azd env set AZURE_ENTRA_EXPECTED_ISSUER https://login.microsoftonline.com/97b5dbfb-9d27-4e61-84a6-04d68a2ef555/v2.0
->> azd env set AZURE_ENTRA_JWKS_URL https://login.microsoftonline.com/97b5dbfb-9d27-4e61-84a6-04d68a2ef555/discovery/v2.0/keys
->> azd env set AZURE_ENTRA_AUTH_ENABLED true
->> azd env set AZURE_AUTH_STUB_ENABLED false
->> azd env set AZURE_AUTHZ_BACKEND cosmos
-Update available: 1.30.0 -> 1.35.1 (Release notes)
-To update, run `winget upgrade Microsoft.Azd`
-Update available: 1.30.0 -> 1.35.1 (Release notes)
-To update, run `winget upgrade Microsoft.Azd`
-Update available: 1.30.0 -> 1.35.1 (Release notes)
-To update, run `winget upgrade Microsoft.Azd`
-Update available: 1.30.0 -> 1.35.1 (Release notes)
-To update, run `winget upgrade Microsoft.Azd`
-Update available: 1.30.0 -> 1.35.1 (Release notes)
-To update, run `winget upgrade Microsoft.Azd`
-Update available: 1.30.0 -> 1.35.1 (Release notes)
-To update, run `winget upgrade Microsoft.Azd`
-Update available: 1.30.0 -> 1.35.1 (Release notes)
-To update, run `winget upgrade Microsoft.Azd`
-Update available: 1.30.0 -> 1.35.1 (Release notes)
-To update, run `winget upgrade Microsoft.Azd`
-Update available: 1.30.0 -> 1.35.1 (Release notes)
-To update, run `winget upgrade Microsoft.Azd`
-Update available: 1.30.0 -> 1.35.1 (Release notes)
-To update, run `winget upgrade Microsoft.Azd`
-PS C:\Users\vijayn\Projects\EGP\EPG-MAF> $envName = azd env get-value AZURE_ENV_NAME
->> $f = ".azure\$envName\.env"
->> (Get-Content $f) | Where-Object { $_ -notmatch '^NEXT_PUBLIC_DEV_BEARER=' } | Set-Content $f -Encoding ASCII
->> Select-String -Path $f -Pattern 'DEV_BEARER'
-Update available: 1.30.0 -> 1.35.1 (https://github.com/Azure/azure-dev/releases/tag/azure-dev-cli_1.35.1)
-To update, run `winget upgrade Microsoft.Azd`
-PS C:\Users\vijayn\Projects\EGP\EPG-MAF> $env:AZURE_AUTHZ_ALLOWLIST_JSON = '{"version":1,"clinicians":{"6441885a-094f-460b-a5ff-45c5f8283ff0":["PGP001","HG04001"],"9f7cd65e-9334-4f0d-bea7-abdf02227b24":["PGP001","HG04001"]}}'
-PS C:\Users\vijayn\Projects\EGP\EPG-MAF>  $env:AZURE_LLM_API_KEY = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
-PS C:\Users\vijayn\Projects\EGP\EPG-MAF> $env:AZURE_ENTRA_CLIENT_SECRET = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
-PS C:\Users\vijayn\Projects\EGP\EPG-MAF> pwsh ./scripts/preflight.ps1
-== EGP MAF preflight (all; mode: Entra sign-in) ==
-Preflight passed.
-PS C:\Users\vijayn\Projects\EGP\EPG-MAF> Resolve-DnsName crailzegpwindevm42aen001.azurecr.io -Server 8.8.8.8 -Type A
->> Get-Content "$env:windir\System32\drivers\etc\hosts" | Select-String azurecr
->> Test-NetConnection crailzegpwindevm42aen001.azurecr.io -Port 443
->> Test-NetConnection crailzegpwindevm42aen001.uaenorth.data.azurecr.io -Port 443
->>
->>
+2026-10-16T06:57:30.1321737Z stdout F     return await asynchronous_request.AsynchronousRequest(
+2026-10-16T06:57:30.1321744Z stdout F            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T06:57:30.1321752Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/aio/_asynchronous_request.py", line 287, in AsynchronousRequest
+2026-10-16T06:57:30.1321759Z stdout F     return await _retry_utility_async.ExecuteAsync(
+2026-10-16T06:57:30.1321767Z stdout F            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T06:57:30.1322428Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/aio/_retry_utility_async.py", line 139, in ExecuteAsync
+2026-10-16T06:57:30.1322714Z stdout F     result = await ExecuteFunctionAsync(function, global_endpoint_manager, *args, **kwargs)
+2026-10-16T06:57:30.1322778Z stdout F              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T06:57:30.1322807Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/aio/_retry_utility_async.py", line 348, in ExecuteFunctionAsync
+2026-10-16T06:57:30.1322821Z stdout F     return await function(*args, **kwargs)
+2026-10-16T06:57:30.1322833Z stdout F            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T06:57:30.1322845Z stdout F   File "/usr/local/lib/python3.12/site-packages/azure/cosmos/aio/_asynchronous_request.py", line 187, in _Request
+2026-10-16T06:57:30.1322858Z stdout F     raise exceptions.CosmosHttpResponseError(message=data, response=response)
+2026-10-16T06:57:30.1322888Z stdout F azure.cosmos.exceptions.CosmosHttpResponseError: (Forbidden) Request originated from VNET through service endpoint. This is blocked by your Cosmos DB account firewall settings. More info: https://aka.ms/cosmosdb-tsg-forbidden
+2026-10-16T06:57:30.1322906Z stdout F ActivityId: 3bc5ed54-bfcf-4560-b240-4f2b808614b1, Microsoft.Azure.Documents.Common/2.14.0
+2026-10-16T06:57:30.1322945Z stdout F Code: Forbidden
+2026-10-16T06:57:30.1323170Z stdout F Message: Request originated from VNET through service endpoint. This is blocked by your Cosmos DB account firewall settings. More info: https://aka.ms/cosmosdb-tsg-forbidden
+2026-10-16T06:57:30.1323219Z stdout F ActivityId: 3bc5ed54-bfcf-4560-b240-4f2b808614b1, Microsoft.Azure.Documents.Common/2.14.0
+2026-10-16T06:57:30.1323247Z stdout F 
+2026-10-16T06:57:30.1323262Z stdout F The above exception was the direct cause of the following exception:
+2026-10-16T06:57:30.1323273Z stdout F 
+2026-10-16T06:57:30.1323287Z stdout F Traceback (most recent call last):
+2026-10-16T06:57:30.1323298Z stdout F   File "/usr/local/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+2026-10-16T06:57:30.1323310Z stdout F     await app(scope, receive, sender)
+2026-10-16T06:57:30.1323323Z stdout F   File "/usr/local/lib/python3.12/site-packages/fastapi/routing.py", line 144, in app
+2026-10-16T06:57:30.1323351Z stdout F     response = await f(request)
+2026-10-16T06:57:30.1323365Z stdout F                ^^^^^^^^^^^^^^^^
+2026-10-16T06:57:30.1323378Z stdout F   File "/usr/local/lib/python3.12/site-packages/fastapi/routing.py", line 706, in app
+2026-10-16T06:57:30.1323391Z stdout F     raw_response = await run_endpoint_function(
+2026-10-16T06:57:30.1323404Z stdout F                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T06:57:30.1323416Z stdout F   File "/usr/local/lib/python3.12/site-packages/fastapi/routing.py", line 352, in run_endpoint_function
+2026-10-16T06:57:30.1323430Z stdout F     return await dependant.call(**values)
+2026-10-16T06:57:30.1323442Z stdout F            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T06:57:30.1323576Z stdout F   File "/usr/local/lib/python3.12/site-packages/egp_maf/api/app.py", line 390, in create_thread
+2026-10-16T06:57:30.1323590Z stdout F     thread = await container.thread_state_provider.create_thread(
+2026-10-16T06:57:30.1323614Z stdout F              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T06:57:30.1323625Z stdout F   File "/usr/local/lib/python3.12/site-packages/egp_maf/services/thread_state.py", line 177, in create_thread
+2026-10-16T06:57:30.1323637Z stdout F     return await self.save(doc)
+2026-10-16T06:57:30.1323649Z stdout F            ^^^^^^^^^^^^^^^^^^^^
+2026-10-16T06:57:30.1323660Z stdout F   File "/usr/local/lib/python3.12/site-packages/egp_maf/services/thread_state.py", line 127, in save
+2026-10-16T06:57:30.1323671Z stdout F     raise CosmosUnavailable(
+2026-10-16T06:57:30.1323682Z stdout F egp_maf.errors.CosmosUnavailable: Failed to save session T-defd7f0ad29149ce
+2026-10-16T06:57:30.1323693Z stdout F INFO:     100.100.209.5:0 - "POST /threads HTTP/1.1" 503 Service Unavailable
 
-Name                           Type   TTL   Section    NameHost
-----                           ----   ---   -------    --------
-crailzegpwindevm42aen001.azure CNAME  60    Answer     crailzegpwindevm42aen001.privatelink.azurecr.io
-cr.io
-crailzegpwindevm42aen001.priva CNAME  60    Answer     uaen-1-az.fe.azcr.io
-telink.azurecr.io
-uaen-1-az.fe.azcr.io           CNAME  60    Answer     uaen-1-acr-az-reg.trafficmanager.net
-uaen-1-acr-az-reg.trafficmanag CNAME  60    Answer     r0922uaen-1-az.uaenorth.cloudapp.azure.com
-er.net
-
-Name       : r0922uaen-1-az.uaenorth.cloudapp.azure.com
-QueryType  : A
-TTL        : 10
-Section    : Answer
-IP4Address : 20.38.140.194
-
-
-IgnoreCase : True
-LineNumber : 31
-Line       : # STALE 2026-08-24 20.38.140.207 crailzegpwindevm42aen001.azurecr.io
-Filename   : InputStream
-Path       : InputStream
-Pattern    : azurecr
-Context    :
-Matches    : {0}
-
-
-IgnoreCase : True
-LineNumber : 32
-Line       : # STALE 2026-08-24 20.38.140.206 crailzegpwindevm42aen001.uaenorth.data.azurecr.io
-Filename   : InputStream
-Path       : InputStream
-Pattern    : azurecr
-Context    :
-Matches    : {0}
-
-
-IgnoreCase : True
-LineNumber : 33
-Line       : 20.38.140.204 crailzegpwindevm42aen001.azurecr.io
-Filename   : InputStream
-Path       : InputStream
-Pattern    : azurecr
-Context    :
-Matches    : {0}
-
-
-IgnoreCase : True
-LineNumber : 34
-Line       : 20.38.140.195 crailzegpwindevm42aen001.uaenorth.data.azurecr.io
-Filename   : InputStream
-Path       : InputStream
-Pattern    : azurecr
-Context    :
-Matches    : {0}
-
-WARNING: TCP connect to (20.38.140.204 : 443) failed
-WARNING: Ping to 20.38.140.204 failed with status: TimedOut
-
-ComputerName             : crailzegpwindevm42aen001.azurecr.io
-RemoteAddress            : 20.38.140.204
-ResolvedAddresses        : {20.38.140.204}
-PingSucceeded            : False
-PingReplyDetails         : System.Net.NetworkInformation.PingReply
-TcpClientSocket          :
-TcpTestSucceeded         : False
-RemotePort               : 443
-TraceRoute               :
-Detailed                 : False
-InterfaceAlias           : Ethernet 182
-InterfaceIndex           : 24
-InterfaceDescription     : Microsoft Hyper-V Network Adapter #2
-NetAdapter               : MSFT_NetAdapter (CreationClassName = "MSFT_NetAdapter", DeviceID =
-                           "{1CA9CE8F-E82C-44BE-A689-40C6D97DE944}", SystemCreationClassName = "CIM_NetworkPort",
-                           SystemName = "vdaenprvt01-72.MHCORP.MUBADALAHEALTH.AE...)
-NetRoute                 : MSFT_NetRoute (InstanceID = ":8:8:8:9:55??55;:8;?8A?8;?C55;")
-SourceAddress            : 10.12.73.181
-NameResolutionSucceeded  : True
-BasicNameResolution      : {Microsoft.DnsClient.Commands.DnsRecord_A}
-LLMNRNetbiosRecords      : {}
-DNSOnlyRecords           : {}
-AllNameResolutionResults : Microsoft.DnsClient.Commands.DnsRecord_A
-IsAdmin                  : False
-NetworkIsolationContext  : Internet
-MatchingIPsecRules       :
-
-WARNING: TCP connect to (20.38.140.195 : 443) failed
-WARNING: Ping to 20.38.140.195 failed with status: TimedOut
-
-ComputerName             : crailzegpwindevm42aen001.uaenorth.data.azurecr.io
-RemoteAddress            : 20.38.140.195
-ResolvedAddresses        : {20.38.140.195}
-PingSucceeded            : False
-PingReplyDetails         : System.Net.NetworkInformation.PingReply
-TcpClientSocket          :
-TcpTestSucceeded         : False
-RemotePort               : 443
-TraceRoute               :
-Detailed                 : False
-InterfaceAlias           : Ethernet 182
-InterfaceIndex           : 24
-InterfaceDescription     : Microsoft Hyper-V Network Adapter #2
-NetAdapter               : MSFT_NetAdapter (CreationClassName = "MSFT_NetAdapter", DeviceID =
-                           "{1CA9CE8F-E82C-44BE-A689-40C6D97DE944}", SystemCreationClassName = "CIM_NetworkPort",
-                           SystemName = "vdaenprvt01-72.MHCORP.MUBADALAHEALTH.AE...)
-NetRoute                 : MSFT_NetRoute (InstanceID = ":8:8:8:9:55??55;:8;?8A?8;?C55;")
-SourceAddress            : 10.12.73.181
-NameResolutionSucceeded  : True
-BasicNameResolution      : {Microsoft.DnsClient.Commands.DnsRecord_A}
-LLMNRNetbiosRecords      : {}
-DNSOnlyRecords           : {}
-AllNameResolutionResults : Microsoft.DnsClient.Commands.DnsRecord_A
-IsAdmin                  : False
-NetworkIsolationContext  : Internet
-MatchingIPsecRules       :
-
-
-PS C:\Users\vijayn\Projects\EGP\EPG-MAF> azd deploy backend
-
-Deploying services (azd deploy)
-
-
-  Service  Status        Duration
-  ───────  ────────────  ──────────
-  ✗ backend  Failed        1m35s
-
-ERROR: publishing service backend: failed publishing service 'backend': failed logging into container registry, token: failed getting ACR token: Post "https://crailzegpwindevm42aen001.azurecr.io/oauth2/exchange": dial tcp 20.38.140.204:443: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond., admin: admin user is not enabled for container registry 'crailzegpwindevm42aen001'
-Update available: 1.30.0 -> 1.35.1 (Release notes)
-To update, run `winget upgrade Microsoft.Azd`
-PS C:\Users\vijayn\Projects\EGP\EPG-MAF>
+2026-10-16T06:57:35.8173012Z stdout F INFO:     127.0.0.1:47070 - "GET /healthz HTTP/1.1" 200 OK
