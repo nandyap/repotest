@@ -1,0 +1,548 @@
+Step 11 - Sequence Workflow
+{
+  "nodes": [
+    {
+      "node_id": "N1",
+      "activity_verb": "submit registration pack",
+      "governed_activity": "commit",
+      "performing_element": "Supplier"
+    },
+    {
+      "node_id": "N2",
+      "activity_verb": "receive registration pack",
+      "governed_activity": "retrieve",
+      "performing_element": "Email-calendar"
+    },
+    {
+      "node_id": "N3",
+      "activity_verb": "store PDF document",
+      "governed_activity": "commit",
+      "performing_element": "PDF-DMS"
+    },
+    {
+      "node_id": "N4",
+      "activity_verb": "notify procurement analyst of new registration pack",
+      "governed_activity": "notify",
+      "performing_element": "Email-calendar"
+    },
+    {
+      "node_id": "N5",
+      "activity_verb": "open registration pack",
+      "governed_activity": "retrieve",
+      "performing_element": "Procurement analyst"
+    },
+    {
+      "node_id": "N6",
+      "activity_verb": "check pack completeness",
+      "governed_activity": "interpret",
+      "performing_element": "Procurement analyst"
+    },
+    {
+      "node_id": "N7",
+      "activity_verb": "decide pack completeness status",
+      "governed_activity": "decide",
+      "performing_element": "Procurement analyst"
+    },
+    {
+      "node_id": "N8",
+      "activity_verb": "extract supplier registration data from pack",
+      "governed_activity": "interpret",
+      "performing_element": "Procurement analyst"
+    },
+    {
+      "node_id": "N9",
+      "activity_verb": "retrieve trade licence registry entry",
+      "governed_activity": "retrieve",
+      "performing_element": "Procurement analyst"
+    },
+    {
+      "node_id": "N10",
+      "activity_verb": "verify trade licences against the registry",
+      "governed_activity": "interpret",
+      "performing_element": "Procurement analyst"
+    },
+    {
+      "node_id": "N11",
+      "activity_verb": "decide supplier eligibility based on licence verification",
+      "governed_activity": "decide",
+      "performing_element": "Procurement analyst"
+    },
+    {
+      "node_id": "N12",
+      "activity_verb": "create vendor record in ERP",
+      "governed_activity": "commit",
+      "performing_element": "ERP"
+    },
+    {
+      "node_id": "N13",
+      "activity_verb": "update vendor master record with supplier registration data",
+      "governed_activity": "commit",
+      "performing_element": "ERP"
+    },
+    {
+      "node_id": "N14",
+      "activity_verb": "notify supplier of incomplete pack and required corrections",
+      "governed_activity": "notify",
+      "performing_element": "Procurement analyst"
+    },
+    {
+      "node_id": "N15",
+      "activity_verb": "resubmit corrected registration pack",
+      "governed_activity": "commit",
+      "performing_element": "Supplier"
+    }
+  ],
+  "edges": [
+    {
+      "from_node": "N1",
+      "to_node": "N2",
+      "data_class": "registration pack",
+      "business_object": "registration pack"
+    },
+    {
+      "from_node": "N2",
+      "to_node": "N3",
+      "data_class": "PDF document",
+      "business_object": "registration pack PDF"
+    },
+    {
+      "from_node": "N2",
+      "to_node": "N4",
+      "data_class": "notification",
+      "business_object": "new registration pack alert"
+    },
+    {
+      "from_node": "N3",
+      "to_node": "N5",
+      "data_class": "registration pack",
+      "business_object": "stored registration pack"
+    },
+    {
+      "from_node": "N4",
+      "to_node": "N5",
+      "data_class": "notification",
+      "business_object": "work item assignment"
+    },
+    {
+      "from_node": "N5",
+      "to_node": "N6",
+      "data_class": "registration pack",
+      "business_object": "opened registration pack"
+    },
+    {
+      "from_node": "N6",
+      "to_node": "N7",
+      "data_class": "completeness assessment",
+      "business_object": "pack completeness findings"
+    },
+    {
+      "from_node": "N7",
+      "to_node": "N8",
+      "data_class": "decision",
+      "business_object": "pack marked complete"
+    },
+    {
+      "from_node": "N7",
+      "to_node": "N14",
+      "data_class": "decision",
+      "business_object": "pack marked incomplete"
+    },
+    {
+      "from_node": "N8",
+      "to_node": "N9",
+      "data_class": "supplier registration data",
+      "business_object": "supplier identity and licence details"
+    },
+    {
+      "from_node": "N9",
+      "to_node": "N10",
+      "data_class": "licence registry entry",
+      "business_object": "retrieved licence registry entry"
+    },
+    {
+      "from_node": "N10",
+      "to_node": "N11",
+      "data_class": "verification results",
+      "business_object": "trade licence verification outcome"
+    },
+    {
+      "from_node": "N11",
+      "to_node": "N12",
+      "data_class": "eligibility decision",
+      "business_object": "approved supplier for onboarding"
+    },
+    {
+      "from_node": "N11",
+      "to_node": "N14",
+      "data_class": "eligibility decision",
+      "business_object": "supplier not eligible or licence issue"
+    },
+    {
+      "from_node": "N8",
+      "to_node": "N12",
+      "data_class": "supplier registration data",
+      "business_object": "validated supplier registration data"
+    },
+    {
+      "from_node": "N12",
+      "to_node": "N13",
+      "data_class": "vendor record",
+      "business_object": "new vendor record"
+    },
+    {
+      "from_node": "N14",
+      "to_node": "N15",
+      "data_class": "incomplete pack notification",
+      "business_object": "requested corrections"
+    },
+    {
+      "from_node": "N15",
+      "to_node": "N2",
+      "data_class": "registration pack",
+      "business_object": "corrected registration pack"
+    }
+  ],
+  "merged_duplicate_nodes": [],
+  "unlisted_performer_nodes": []
+}
+=======================================================
+Step 16- Classify Determinism
+{
+  "step_tiers": [
+    {
+      "node_id": "N1",
+      "tier": "D1",
+      "irreducible": true,
+      "necessity_rationale": "Raised from D0 to D1: it cites criterion 1, which the governed register marks irreducible. Model rationale: Submitting a registration pack is a deterministic commit of whatever the supplier chooses to send; the workflow treats the pack as opaque input.",
+      "criteria": [
+        "1"
+      ],
+      "source": "code",
+      "adjusted_from": "D0"
+    },
+    {
+      "node_id": "N2",
+      "tier": "D2",
+      "irreducible": true,
+      "necessity_rationale": "Raised from D0 to D2: it cites criterion 1, 5, which the governed register marks irreducible. Model rationale: Receiving a registration pack and turning it into a PDF and notification is a deterministic retrieval/transform with no generative output.",
+      "criteria": [
+        "1",
+        "5"
+      ],
+      "source": "code",
+      "adjusted_from": "D0"
+    },
+    {
+      "node_id": "N3",
+      "tier": "D1",
+      "irreducible": true,
+      "necessity_rationale": "Raised from D0 to D1: it cites criterion 1, which the governed register marks irreducible. Model rationale: Storing a PDF document as a registration pack in the DMS is a deterministic commit of an exact artifact.",
+      "criteria": [
+        "1"
+      ],
+      "source": "code",
+      "adjusted_from": "D0"
+    },
+    {
+      "node_id": "N4",
+      "tier": "D0",
+      "irreducible": true,
+      "necessity_rationale": "Notifying the procurement analyst of a new registration pack is a deterministic routing of a fixed alert payload.",
+      "criteria": [],
+      "source": "model",
+      "adjusted_from": ""
+    },
+    {
+      "node_id": "N5",
+      "tier": "D1",
+      "irreducible": true,
+      "necessity_rationale": "Raised from D0 to D1: it cites criterion 1, which the governed register marks irreducible. Model rationale: Opening the registration pack from storage is a deterministic retrieval of an existing document based on identifiers in the notification.",
+      "criteria": [
+        "1"
+      ],
+      "source": "code",
+      "adjusted_from": "D0"
+    },
+    {
+      "node_id": "N6",
+      "tier": "D1",
+      "irreducible": true,
+      "necessity_rationale": "Checking pack completeness over an arbitrary registration pack PDF requires interpreting unbounded document content against possibly tacit rules.",
+      "criteria": [
+        "1",
+        "3",
+        "6"
+      ],
+      "source": "model",
+      "adjusted_from": ""
+    },
+    {
+      "node_id": "N7",
+      "tier": "D0",
+      "irreducible": true,
+      "necessity_rationale": "Deciding pack completeness status can be made rule-based (e.g., all mandatory fields present) once N6 produces structured findings, so the same findings yield the same decision.",
+      "criteria": [
+        "6"
+      ],
+      "source": "model",
+      "adjusted_from": ""
+    },
+    {
+      "node_id": "N8",
+      "tier": "D1",
+      "irreducible": true,
+      "necessity_rationale": "Extracting supplier registration data from the pack involves mapping arbitrary document layouts and terms into structured fields over an unbounded input space.",
+      "criteria": [
+        "1",
+        "7"
+      ],
+      "source": "model",
+      "adjusted_from": ""
+    },
+    {
+      "node_id": "N9",
+      "tier": "D0",
+      "irreducible": true,
+      "necessity_rationale": "Retrieving a trade licence registry entry for a given supplier identity is a deterministic lookup in a bounded registry service.",
+      "criteria": [],
+      "source": "model",
+      "adjusted_from": ""
+    },
+    {
+      "node_id": "N10",
+      "tier": "D1",
+      "irreducible": true,
+      "necessity_rationale": "Verifying trade licences against the registry requires interpreting potentially complex registry entries and documents, which may lack a single stable ground truth in edge cases.",
+      "criteria": [
+        "1",
+        "3"
+      ],
+      "source": "model",
+      "adjusted_from": ""
+    },
+    {
+      "node_id": "N11",
+      "tier": "D0",
+      "irreducible": true,
+      "necessity_rationale": "Deciding supplier eligibility based on verification results can follow explicit written policies, making the mapping from structured results to decision deterministic.",
+      "criteria": [
+        "6"
+      ],
+      "source": "model",
+      "adjusted_from": ""
+    },
+    {
+      "node_id": "N12",
+      "tier": "D1",
+      "irreducible": true,
+      "necessity_rationale": "Raised from D0 to D1: it cites criterion 2, which the governed register marks irreducible. Model rationale: Creating a vendor record in ERP from an eligibility decision and structured supplier data is a deterministic commit to the master data system.",
+      "criteria": [
+        "2"
+      ],
+      "source": "code",
+      "adjusted_from": "D0"
+    },
+    {
+      "node_id": "N13",
+      "tier": "D1",
+      "irreducible": true,
+      "necessity_rationale": "Raised from D0 to D1: it cites criterion 2, which the governed register marks irreducible. Model rationale: Updating the vendor master record with supplier registration data is a deterministic commit that applies a known transformation to the ERP record.",
+      "criteria": [
+        "2"
+      ],
+      "source": "code",
+      "adjusted_from": "D0"
+    },
+    {
+      "node_id": "N14",
+      "tier": "D1",
+      "irreducible": true,
+      "necessity_rationale": "Raised from D0 to D1: it cites criterion 1, which the governed register marks irreducible. Model rationale: Notifying the supplier of incomplete packs or eligibility issues can use templated messages keyed only on structured decision codes, avoiding generative variation.",
+      "criteria": [
+        "1"
+      ],
+      "source": "code",
+      "adjusted_from": "D0"
+    },
+    {
+      "node_id": "N15",
+      "tier": "D1",
+      "irreducible": true,
+      "necessity_rationale": "Raised from D0 to D1: it cites criterion 1, which the governed register marks irreducible. Model rationale: Resubmitting a corrected registration pack is a deterministic commit action analogous to the initial submission, with the supplier-provided content treated as opaque input.",
+      "criteria": [
+        "1"
+      ],
+      "source": "code",
+      "adjusted_from": "D0"
+    }
+  ],
+  "containment": [
+    {
+      "node_id": "N1",
+      "input_bounded": false,
+      "output_bounded": true,
+      "neighbours": [
+        "N2"
+      ],
+      "position_relative_to_commit": "is a commit step"
+    },
+    {
+      "node_id": "N2",
+      "input_bounded": false,
+      "output_bounded": true,
+      "neighbours": [
+        "N1",
+        "N3",
+        "N4",
+        "N15"
+      ],
+      "position_relative_to_commit": "upstream of commit N3, N12, N15, N13"
+    },
+    {
+      "node_id": "N3",
+      "input_bounded": false,
+      "output_bounded": true,
+      "neighbours": [
+        "N2",
+        "N5"
+      ],
+      "position_relative_to_commit": "is a commit step"
+    },
+    {
+      "node_id": "N4",
+      "input_bounded": true,
+      "output_bounded": true,
+      "neighbours": [
+        "N2",
+        "N5"
+      ],
+      "position_relative_to_commit": "upstream of commit N12, N15, N13, N3"
+    },
+    {
+      "node_id": "N5",
+      "input_bounded": false,
+      "output_bounded": false,
+      "neighbours": [
+        "N3",
+        "N4",
+        "N6"
+      ],
+      "position_relative_to_commit": "upstream of commit N12, N15, N13, N3"
+    },
+    {
+      "node_id": "N6",
+      "input_bounded": false,
+      "output_bounded": true,
+      "neighbours": [
+        "N5",
+        "N7"
+      ],
+      "position_relative_to_commit": "upstream of commit N12, N15, N13, N3"
+    },
+    {
+      "node_id": "N7",
+      "input_bounded": true,
+      "output_bounded": true,
+      "neighbours": [
+        "N6",
+        "N8",
+        "N14"
+      ],
+      "position_relative_to_commit": "upstream of commit N12, N15, N13, N3"
+    },
+    {
+      "node_id": "N8",
+      "input_bounded": true,
+      "output_bounded": true,
+      "neighbours": [
+        "N7",
+        "N9",
+        "N12"
+      ],
+      "position_relative_to_commit": "upstream of commit N12, N13, N15, N3"
+    },
+    {
+      "node_id": "N9",
+      "input_bounded": true,
+      "output_bounded": true,
+      "neighbours": [
+        "N8",
+        "N10"
+      ],
+      "position_relative_to_commit": "upstream of commit N12, N13, N15, N3"
+    },
+    {
+      "node_id": "N10",
+      "input_bounded": true,
+      "output_bounded": true,
+      "neighbours": [
+        "N9",
+        "N11"
+      ],
+      "position_relative_to_commit": "upstream of commit N12, N13, N15, N3"
+    },
+    {
+      "node_id": "N11",
+      "input_bounded": true,
+      "output_bounded": true,
+      "neighbours": [
+        "N10",
+        "N12",
+        "N14"
+      ],
+      "position_relative_to_commit": "upstream of commit N12, N13, N15, N3"
+    },
+    {
+      "node_id": "N12",
+      "input_bounded": true,
+      "output_bounded": true,
+      "neighbours": [
+        "N8",
+        "N11",
+        "N13"
+      ],
+      "position_relative_to_commit": "is a commit step"
+    },
+    {
+      "node_id": "N13",
+      "input_bounded": true,
+      "output_bounded": true,
+      "neighbours": [
+        "N12"
+      ],
+      "position_relative_to_commit": "is a commit step"
+    },
+    {
+      "node_id": "N14",
+      "input_bounded": true,
+      "output_bounded": true,
+      "neighbours": [
+        "N7",
+        "N11",
+        "N15"
+      ],
+      "position_relative_to_commit": "upstream of commit N15, N3, N12, N13"
+    },
+    {
+      "node_id": "N15",
+      "input_bounded": true,
+      "output_bounded": true,
+      "neighbours": [
+        "N2",
+        "N14"
+      ],
+      "position_relative_to_commit": "is a commit step"
+    }
+  ],
+  "governance_tier": "guided_stochastic",
+  "adjustments": [
+    "N1: raised D0 -> D1; it cites criterion 1, which the governed register marks irreducible.",
+    "N2: raised D0 -> D2; it cites criterion 1, 5, which the governed register marks irreducible.",
+    "N3: raised D0 -> D1; it cites criterion 1, which the governed register marks irreducible.",
+    "N5: raised D0 -> D1; it cites criterion 1, which the governed register marks irreducible.",
+    "N12: raised D0 -> D1; it cites criterion 2, which the governed register marks irreducible.",
+    "N13: raised D0 -> D1; it cites criterion 2, which the governed register marks irreducible.",
+    "N14: raised D0 -> D1; it cites criterion 1, which the governed register marks irreducible.",
+    "N15: raised D0 -> D1; it cites criterion 1, which the governed register marks irreducible."
+  ]
+}
