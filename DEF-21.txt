@@ -1,217 +1,271 @@
-PS C:\Users\vijayn\Projects\Intake1\Intake> $apiHost = "https://ca-intake-intake-dev-backend.internal.politewater-2393db25.uaenorth.azurecontainerapps.io"
-PS C:\Users\vijayn\Projects\Intake1\Intake> $init = @'
->> {
->>   "jsonrpc": "2.0",
->>   "id": 1,
->>   "method": "initialize",
->>   "params": {
->>     "protocolVersion": "2025-11-25",
->>     "capabilities": {},
->>     "clientInfo": {
->>       "name": "manual-mcp-test",
->>       "version": "1.0.0"
->>     }
->>   }
->> }
->> '@
->>
->> curl -sS -X POST "$apiHost/mcp" `
->>   -H "Content-Type: application/json" `
->>   -H "Accept: application/json, text/event-stream" `
->>   -H "MCP-Protocol-Version: 2025-11-25" `
+MCP testing
+
+
+$apiHost = "https://ca-intake-intake-dev-backend.politewater-2393db25.uaenorth.azurecontainerapps.io"
+
+
+$init = @'
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "initialize",
+  "params": {
+    "protocolVersion": "2025-11-25",
+    "capabilities": {},
+    "clientInfo": {
+      "name": "manual-mcp-test",
+      "version": "1.0.0"
+    }
+  }
+}
+'@
+
+curl -sS -X POST "$apiHost/mcp" `
+  -H "Content-Type: application/json" `
+  -H "Accept: application/json, text/event-stream" `
+  -H "MCP-Protocol-Version: 2025-11-25" `
+  --data $init
+
+
 >>   --data $init
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Azure Container App - Unavailable</title>
-    <style type="text/css">
-        html {
-            height: 100%;
-            width: 100%;
-        }
-
-        #feature {
-            width: 960px;
-            margin: 95px auto 0 auto;
-            overflow: auto;
-        }
-
-        #content {
-            font-family: "Segoe UI";
-            font-weight: normal;
-            font-size: 22px;
-            color: #ffffff;
-            float: left;
-            width: 460px;
-            margin-top: 68px;
-            margin-left: 0px;
-            vertical-align: middle;
-        }
-
-        #content h1 {
-            font-family: "Segoe UI Light";
-            color: #ffffff;
-            font-weight: normal;
-            font-size: 60px;
-            line-height: 48pt;
-            width: 800px;
-        }
-
-        p a, p a:visited, p a:active, p a:hover {
-            color: #ffffff;
-        }
-
-        #content a.button {
-            background: #0DBCF2;
-            border: 1px solid #FFFFFF;
-            color: #FFFFFF;
-            display: inline-block;
-            font-family: Segoe UI;
-            font-size: 24px;
-            line-height: 46px;
-            margin-top: 10px;
-            padding: 0 15px 3px;
-            text-decoration: none;
-        }
-
-        #content a.button img {
-            float: right;
-            padding: 10px 0 0 15px;
-        }
-
-        #content a.button:hover {
-            background: #1C75BC;
-        }
-    </style>
-</head>
-<body bgcolor="#00abec">
-<div id="feature">
-    <div id="content">
-        <h1 id="unavailable">Error 404 - This Container App is stopped or does not exist.</h1>
-        <p id="tryAgain">The Container App you have attempted to reach is currently stopped or does not exist.</p>
-        <p id="toAdmin">If you are the Container App administrator, please visit <a href="https://portal.azure.com/">Azure Portal</a>.</p>
-    </div>
-</div>
-</body>
-</html>
-PS C:\Users\vijayn\Projects\Intake1\Intake> $apiHost = "https://ca-intake-intake-dev-frontend.politewater-2393db25.uaenorth.azurecontainerapps.io"
-PS C:\Users\vijayn\Projects\Intake1\Intake> $init = @'
->> {
->>   "jsonrpc": "2.0",
->>   "id": 1,
->>   "method": "initialize",
->>   "params": {
->>     "protocolVersion": "2025-11-25",
->>     "capabilities": {},
->>     "clientInfo": {
->>       "name": "manual-mcp-test",
->>       "version": "1.0.0"
->>     }
->>   }
->> }
->> '@
->>
->> curl -sS -X POST "$apiHost/mcp" `
->>   -H "Content-Type: application/json" `
->>   -H "Accept: application/json, text/event-stream" `
->>   -H "MCP-Protocol-Version: 2025-11-25" `
->>   --data $init
-<!DOCTYPE html><!--h_GnpLGmTOqwEp6EAZs9g--><html lang="en"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="/_next/static/chunks/7c25be064acf55a3.css" data-precedence="next"/><link rel="preload" as="script" fetchPriority="low" href="/_next/static/chunks/957af0a72fe969c0.js"/><script src="/_next/static/chunks/82abf2d65f5428ae.js" async=""></script><script src="/_next/static/chunks/10cbf02e6fc36465.js" async=""></script><script src="/_next/static/chunks/f2f58a7e93290fbb.js" async=""></script><script src="/_next/static/chunks/turbopack-55b1e0bb733d324a.js" async=""></script><script src="/_next/static/chunks/7c92e96509cd355e.js" async=""></script><script src="/_next/static/chunks/d2be314c3ece3fbe.js" async=""></script><meta name="robots" content="noindex"/><title>404: This page could not be found.</title><title>M42 Intake Agent</title><meta name="description" content="AI use-case intake and CAFÉ derivation"/><script src="/_next/static/chunks/a6dad97d9634a72d.js" noModule=""></script></head><body class="min-h-screen"><div hidden=""><!--$--><!--/$--></div><header class="border-b border-slate-200 bg-white"><div class="mx-auto flex max-w-6xl items-center gap-8 px-6 py-4"><a class="flex items-baseline gap-2" href="/"><span class="text-lg font-semibold tracking-tight">M42</span><span class="text-lg text-slate-500">Intake Agent</span></a><nav class="flex gap-6 text-sm"><a class="text-slate-600 transition hover:text-slate-900" href="/">Submissions</a><a class="text-slate-600 transition hover:text-slate-900" href="/submit">New submission</a><a class="text-slate-600 transition hover:text-slate-900" href="/artifacts">Governance</a></nav><span class="ml-auto rounded border border-slate-200 px-2 py-1 text-xs text-slate-500">Phase 1 · steps 3–22</span></div></header><main class="mx-auto max-w-6xl px-6 py-8"><div style="font-family:system-ui,&quot;Segoe UI&quot;,Roboto,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;;height:100vh;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center"><div><style>body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}</style><h1 class="next-error-h1" style="display:inline-block;margin:0 20px 0 0;padding:0 23px 0 0;font-size:24px;font-weight:500;vertical-align:top;line-height:49px">404</h1><div style="display:inline-block"><h2 style="font-size:14px;font-weight:400;line-height:49px;margin:0">This page could not be found.</h2></div></div></div><!--$--><!--/$--></main><script src="/_next/static/chunks/957af0a72fe969c0.js" id="_R_" async=""></script><script>(self.__next_f=self.__next_f||[]).push([0])</script><script>self.__next_f.push([1,"1:\"$Sreact.fragment\"\n2:I[22016,[\"/_next/static/chunks/7c92e96509cd355e.js\",\"/_next/static/chunks/d2be314c3ece3fbe.js\"],\"\"]\n3:I[39756,[\"/_next/static/chunks/7c92e96509cd355e.js\",\"/_next/static/chunks/d2be314c3ece3fbe.js\"],\"default\"]\n4:I[37457,[\"/_next/static/chunks/7c92e96509cd355e.js\",\"/_next/static/chunks/d2be314c3ece3fbe.js\"],\"default\"]\n5:I[97367,[\"/_next/static/chunks/7c92e96509cd355e.js\",\"/_next/static/chunks/d2be314c3ece3fbe.js\"],\"OutletBoundary\"]\n6:\"$Sreact.suspense\"\n8:I[97367,[\"/_next/static/chunks/7c92e96509cd355e.js\",\"/_next/static/chunks/d2be314c3ece3fbe.js\"],\"ViewportBoundary\"]\na:I[97367,[\"/_next/static/chunks/7c92e96509cd355e.js\",\"/_next/static/chunks/d2be314c3ece3fbe.js\"],\"MetadataBoundary\"]\nc:I[68027,[\"/_next/static/chunks/7c92e96509cd355e.js\",\"/_next/static/chunks/d2be314c3ece3fbe.js\"],\"default\"]\n:HL[\"/_next/static/chunks/7c25be064acf55a3.css\",\"style\"]\n"])</script><script>self.__next_f.push([1,"0:{\"P\":null,\"b\":\"h_GnpLGmTOqwEp6EAZs9g\",\"c\":[\"\",\"_not-found\"],\"q\":\"\",\"i\":false,\"f\":[[[\"\",{\"children\":[\"/_not-found\",{\"children\":[\"__PAGE__\",{}]}]},\"$undefined\",\"$undefined\",true],[[\"$\",\"$1\",\"c\",{\"children\":[[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/chunks/7c25be064acf55a3.css\",\"precedence\":\"next\",\"crossOrigin\":\"$undefined\",\"nonce\":\"$undefined\"}],[\"$\",\"script\",\"script-0\",{\"src\":\"/_next/static/chunks/7c92e96509cd355e.js\",\"async\":true,\"nonce\":\"$undefined\"}],[\"$\",\"script\",\"script-1\",{\"src\":\"/_next/static/chunks/d2be314c3ece3fbe.js\",\"async\":true,\"nonce\":\"$undefined\"}]],[\"$\",\"html\",null,{\"lang\":\"en\",\"children\":[\"$\",\"body\",null,{\"className\":\"min-h-screen\",\"children\":[[\"$\",\"header\",null,{\"className\":\"border-b border-slate-200 bg-white\",\"children\":[\"$\",\"div\",null,{\"className\":\"mx-auto flex max-w-6xl items-center gap-8 px-6 py-4\",\"children\":[[\"$\",\"$L2\",null,{\"href\":\"/\",\"className\":\"flex items-baseline gap-2\",\"children\":[[\"$\",\"span\",null,{\"className\":\"text-lg font-semibold tracking-tight\",\"children\":\"M42\"}],[\"$\",\"span\",null,{\"className\":\"text-lg text-slate-500\",\"children\":\"Intake Agent\"}]]}],[\"$\",\"nav\",null,{\"className\":\"flex gap-6 text-sm\",\"children\":[[\"$\",\"$L2\",\"/\",{\"href\":\"/\",\"className\":\"text-slate-600 transition hover:text-slate-900\",\"children\":\"Submissions\"}],[\"$\",\"$L2\",\"/submit\",{\"href\":\"/submit\",\"className\":\"text-slate-600 transition hover:text-slate-900\",\"children\":\"New submission\"}],[\"$\",\"$L2\",\"/artifacts\",{\"href\":\"/artifacts\",\"className\":\"text-slate-600 transition hover:text-slate-900\",\"children\":\"Governance\"}]]}],[\"$\",\"span\",null,{\"className\":\"ml-auto rounded border border-slate-200 px-2 py-1 text-xs text-slate-500\",\"children\":\"Phase 1 · steps 3–22\"}]]}]}],[\"$\",\"main\",null,{\"className\":\"mx-auto max-w-6xl px-6 py-8\",\"children\":[\"$\",\"$L3\",null,{\"parallelRouterKey\":\"children\",\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L4\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":[[[\"$\",\"title\",null,{\"children\":\"404: This page could not be found.\"}],[\"$\",\"div\",null,{\"style\":{\"fontFamily\":\"system-ui,\\\"Segoe UI\\\",Roboto,Helvetica,Arial,sans-serif,\\\"Apple Color Emoji\\\",\\\"Segoe UI Emoji\\\"\",\"height\":\"100vh\",\"textAlign\":\"center\",\"display\":\"flex\",\"flexDirection\":\"column\",\"alignItems\":\"center\",\"justifyContent\":\"center\"},\"children\":[\"$\",\"div\",null,{\"children\":[[\"$\",\"style\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}\"}}],[\"$\",\"h1\",null,{\"className\":\"next-error-h1\",\"style\":{\"display\":\"inline-block\",\"margin\":\"0 20px 0 0\",\"padding\":\"0 23px 0 0\",\"fontSize\":24,\"fontWeight\":500,\"verticalAlign\":\"top\",\"lineHeight\":\"49px\"},\"children\":404}],[\"$\",\"div\",null,{\"style\":{\"display\":\"inline-block\"},\"children\":[\"$\",\"h2\",null,{\"style\":{\"fontSize\":14,\"fontWeight\":400,\"lineHeight\":\"49px\",\"margin\":0},\"children\":\"This page could not be found.\"}]}]]}]}]],[]],\"forbidden\":\"$undefined\",\"unauthorized\":\"$undefined\"}]}]]}]}]]}],{\"children\":[[\"$\",\"$1\",\"c\",{\"children\":[null,[\"$\",\"$L3\",null,{\"parallelRouterKey\":\"children\",\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L4\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":\"$undefined\",\"forbidden\":\"$undefined\",\"unauthorized\":\"$undefined\"}]]}],{\"children\":[[\"$\",\"$1\",\"c\",{\"children\":[[[\"$\",\"title\",null,{\"children\":\"404: This page could not be found.\"}],[\"$\",\"div\",null,{\"style\":\"$0:f:0:1:0:props:children:1:props:children:props:children:1:props:children:props:notFound:0:1:props:style\",\"children\":[\"$\",\"div\",null,{\"children\":[[\"$\",\"style\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}\"}}],[\"$\",\"h1\",null,{\"className\":\"next-error-h1\",\"style\":\"$0:f:0:1:0:props:children:1:props:children:props:children:1:props:children:props:notFound:0:1:props:children:props:children:1:props:style\",\"children\":404}],[\"$\",\"div\",null,{\"style\":\"$0:f:0:1:0:props:children:1:props:children:props:children:1:props:children:props:notFound:0:1:props:children:props:children:2:props:style\",\"children\":[\"$\",\"h2\",null,{\"style\":\"$0:f:0:1:0:props:children:1:props:children:props:children:1:props:children:props:notFound:0:1:props:children:props:children:2:props:children:props:style\",\"children\":\"This page could not be found.\"}]}]]}]}]],null,[\"$\",\"$L5\",null,{\"children\":[\"$\",\"$6\",null,{\"name\":\"Next.MetadataOutlet\",\"children\":\"$@7\"}]}]]}],{},null,false,false]},null,false,false]},null,false,false],[\"$\",\"$1\",\"h\",{\"children\":[[\"$\",\"meta\",null,{\"name\":\"robots\",\"content\":\"noindex\"}],[\"$\",\"$L8\",null,{\"children\":\"$L9\"}],[\"$\",\"div\",null,{\"hidden\":true,\"children\":[\"$\",\"$La\",null,{\"children\":[\"$\",\"$6\",null,{\"name\":\"Next.Metadata\",\"children\":\"$Lb\"}]}]}],null]}],false]],\"m\":\"$undefined\",\"G\":[\"$c\",\"$undefined\"],\"S\":true}\n"])</script><script>self.__next_f.push([1,"9:[[\"$\",\"meta\",\"0\",{\"charSet\":\"utf-8\"}],[\"$\",\"meta\",\"1\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}]]\n"])</script><script>self.__next_f.push([1,"7:null\nb:[[\"$\",\"title\",\"0\",{\"children\":\"M42 Intake Agent\"}],[\"$\",\"meta\",\"1\",{\"name\":\"description\",\"content\":\"AI use-case intake and CAFÉ derivation\"}]]\n"])</script></body></html>
-PS C:\Users\vijayn\Projects\Intake1\Intake> $apiHost = "https://ca-intake-intake-dev-frontend.politewater-2393db25.uaenorth.azurecontainerapps.io"
-PS C:\Users\vijayn\Projects\Intake1\Intake> $apihost = "https://ca-intake-intake-dev-backend.internal.politewater-2393db25.uaenorth.azurecontainerapps.io"
-PS C:\Users\vijayn\Projects\Intake1\Intake> $init = @'
->> {
->>   "jsonrpc": "2.0",
->>   "id": 1,
->>   "method": "initialize",
->>   "params": {
->>     "protocolVersion": "2025-11-25",
->>     "capabilities": {},
->>     "clientInfo": {
->>       "name": "manual-mcp-test",
->>       "version": "1.0.0"
->>     }
->>   }
->> }
->> '@
->>
->> curl -sS -X POST "$apiHost/mcp" `
->>   -H "Content-Type: application/json" `
->>   -H "Accept: application/json, text/event-stream" `
->>   -H "MCP-Protocol-Version: 2025-11-25" `
->>   --data $init
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Azure Container App - Unavailable</title>
-    <style type="text/css">
-        html {
-            height: 100%;
-            width: 100%;
-        }
-
-        #feature {
-            width: 960px;
-            margin: 95px auto 0 auto;
-            overflow: auto;
-        }
-
-        #content {
-            font-family: "Segoe UI";
-            font-weight: normal;
-            font-size: 22px;
-            color: #ffffff;
-            float: left;
-            width: 460px;
-            margin-top: 68px;
-            margin-left: 0px;
-            vertical-align: middle;
-        }
-
-        #content h1 {
-            font-family: "Segoe UI Light";
-            color: #ffffff;
-            font-weight: normal;
-            font-size: 60px;
-            line-height: 48pt;
-            width: 800px;
-        }
-
-        p a, p a:visited, p a:active, p a:hover {
-            color: #ffffff;
-        }
-
-        #content a.button {
-            background: #0DBCF2;
-            border: 1px solid #FFFFFF;
-            color: #FFFFFF;
-            display: inline-block;
-            font-family: Segoe UI;
-            font-size: 24px;
-            line-height: 46px;
-            margin-top: 10px;
-            padding: 0 15px 3px;
-            text-decoration: none;
-        }
-
-        #content a.button img {
-            float: right;
-            padding: 10px 0 0 15px;
-        }
-
-        #content a.button:hover {
-            background: #1C75BC;
-        }
-    </style>
-</head>
-<body bgcolor="#00abec">
-<div id="feature">
-    <div id="content">
-        <h1 id="unavailable">Error 404 - This Container App is stopped or does not exist.</h1>
-        <p id="tryAgain">The Container App you have attempted to reach is currently stopped or does not exist.</p>
-        <p id="toAdmin">If you are the Container App administrator, please visit <a href="https://portal.azure.com/">Azure Portal</a>.</p>
-    </div>
-</div>
-</body>
-</html>
+{"jsonrpc":"2.0","id":1,"result":{"protocolVersion":"2025-11-25","capabilities":{"experimental":{},"tools":{"listChanged":false}},"serverInfo":{"name":"m42-intake","version":"1.0.0-draft.1"},"instructions":"M42 Intake Agent assesses a business process as an AI agent candidate. The work is asynchronous. To submit: call fields, ask the person each question in order, call submit with a new idempotency_key, and give them the request_id. To follow up: call status; when terminal is true, call result. To decide as an approver: call list-approvals, show the question and facts, read the person's decision back, and only then call decide-approval. Never invent an answer, a number or a decision. If is_stub is true the result is test output, not an assessment."}}
 PS C:\Users\vijayn\Projects\Intake1\Intake>
+
+curl -sS -X POST "$apiHost/mcp" `
+  -H "Content-Type: application/json" `
+  -H "Accept: application/json, text/event-stream" `
+  -H "MCP-Protocol-Version: 2025-11-25" `
+  --data '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-11-25","capabilities":{},"clientInfo":{"name":"manual-mcp-test","version":"1.0.0"}}}'
+
+PS C:\Users\vijayn\Projects\Intake1\Intake> curl -sS -X POST "$apiHost/mcp" `
+>>   -H "Content-Type: application/json" `
+>>   -H "Accept: application/json, text/event-stream" `
+>>   -H "MCP-Protocol-Version: 2025-11-25" `
+>>   --data '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-11-25","capabilities":{},"clientInfo":{"name":"manual-mcp-test","version":"1.0.0"}}}'
+{"jsonrpc":"2.0","id":1,"result":{"protocolVersion":"2025-11-25","capabilities":{"experimental":{},"tools":{"listChanged":false}},"serverInfo":{"name":"m42-intake","version":"1.0.0-draft.1"},"instructions":"M42 Intake Agent assesses a business process as an AI agent candidate. The work is asynchronous. To submit: call fields, ask the person each question in order, call submit with a new idempotency_key, and give them the request_id. To follow up: call status; when terminal is true, call result. To decide as an approver: call list-approvals, show the question and facts, read the person's decision back, and only then call decide-approval. Never invent an answer, a number or a decision. If is_stub is true the result is test output, not an assessment."}}
+PS C:\Users\vijayn\Projects\Intake1\Intake>
+
+
+curl -i "$apiHost/api/health"
+curl -i "$apiHost/v1/fields"
+curl -i "$apiHost/mcp"
+
+
+PS C:\Users\vijayn\Projects\Intake1\Intake> curl -i "$apiHost/api/health"
+HTTP/1.1 200 OK
+date: Wed, 11 Nov 2026 10:09:31 GMT
+server: uvicorn
+content-length: 183
+content-type: application/json
+vary: Origin
+
+{"status":"ok","can_derive":true,"model_provider_configured":true,"mode":"agents","stub_mode_waived":false,"fail_closed":true,"seeds_allowed":true,"admin_api":false,"public_api":true}
+PS C:\Users\vijayn\Projects\Intake1\Intake> curl -i "$apiHost/v1/fields"
+HTTP/1.1 200 OK
+date: Wed, 11 Nov 2026 10:09:50 GMT
+server: uvicorn
+x-correlation-id: 3ec58ea8-9545-4db6-b11f-f537311abadb
+content-length: 9757
+content-type: application/json
+vary: Origin
+
+{"contract_version":"1.0.0-draft.1","form_id":"m42-intake","form_version":"phase-1","sections":[{"id":"about_you","title":"About you","questions":"Q0-Q4"},{"id":"the_task","title":"The task","questions":"Q5-Q9"},{"id":"how_it_works","title":"How it works","questions":"Q10-Q17"},{"id":"risk_and_quality","title":"Risk and quality","questions":"Q18-Q22"},{"id":"readiness_and_value","title":"Readiness and value","questions":"Q23-Q28"},{"id":"anything_else","title":"Anything else","questions":"Q29"},{"id":"system","title":"Supplied by the agent","questions":"-"}],"fields":[{"id":"pathway","section":"system","label":"Pathway","prompt":"Not asked. Use comprehensive.","type":"choice","required":false,"ask":false,"options":["quick","comprehensive"]},{"id":"channel","section":"system","label":"Channel","prompt":"Not asked. Use copilot when submitting from the Use Case Desk.","type":"choice","required":false,"ask":false,"options":["form","teams","copilot","email","batch"]},{"id":"q0_org_unit","section":"about_you","question":"Q0","label":"Organisation unit","prompt":"Which part of the organisation are you in?","type":"choice","required":true,"ask":true,"options":["Engineering","Operational","Clinical","Consultancy"]},{"id":"q1_full_name","section":"about_you","question":"Q1","label":"Full name","prompt":"What is your full name?","type":"text","required":true,"ask":true},{"id":"q2_department","section":"about_you","question":"Q2","label":"Department","prompt":"Which department or team are you in?","type":"text","required":true,"ask":true},{"id":"q3_job_title","section":"about_you","question":"Q3","label":"Job title","prompt":"What is your job title?","type":"text","required":true,"ask":true},{"id":"q4_relationship","section":"about_you","question":"Q4","label":"Relationship to the task","prompt":"What is your relationship to this task?","type":"choice","required":true,"ask":true,"options":["I perform it myself","I manage the team","I am an internal customer"]},{"id":"q5_task_description","section":"the_task","question":"Q5","label":"Task description","prompt":"Describe the task: what is done, and what triggers it.","type":"long_text","required":true,"ask":true,"min_length":20,"help":"At least 20 characters. Ask for specifics, not a title."},{"id":"q6_categories","section":"the_task","question":"Q6","label":"Categories","prompt":"Which categories best describe the task?","type":"list","required":false,"ask":true,"help":"Free text values, one per entry."},{"id":"q7_goals","section":"the_task","question":"Q7","label":"Goals","prompt":"What are the main goals of automating it?","type":"list","required":false,"ask":true,"help":"Free text values, one per entry."},{"id":"q8_biggest_value","section":"the_task","question":"Q8","label":"Biggest value","prompt":"What is the biggest value this would deliver?","type":"long_text","required":false,"ask":true},{"id":"q9_other_kpis","section":"the_task","question":"Q9","label":"Other KPIs","prompt":"Are there other measures of success that matter?","type":"long_text","required":false,"ask":true},{"id":"q10_step_count","section":"how_it_works","question":"Q10","label":"Number of steps","prompt":"Roughly how many distinct steps does the process have?","type":"choice","required":true,"ask":true,"options":["1-5","6-15","16-30",">30"]},{"id":"q11_conditional_logic","section":"how_it_works","question":"Q11","label":"Conditional logic","prompt":"Does the process involve conditional logic: different paths depending on the case?","type":"choice","required":true,"ask":true,"options":["No","A few simple conditions","Many or nested rules"]},{"id":"q12_systems","section":"how_it_works","question":"Q12","label":"Systems used","prompt":"Which systems does the process use?","type":"list","required":false,"ask":true,"help":"Free text values, one per entry."},{"id":"q12b_write_back_targets","section":"how_it_works","question":"Q12b","label":"Write-back targets","prompt":"Which systems does it send or save its results to?","type":"list","required":false,"ask":true,"help":"Free text values, one per entry. Leave empty if none."},{"id":"q13_systems_purpose","section":"how_it_works","question":"Q13","label":"What the systems are used for","prompt":"What is each system used for in this process?","type":"long_text","required":false,"ask":true},{"id":"q14_data_types","section":"how_it_works","question":"Q14","label":"Data types","prompt":"What kinds of data are involved?","type":"list","required":false,"ask":true,"help":"Free text values, one per entry."},{"id":"q15_change_frequency","section":"how_it_works","question":"Q15","label":"How often it changes","prompt":"How often do the rules or systems of this process change?","type":"choice","required":true,"ask":true,"options":["Rarely","Occasionally","Frequently"]},{"id":"q16_volume_pattern","section":"how_it_works","question":"Q16","label":"Volume pattern","prompt":"Is the volume steady over time, or does it vary?","type":"choice","required":true,"ask":true,"options":["Consistent","Predictable peaks","Highly variable"]},{"id":"q16_annual_volume","section":"how_it_works","question":"Q16","label":"Annual volume","prompt":"Roughly how many cases are handled in a year?","type":"integer","required":false,"ask":true,"minimum":0.0,"help":"If the person does not know, leave it out. Do not estimate for them."},{"id":"q17_effort_table","section":"how_it_works","question":"Q17","label":"Effort by role","prompt":"Who does the work today, how many people, how often, and how long does each case take?","type":"table","required":false,"ask":true,"columns":[{"id":"role","label":"Role","type":"text","required":true},{"id":"role_band","label":"Role band","type":"choice","required":true,"options":["doctor","nurse","admin"]},{"id":"headcount","label":"Headcount","type":"integer","required":true},{"id":"seniority","label":"Seniority","type":"text","required":false},{"id":"frequency_per_week","label":"Frequency per week","type":"number","required":true},{"id":"current_minutes","label":"Current minutes","type":"number","required":false},{"id":"expected_minutes","label":"Expected minutes","type":"number","required":false}],"help":"One row per role. If the person does not know, leave it out. Do not estimate for them."},{"id":"q18_error_rate","section":"risk_and_quality","question":"Q18","label":"Error or rework rate","prompt":"How often does the process result in an error or rework?","type":"choice","required":true,"ask":true,"options":["Rarely <1%","Occasionally 1-5%","Frequently >5%","Unknown"]},{"id":"q19_sensitive_data","section":"risk_and_quality","question":"Q19","label":"Sensitive data","prompt":"Does it involve any sensitive data? Which kinds?","type":"list","required":false,"ask":true,"help":"Free text values, one per entry. Leave empty if none."},{"id":"q20_sign_off","section":"risk_and_quality","question":"Q20","label":"Human sign-off","prompt":"Is human sign-off required in the process?","type":"choice","required":true,"ask":true,"options":["Mandatory human approval","Audit trail only","No"]},{"id":"q21_sign_off_detail","section":"risk_and_quality","question":"Q21","label":"Sign-off detail","prompt":"If sign-off is required, who gives it and for what?","type":"long_text","required":false,"ask":true},{"id":"q22_failure_impact","section":"risk_and_quality","question":"Q22","label":"Failure impact","prompt":"What is the likely impact if this process fails?","type":"choice","required":true,"ask":true,"options":["Low","Medium","High","Critical"]},{"id":"q23_stakeholder_discussion","section":"readiness_and_value","question":"Q23","label":"Stakeholder discussion","prompt":"Have you discussed this with your line manager and other stakeholders?","type":"long_text","required":false,"ask":true},{"id":"q24_data_readiness","section":"readiness_and_value","question":"Q24","label":"Data readiness","prompt":"Is the data digital and structured?","type":"choice","required":true,"ask":true,"options":["Yes fully","Partially","No, work needed first"]},{"id":"q25_urgency","section":"readiness_and_value","question":"Q25","label":"Urgency","prompt":"How critical is it to do this soon?","type":"choice","required":true,"ask":true,"options":["Critical","High","Medium","Low"]},{"id":"q26_investment_band","section":"readiness_and_value","question":"Q26","label":"Investment","prompt":"How much investment might be needed?","type":"text","required":false,"ask":true},{"id":"q27_budget_likelihood","section":"readiness_and_value","question":"Q27","label":"Budget likelihood","prompt":"If it is not budgeted, how likely is budget to be found?","type":"text","required":false,"ask":true},{"id":"q28_estimated_annual_benefit_aed","section":"readiness_and_value","question":"Q28","label":"Estimated annual benefit (AED)","prompt":"What annual saving or benefit do you expect, in AED?","type":"number","required":false,"ask":true,"minimum":0.0,"help":"If the person does not know, leave it out. Do not estimate for them."},{"id":"q29_additional_context","section":"anything_else","question":"Q29","label":"Additional context","prompt":"Is there anything else we should know?","type":"long_text","required":false,"ask":true},{"id":"idempotency_key","section":"system","label":"Idempotency key","prompt":"Not asked. A fresh GUID per submission attempt; reuse it only to retry the same attempt.","type":"text","required":false,"ask":false,"min_length":8}],"notes":["Ask in section order. Send only the fields the person answered; omit the rest.","For choice fields send exactly one of the listed options, character for character.","Never invent a number the person did not give you. A missing figure is reported as 'requires input', which is correct.","Attachments cannot be sent through this contract."]}
+PS C:\Users\vijayn\Projects\Intake1\Intake> curl -i "$apiHost/mcp"
+HTTP/1.1 406 Not Acceptable
+date: Wed, 11 Nov 2026 10:10:02 GMT
+server: uvicorn
+content-type: application/json
+content-length: 126
+vary: Origin
+
+{"jsonrpc":"2.0","id":"server-error","error":{"code":-32600,"message":"Not Acceptable: Client must accept text/event-stream"}}
+PS C:\Users\vijayn\Projects\Intake1\Intake>
+
+
+
+
+Test MCP tools list
+$toolsList = @'
+{
+  "jsonrpc": "2.0",
+  "id": 2,
+  "method": "tools/list",
+  "params": {}
+}
+'@
+
+curl -sS -X POST "$apiHost/mcp" `
+  -H "Content-Type: application/json" `
+  -H "Accept: application/json, text/event-stream" `
+  -H "MCP-Protocol-Version: 2025-11-25" `
+  --data $toolsList
+
+PS C:\Users\vijayn\Projects\Intake1\Intake> $toolsList = @'
+>> {
+>>   "jsonrpc": "2.0",
+>>   "id": 2,
+>>   "method": "tools/list",
+>>   "params": {}
+>> }
+>> '@
+>>
+>> curl -sS -X POST "$apiHost/mcp" `
+>>   -H "Content-Type: application/json" `
+>>   -H "Accept: application/json, text/event-stream" `
+>>   -H "MCP-Protocol-Version: 2025-11-25" `
+>>   --data $toolsList
+{"jsonrpc":"2.0","id":2,"result":{"tools":[{"name":"submit","title":"Submit an intake request","description":"Submit a business process for assessment as an AI agent candidate. Call this ONLY after you have collected the answers with the person, using the field list from the fields tool; never invent answers or numbers. Always pass a new idempotency_key (a GUID) and keep it so a retry after a timeout does not create a second request. Returns immediately with a request_id; the assessment is not finished. Tell the person the request_id, then use status to follow progress. On a validation error, read the errors list, ask the person to correct only those fields, and call again.","inputSchema":{"type":"object","properties":{"pathway":{"description":"Not asked. Use comprehensive.","enum":["quick","comprehensive"],"type":"string","default":"comprehensive"},"channel":{"description":"Not asked. Use copilot when submitting from the Use Case Desk.","enum":["form","teams","copilot","email","batch"],"type":"string","default":"form"},"q0_org_unit":{"description":"Which part of the organisation are you in?","enum":["Engineering","Operational","Clinical","Consultancy"],"type":"string"},"q1_full_name":{"description":"What is your full name?","type":"string"},"q2_department":{"description":"Which department or team are you in?","type":"string"},"q3_job_title":{"description":"What is your job title?","type":"string"},"q4_relationship":{"description":"What is your relationship to this task?","enum":["I perform it myself","I manage the team","I am an internal customer"],"type":"string"},"q5_task_description":{"description":"Describe the task: what is done, and what triggers it.","minLength":20,"type":"string"},"q6_categories":{"description":"Which categories best describe the task?","items":{"type":"string"},"type":"array"},"q7_goals":{"description":"What are the main goals of automating it?","items":{"type":"string"},"type":"array"},"q8_biggest_value":{"default":"","description":"What is the biggest value this would deliver?","type":"string"},"q9_other_kpis":{"default":"","description":"Are there other measures of success that matter?","type":"string"},"q10_step_count":{"description":"Roughly how many distinct steps does the process have?","enum":["1-5","6-15","16-30",">30"],"type":"string"},"q11_conditional_logic":{"description":"Does the process involve conditional logic: different paths depending on the case?","enum":["No","A few simple conditions","Many or nested rules"],"type":"string"},"q12_systems":{"description":"Which systems does the process use?","items":{"type":"string"},"type":"array"},"q12b_write_back_targets":{"description":"Which systems does it send or save its results to?","items":{"type":"string"},"type":"array"},"q13_systems_purpose":{"default":"","description":"What is each system used for in this process?","type":"string"},"q14_data_types":{"description":"What kinds of data are involved?","items":{"type":"string"},"type":"array"},"q15_change_frequency":{"description":"How often do the rules or systems of this process change?","enum":["Rarely","Occasionally","Frequently"],"type":"string"},"q16_volume_pattern":{"description":"Is the volume steady over time, or does it vary?","enum":["Consistent","Predictable peaks","Highly variable"],"type":"string"},"q16_annual_volume":{"anyOf":[{"minimum":0,"type":"integer"},{"type":"null"}],"default":null,"description":"Roughly how many cases are handled in a year?"},"q17_effort_table":{"description":"Who does the work today, how many people, how often, and how long does each case take?","items":{"additionalProperties":false,"description":"One row of the Q17 structured effort table.\n\nThis table is what makes an initial business case possible without an\narchitecture.  Missing values are left None so the calculator can mark\nthe driver \"requires input\" rather than fabricating a number.","properties":{"role":{"type":"string"},"role_band":{"description":"Cost anchor bands from Appendix B.","enum":["doctor","nurse","admin"],"type":"string"},"headcount":{"minimum":0,"type":"integer"},"seniority":{"default":"","type":"string"},"frequency_per_week":{"minimum":0,"type":"number"},"current_minutes":{"anyOf":[{"minimum":0,"type":"number"},{"type":"null"}],"default":null},"expected_minutes":{"anyOf":[{"minimum":0,"type":"number"},{"type":"null"}],"default":null}},"required":["role","role_band","headcount","frequency_per_week"],"type":"object"},"type":"array"},"q18_error_rate":{"description":"How often does the process result in an error or rework?","enum":["Rarely <1%","Occasionally 1-5%","Frequently >5%","Unknown"],"type":"string"},"q19_sensitive_data":{"description":"Does it involve any sensitive data? Which kinds?","items":{"type":"string"},"type":"array"},"q20_sign_off":{"description":"Is human sign-off required in the process?","enum":["Mandatory human approval","Audit trail only","No"],"type":"string"},"q21_sign_off_detail":{"default":"","description":"If sign-off is required, who gives it and for what?","type":"string"},"q22_failure_impact":{"description":"What is the likely impact if this process fails?","enum":["Low","Medium","High","Critical"],"type":"string"},"q23_stakeholder_discussion":{"default":"","description":"Have you discussed this with your line manager and other stakeholders?","type":"string"},"q24_data_readiness":{"description":"Is the data digital and structured?","enum":["Yes fully","Partially","No, work needed first"],"type":"string"},"q25_urgency":{"description":"How critical is it to do this soon?","enum":["Critical","High","Medium","Low"],"type":"string"},"q26_investment_band":{"default":"","description":"How much investment might be needed?","type":"string"},"q27_budget_likelihood":{"default":"","description":"If it is not budgeted, how likely is budget to be found?","type":"string"},"q28_estimated_annual_benefit_aed":{"anyOf":[{"minimum":0,"type":"number"},{"type":"null"}],"default":null,"description":"What annual saving or benefit do you expect, in AED?"},"q29_additional_context":{"default":"","description":"Is there anything else we should know?","type":"string"},"idempotency_key":{"anyOf":[{"maxLength":128,"minLength":8,"type":"string"},{"type":"null"}],"default":null,"description":"Not asked. A fresh GUID per submission attempt; reuse it only to retry the same attempt."}},"required":["q0_org_unit","q1_full_name","q2_department","q3_job_title","q4_relationship","q5_task_description","q10_step_count","q11_conditional_logic","q15_change_frequency","q16_volume_pattern","q18_error_rate","q20_sign_off","q22_failure_impact","q24_data_readiness","q25_urgency"],"additionalProperties":false},"outputSchema":{"additionalProperties":false,"properties":{"contract_version":{"description":"Version of this contract that produced the response.","type":"string"},"request_id":{"description":"Quote this in every later call. Same value as the tracking reference shown to people.","type":"string"},"state":{"enum":["accepted","running","awaiting_decision","completed","automation","rejected","returned_as_integration","failed","interrupted"],"type":"string","description":"State at the time of the response. A new request is 'accepted'."},"submitted_at":{"description":"UTC timestamp, ISO 8601.","type":"string"},"duplicate_of":{"anyOf":[{"type":"string"},{"type":"null"}],"default":null,"description":"Set when the content matches an earlier request: this call linked to it instead of starting a new run."},"idempotent_replay":{"default":false,"description":"True when the same idempotency_key and body were already accepted; nothing new was started.","type":"boolean"},"poll_after_seconds":{"anyOf":[{"type":"integer"},{"type":"null"}],"default":null,"description":"Suggested wait before the first status call. A hint, not a promise."}},"required":["contract_version","request_id","state","submitted_at"],"type":"object"},"annotations":{"title":"Submit an intake request","readOnlyHint":false,"destructiveHint":false,"idempotentHint":true,"openWorldHint":false},"_meta":{"m42/rest":{"method":"POST","path":"/v1/requests","operationId":"submit"},"m42/scope":"intake.submit","m42/success_statuses":[202,200],"m42/errors":["urn:m42-intake:problem:invalid-request","urn:m42-intake:problem:idempotency-conflict","urn:m42-intake:problem:unauthenticated","urn:m42-intake:problem:forbidden","urn:m42-intake:problem:rate-limited","urn:m42-intake:problem:unavailable"]}},{"name":"status","title":"Check the status of a request","description":"Get where an intake request is: running, waiting for a human decision, or finished (and how). Use it to answer 'how is my request going?'. Read the summary field aloud; do not paraphrase state names to the person. If is_stub is true, say the assessment ran in test mode and is not a real result. If state is awaiting_decision, pending_approvals names who is being waited on. Do not call more often than poll_after_seconds suggests. When terminal is true, use result.","inputSchema":{"type":"object","properties":{"request_id":{"type":"string","description":"The request id returned by submit (e.g. M42-INT-3F9A21C4)."}},"required":["request_id"],"additionalProperties":false},"outputSchema":{"additionalProperties":false,"properties":{"contract_version":{"type":"string"},"request_id":{"type":"string"},"state":{"enum":["accepted","running","awaiting_decision","completed","automation","rejected","returned_as_integration","failed","interrupted"],"type":"string","description":"Where the request is. Terminal states: completed, automation, rejected, returned_as_integration, failed."},"terminal":{"description":"True when the request will not change again without a new submission.","type":"boolean"},"summary":{"description":"One plain sentence the Desk can show the person.","type":"string"},"submitted_at":{"description":"UTC ISO 8601.","type":"string"},"updated_at":{"description":"UTC ISO 8601 of the last change to this request.","type":"string"},"progress":{"additionalProperties":false,"properties":{"current_step":{"anyOf":[{"type":"integer"},{"type":"null"}],"default":null,"description":"Derivation step being worked on, when running."},"steps_completed":{"description":"How many derivation steps have finished.","type":"integer"},"steps_total":{"description":"Total derivation steps in the pathway.","type":"integer"}},"required":["steps_completed","steps_total"],"type":"object"},"pending_approvals":{"description":"Decisions the request is waiting on. Empty unless state is awaiting_decision.","items":{"additionalProperties":false,"properties":{"approval_id":{"description":"Pass to list-approvals results or decide-approval.","type":"string"},"gate":{"enum":["owner_confirmation","coe_review","criticality_confirmation","architect_review","divergence_approval"],"type":"string","description":"Which decision point this is."},"gate_name":{"description":"Human name of the decision point.","type":"string"},"requested_at":{"anyOf":[{"type":"string"},{"type":"null"}],"default":null,"description":"When the approval was raised, UTC ISO 8601."}},"required":["approval_id","gate","gate_name"],"type":"object"},"type":"array"},"halt":{"anyOf":[{"additionalProperties":false,"properties":{"rule":{"anyOf":[{"type":"string"},{"type":"null"}],"default":null,"description":"Identifier of the governed rule that stopped the run."},"reason":{"description":"Why the run stopped, in plain words.","type":"string"}},"required":["reason"],"type":"object"},{"type":"null"}],"default":null,"description":"Present when a governed rule stopped the run."},"is_stub":{"description":"True when any derivation step ran as a stub rather than the real agent. A stub result must never be presented as a real assessment.","type":"boolean"},"poll_after_seconds":{"anyOf":[{"type":"integer"},{"type":"null"}],"default":null,"description":"Suggested wait before the next status call; absent when terminal."}},"required":["contract_version","request_id","state","terminal","summary","submitted_at","updated_at","progress","pending_approvals","is_stub"],"type":"object"},"annotations":{"title":"Check the status of a request","readOnlyHint":true,"idempotentHint":true,"openWorldHint":false},"_meta":{"m42/rest":{"method":"GET","path":"/v1/requests/{request_id}","operationId":"status"},"m42/scope":"intake.read","m42/success_statuses":[200],"m42/errors":["urn:m42-intake:problem:not-found","urn:m42-intake:problem:unauthenticated","urn:m42-intake:problem:forbidden","urn:m42-intake:problem:rate-limited","urn:m42-intake:problem:unavailable"]}},{"name":"result","title":"Get the result of a request","description":"Get the outcome of an intake request that has finished: the recommendation, the estimated annual value (if the data allowed one), the design summary, and every human decision. If ready is false the request is not finished; call status instead. Always show value_note next to any value. A missing value means the effort data was incomplete: say so, do not estimate. If provenance.stub_steps is not empty, say the result is from test mode.","inputSchema":{"type":"object","properties":{"request_id":{"type":"string","description":"The request id returned by submit (e.g. M42-INT-3F9A21C4)."}},"required":["request_id"],"additionalProperties":false},"outputSchema":{"additionalProperties":false,"properties":{"contract_version":{"type":"string"},"request_id":{"type":"string"},"ready":{"description":"False until the request is terminal. When false, only state is meaningful: poll status.","type":"boolean"},"state":{"enum":["accepted","running","awaiting_decision","completed","automation","rejected","returned_as_integration","failed","interrupted"],"type":"string"},"outcome":{"anyOf":[{"additionalProperties":false,"properties":{"recommendation":{"anyOf":[{"type":"string"},{"type":"null"}],"default":null,"description":"The recommendation in one line, when the run reached one."},"annual_value_aed":{"anyOf":[{"type":"number"},{"type":"null"}],"default":null,"description":"Estimated annual benefit, AED, from the submitted effort data. Absent when the data was incomplete."},"value_note":{"description":"Caveat to show next to any value: what the number is and is not.","type":"string"},"halt":{"anyOf":[{"additionalProperties":false,"properties":{"rule":{"anyOf":[{"type":"string"},{"type":"null"}],"default":null,"description":"Identifier of the governed rule that stopped the run."},"reason":{"description":"Why the run stopped, in plain words.","type":"string"}},"required":["reason"],"type":"object"},{"type":"null"}],"default":null}},"required":["value_note"],"type":"object"},{"type":"null"}],"default":null},"design":{"anyOf":[{"additionalProperties":false,"properties":{"build_surface":{"anyOf":[{"type":"string"},{"type":"null"}],"default":null},"build_surface_conditions":{"items":{"type":"string"},"type":"array"},"criticality_class":{"anyOf":[{"type":"string"},{"type":"null"}],"default":null},"governance_tier":{"anyOf":[{"type":"string"},{"type":"null"}],"default":null},"component_count":{"anyOf":[{"type":"integer"},{"type":"null"}],"default":null},"obligation_count":{"anyOf":[{"type":"integer"},{"type":"null"}],"default":null},"conformance_validated":{"anyOf":[{"type":"boolean"},{"type":"null"}],"default":null,"description":"False means the design is provisional."},"conformance_violations":{"items":{"type":"string"},"type":"array"},"unbound_obligations":{"items":{"type":"string"},"type":"array"}},"type":"object"},{"type":"null"}],"default":null},"decisions":{"description":"Every human decision recorded on the request, oldest first.","items":{"additionalProperties":false,"properties":{"decision":{"enum":["approve","reject","send_back"],"type":"string"},"decided_by":{"type":"string"},"decided_at":{"type":"string"},"comments":{"type":"string"}},"required":["decision","decided_by","decided_at","comments"],"type":"object"},"type":"array"},"provenance":{"anyOf":[{"additionalProperties":false,"properties":{"seed_artifacts_used":{"description":"Number of seed (not governed) artifacts the derivation relied on.","type":"integer"},"stub_steps":{"description":"Derivation steps that ran as stubs.","items":{"type":"integer"},"type":"array"},"open_gap_flags":{"description":"Unresolved gap flags in the pack.","type":"integer"}},"required":["seed_artifacts_used","stub_steps","open_gap_flags"],"type":"object"},{"type":"null"}],"default":null},"documents":{"description":"Documents to link to; REST only.","items":{"additionalProperties":false,"properties":{"kind":{"description":"approval_dossier or design_pack.","type":"string"},"gate":{"anyOf":[{"enum":["owner_confirmation","coe_review","criticality_confirmation","architect_review","divergence_approval"],"type":"string"},{"type":"null"}],"default":null},"version":{"anyOf":[{"type":"integer"},{"type":"null"}],"default":null},"media_type":{"type":"string"},"href":{"type":"string"},"sha256":{"anyOf":[{"type":"string"},{"type":"null"}],"default":null}},"required":["kind","media_type","href"],"type":"object"},"type":"array"},"notes":{"description":"Anything the Desk must say to the person that the fields above do not carry.","items":{"type":"string"},"type":"array"}},"required":["contract_version","request_id","ready","state","decisions","documents","notes"],"type":"object"},"annotations":{"title":"Get the result of a request","readOnlyHint":true,"idempotentHint":true,"openWorldHint":false},"_meta":{"m42/rest":{"method":"GET","path":"/v1/requests/{request_id}/result","operationId":"result"},"m42/scope":"intake.read","m42/success_statuses":[200],"m42/errors":["urn:m42-intake:problem:not-found","urn:m42-intake:problem:unauthenticated","urn:m42-intake:problem:forbidden","urn:m42-intake:problem:rate-limited","urn:m42-intake:problem:unavailable"]}},{"name":"fields","title":"List the intake questions","description":"Get the questions to ask the person before submitting: for each field its prompt, type, whether it is required, and for choice fields the exact permitted options. Call this before submit and ask in section order. Fields with ask=false are yours to fill, not the person's.","inputSchema":{"type":"object","properties":{},"required":[],"additionalProperties":false},"outputSchema":{"additionalProperties":false,"properties":{"contract_version":{"type":"string"},"form_id":{"type":"string"},"form_version":{"type":"string"},"sections":{"items":{"additionalProperties":false,"properties":{"id":{"type":"string"},"title":{"type":"string"},"questions":{"description":"Question range, e.g. Q5-Q9.","type":"string"}},"required":["id","title","questions"],"type":"object"},"type":"array"},"fields":{"items":{"additionalProperties":false,"properties":{"id":{"description":"Property name to use in submit.","type":"string"},"section":{"description":"Id of the section it belongs to.","type":"string"},"question":{"anyOf":[{"type":"string"},{"type":"null"}],"default":null,"description":"Question number in the intake form, e.g. Q5."},"label":{"description":"Short label.","type":"string"},"prompt":{"description":"How to ask for it, in words the submitter will understand.","type":"string"},"type":{"description":"text, long_text, number, integer, choice, multi_choice, list or table.","type":"string"},"required":{"type":"boolean"},"ask":{"description":"False for fields the agent supplies itself (channel, pathway, idempotency_key); do not ask the person.","type":"boolean"},"options":{"anyOf":[{"items":{"type":"string"},"type":"array"},{"type":"null"}],"default":null,"description":"Permitted values for choice and multi_choice fields; send exactly these strings."},"min_length":{"anyOf":[{"type":"integer"},{"type":"null"}],"default":null},"minimum":{"anyOf":[{"type":"number"},{"type":"null"}],"default":null},"columns":{"anyOf":[{"items":{"additionalProperties":false,"properties":{"id":{"type":"string"},"label":{"type":"string"},"type":{"description":"text, number, integer or choice.","type":"string"},"required":{"type":"boolean"},"options":{"anyOf":[{"items":{"type":"string"},"type":"array"},{"type":"null"}],"default":null}},"required":["id","label","type","required"],"type":"object"},"type":"array"},{"type":"null"}],"default":null,"description":"Columns of a table field; each row is an object with these keys."},"help":{"anyOf":[{"type":"string"},{"type":"null"}],"default":null}},"required":["id","section","label","prompt","type","required","ask"],"type":"object"},"type":"array"},"notes":{"items":{"type":"string"},"type":"array"}},"required":["contract_version","form_id","form_version","sections","fields","notes"],"type":"object"},"annotations":{"title":"List the intake questions","readOnlyHint":true,"idempotentHint":true,"openWorldHint":false},"_meta":{"m42/rest":{"method":"GET","path":"/v1/fields","operationId":"fields"},"m42/scope":"intake.read","m42/success_statuses":[200],"m42/errors":["urn:m42-intake:problem:unauthenticated","urn:m42-intake:problem:forbidden","urn:m42-intake:problem:rate-limited","urn:m42-intake:problem:unavailable"]}},{"name":"list-approvals","title":"List the approvals of a request","description":"Get the pending approvals of a request, including what each asks, which decisions are allowed, the key facts and a link to the dossier. Use it when the person is an approver and wants to review a request. Show the facts and the question before asking for a decision. Pass state=decided or state=all to see history.","inputSchema":{"type":"object","properties":{"request_id":{"type":"string","description":"The request id returned by submit (e.g. M42-INT-3F9A21C4)."},"state":{"type":"string","enum":["pending","decided","all"],"default":"pending","description":"Which approvals to list."}},"required":["request_id"],"additionalProperties":false},"outputSchema":{"additionalProperties":false,"properties":{"contract_version":{"type":"string"},"request_id":{"type":"string"},"approvals":{"items":{"additionalProperties":false,"properties":{"approval_id":{"type":"string"},"request_id":{"type":"string"},"gate":{"enum":["owner_confirmation","coe_review","criticality_confirmation","architect_review","divergence_approval"],"type":"string"},"gate_name":{"type":"string"},"state":{"enum":["pending","decided","superseded"],"type":"string","description":"pending: waiting for a decision. decided: recorded. superseded: replaced by a newer approval after a send-back or an override."},"question":{"description":"What the approver is being asked to decide.","type":"string"},"allowed_decisions":{"description":"Decisions this gate accepts. Anything else is refused.","items":{"enum":["approve","reject","send_back"],"type":"string"},"type":"array"},"comments_required_for":{"description":"Decisions that must carry comments.","items":{"enum":["approve","reject","send_back"],"type":"string"},"type":"array"},"requested_at":{"anyOf":[{"type":"string"},{"type":"null"}],"default":null},"facts":{"description":"The few facts the approver needs first. The dossier has the rest.","items":{"additionalProperties":false,"properties":{"label":{"type":"string"},"value":{"type":"string"}},"required":["label","value"],"type":"object"},"type":"array"},"dossier":{"anyOf":[{"additionalProperties":false,"properties":{"version":{"description":"Dossier version for this decision point; a send-back produces a new version.","type":"integer"},"pages":{"anyOf":[{"type":"integer"},{"type":"null"}],"default":null,"description":"Page count of the PDF."},"sha256":{"anyOf":[{"type":"string"},{"type":"null"}],"default":null,"description":"Hash of the stored PDF."},"pdf_href":{"description":"Relative path of the PDF (REST only; fetch with the same credentials).","type":"string"},"json_href":{"description":"Relative path of the machine-readable dossier.","type":"string"}},"required":["version","pdf_href","json_href"],"type":"object"},{"type":"null"}],"default":null},"decision":{"anyOf":[{"additionalProperties":false,"properties":{"decision":{"enum":["approve","reject","send_back"],"type":"string"},"decided_by":{"type":"string"},"decided_at":{"type":"string"},"comments":{"type":"string"}},"required":["decision","decided_by","decided_at","comments"],"type":"object"},{"type":"null"}],"default":null,"description":"Present once decided."},"design_must_be_opened":{"description":"True when approve is refused until the dossier or design has been opened (FR-41, TBC).","type":"boolean"},"design_opened":{"anyOf":[{"type":"boolean"},{"type":"null"}],"default":null,"description":"Whether it has been opened; null when design_must_be_opened is false."}},"required":["approval_id","request_id","gate","gate_name","state","question","allowed_decisions","comments_required_for","facts","design_must_be_opened"],"type":"object"},"type":"array"}},"required":["contract_version","request_id","approvals"],"type":"object"},"annotations":{"title":"List the approvals of a request","readOnlyHint":true,"idempotentHint":true,"openWorldHint":false},"_meta":{"m42/rest":{"method":"GET","path":"/v1/requests/{request_id}/approvals","operationId":"list-approvals"},"m42/scope":"intake.read","m42/success_statuses":[200],"m42/errors":["urn:m42-intake:problem:not-found","urn:m42-intake:problem:unauthenticated","urn:m42-intake:problem:forbidden","urn:m42-intake:problem:rate-limited","urn:m42-intake:problem:unavailable"]}},{"name":"decide-approval","title":"Record a decision on an approval","description":"Record the approver's decision. ONLY call this after the approver has told you the decision in their own words and you have read it back to them and they confirmed; a decision cannot be undone. Use only a decision listed in the approval's allowed_decisions. send_back needs comments. At the criticality gate, approve may carry criticality_class to substitute the proposed class. The caller is recorded as the decider automatically. If the answer is design-not-opened, tell the approver to open the dossier first.","inputSchema":{"type":"object","properties":{"request_id":{"type":"string","description":"The request id returned by submit (e.g. M42-INT-3F9A21C4)."},"approval_id":{"type":"string","description":"The approval id from status or list-approvals."},"decision":{"enum":["approve","reject","send_back"],"type":"string","description":"approve, reject or send_back. Which are allowed depends on the gate; see allowed_decisions."},"comments":{"default":"","description":"Reasoning or corrections. Required for send_back; recommended for reject.","type":"string"},"criticality_class":{"anyOf":[{"enum":["routine","significant","severe"],"type":"string"},{"type":"null"}],"default":null,"description":"Criticality gate only, with approve: the class being confirmed or substituted. Omit to confirm the proposed class."}},"required":["request_id","approval_id","decision"],"additionalProperties":false},"outputSchema":{"additionalProperties":false,"properties":{"contract_version":{"type":"string"},"request_id":{"type":"string"},"approval_id":{"type":"string"},"decision":{"enum":["approve","reject","send_back"],"type":"string"},"decided_by":{"description":"Taken from the caller's token, never from the request body.","type":"string"},"decided_at":{"type":"string"},"identity_verified":{"description":"False while the draft runs without token validation (DEF-014 interim). Treat as unauthenticated.","type":"boolean"},"replay":{"default":false,"description":"True when the same decision had already been recorded; nothing changed.","type":"boolean"},"request_state":{"enum":["accepted","running","awaiting_decision","completed","automation","rejected","returned_as_integration","failed","interrupted"],"type":"string","description":"State of the request after the decision, usually 'running' while the next step is derived."},"poll_after_seconds":{"anyOf":[{"type":"integer"},{"type":"null"}],"default":null}},"required":["contract_version","request_id","approval_id","decision","decided_by","decided_at","identity_verified","request_state"],"type":"object"},"annotations":{"title":"Record a decision on an approval","readOnlyHint":false,"destructiveHint":false,"idempotentHint":true,"openWorldHint":false},"_meta":{"m42/rest":{"method":"POST","path":"/v1/requests/{request_id}/approvals/{approval_id}/decision","operationId":"decide-approval"},"m42/scope":"intake.decide.<gate>","m42/success_statuses":[202,200],"m42/errors":["urn:m42-intake:problem:invalid-request","urn:m42-intake:problem:decision-not-allowed","urn:m42-intake:problem:comments-required","urn:m42-intake:problem:not-found","urn:m42-intake:problem:already-decided","urn:m42-intake:problem:approval-superseded","urn:m42-intake:problem:design-not-opened","urn:m42-intake:problem:unauthenticated","urn:m42-intake:problem:forbidden","urn:m42-intake:problem:rate-limited","urn:m42-intake:problem:unavailable"]}}]}}
+PS C:\Users\vijayn\Projects\Intake1\Intake>
+
+
+===================== Trigger a submit through MCP
+
+$body = @'
+{
+  "channel": "copilot",
+  "pathway": "comprehensive",
+  "q0_org_unit": "Operational",
+  "q1_full_name": "Test MCP User",
+  "q2_department": "Operations",
+  "q3_job_title": "Ops Manager",
+  "q4_relationship": "I perform it myself",
+  "q5_task_description": "Testing MCP trigger flow.",
+  "q6_categories": ["Validate request"],
+  "q7_goals": ["Reduce time"],
+  "q8_biggest_value": "Reduced turnaround time.",
+  "q9_other_kpis": "Cycle time",
+  "q10_step_count": "6-15",
+  "q11_conditional_logic": "No",
+  "q12_systems": ["EMR-EHR"],
+  "q12b_write_back_targets": ["EMR"],
+  "q13_systems_purpose": "Test system",
+  "q14_data_types": ["Structured"],
+  "q15_change_frequency": "Rarely",
+  "q16_volume_pattern": "Consistent",
+  "q16_annual_volume": 12000,
+  "q17_effort_table": [
+    {
+      "role": "Operations analyst",
+      "role_band": "admin",
+      "headcount": 2,
+      "seniority": "mid",
+      "frequency_per_week": 20,
+      "current_minutes": 12,
+      "expected_minutes": 6
+    }
+  ],
+  "q18_error_rate": "Rarely <1%",
+  "q19_sensitive_data": ["PII"],
+  "q20_sign_off": "Audit trail only",
+  "q21_sign_off_detail": "Test tracking only",
+  "q22_failure_impact": "Low",
+  "q23_stakeholder_discussion": "yes supportive",
+  "q24_data_readiness": "Yes fully",
+  "q25_urgency": "High",
+  "q26_investment_band": "AED 200-500k",
+  "q27_budget_likelihood": "likely",
+  "q28_estimated_annual_benefit_aed": 500000,
+  "q29_additional_context": "Manual MCP test"
+}
+'@
+
+$submit = @"
+{
+  "jsonrpc": "2.0",
+  "id": 3,
+  "method": "tools/call",
+  "params": {
+    "name": "submit",
+    "arguments": $body
+  }
+}
+"@
+
+curl -sS -X POST "$apiHost/mcp" `
+  -H "Content-Type: application/json" `
+  -H "Accept: application/json, text/event-stream" `
+  -H "MCP-Protocol-Version: 2025-11-25" `
+  -H "X-Authenticated-User: test.mcp@intake-agent.com" `
+  -H "X-Correlation-Id: mcp-manual-submit-001" `
+  --data $submit
+
+{"jsonrpc":"2.0","id":3,"result":{"content":[{"type":"text","text":"{\"type\": \"urn:m42-intake:problem:invalid-request\", \"title\": \"The request is not valid\", \"status\": 422, \"detail\": \"The submission is incomplete or invalid.\", \"correlation_id\": \"mcp-manual-submit-001\", \"errors\": [{\"field\": \"q0_org_unit\", \"message\": \"Input should be 'Engineering', 'Operational', 'Clinical' or 'Consultancy'\"}, {\"field\": \"q4_relationship\", \"message\": \"Input should be 'I perform it myself', 'I manage the team' or 'I am an internal customer'\"}, {\"field\": \"q11_conditional_logic\", \"message\": \"Input should be 'No', 'A few simple conditions' or 'Many or nested rules'\"}, {\"field\": \"q15_change_frequency\", \"message\": \"Input should be 'Rarely', 'Occasionally' or 'Frequently'\"}, {\"field\": \"q16_volume_pattern\", \"message\": \"Input should be 'Consistent', 'Predictable peaks' or 'Highly variable'\"}, {\"field\": \"q18_error_rate\", \"message\": \"Input should be 'Rarely <1%', 'Occasionally 1-5%', 'Frequently >5%' or 'Unknown'\"}, {\"field\": \"q20_sign_off\", \"message\": \"Input should be 'Mandatory human approval', 'Audit trail only' or 'No'\"}, {\"field\": \"q22_failure_impact\", \"message\": \"Input should be 'Low', 'Medium', 'High' or 'Critical'\"}, {\"field\": \"q24_data_readiness\", \"message\": \"Input should be 'Yes fully', 'Partially' or 'No, work needed first'\"}, {\"field\": \"q25_urgency\", \"message\": \"Input should be 'Critical', 'High', 'Medium' or 'Low'\"}]}"}],"isError":true}}
+PS C:\Users\vijayn\Projects\Intake1\Intake>
+
+
+updated the values mostly syntax error lower case while it is expecting upper at the start of the value.
+
+
+after resubmitting with the corrected values getting this 
+
+{"jsonrpc":"2.0","id":3,"result":{"content":[{"type":"text","text":"{\n  \"contract_version\": \"1.0.0-draft.1\",\n  \"request_id\": \"M42-INT-935444A7\",\n  \"state\": \"accepted\",\n  \"submitted_at\": \"2026-11-11T10:18:58Z\",\n  \"idempotent_replay\": false,\n  \"poll_after_seconds\": 20\n}"}],"structuredContent":{"contract_version":"1.0.0-draft.1","request_id":"M42-INT-935444A7","state":"accepted","submitted_at":"2026-11-11T10:18:58Z","idempotent_replay":false,"poll_after_seconds":20},"isError":false}}
+PS C:\Users\vijayn\Projects\Intake1\Intake>
+
+
+checked M42-INT-935444A7 on the portal it is submitted 
+
+==================== Check status over MCP
+
+$requestId = "M42-INT-935444A7"
+
+$status = @"
+{
+  "jsonrpc": "2.0",
+  "id": 4,
+  "method": "tools/call",
+  "params": {
+    "name": "status",
+    "arguments": {
+      "request_id": "$requestId"
+    }
+  }
+}
+"@
+
+curl -sS -X POST "$apiHost/mcp" `
+  -H "Content-Type: application/json" `
+  -H "Accept: application/json, text/event-stream" `
+  -H "MCP-Protocol-Version: 2025-11-25" `
+  -H "X-Authenticated-User: test.user@company.com" `
+  -H "X-Correlation-Id: mcp-manual-status-001" `
+  --data $status
+
+
+
+{"jsonrpc":"2.0","id":4,"result":{"content":[{"type":"text","text":"{\n  \"contract_version\": \"1.0.0-draft.1\",\n  \"request_id\": \"M42-INT-935444A7\",\n  \"state\": \"awaiting_decision\",\n  \"terminal\": false,\n  \"summary\": \"Waiting for a decision: Owner confirmation.\",\n  \"submitted_at\": \"2026-11-11T10:18:58Z\",\n  \"updated_at\": \"2026-11-11T10:19:14Z\",\n  \"progress\": {\n    \"current_step\": 3,\n    \"steps_completed\": 1,\n    \"steps_total\": 19\n  },\n  \"pending_approvals\": [\n    {\n      \"approval_id\": \"47fe0ab9-dbba-41c1-bd5f-f5e30bd87b82\",\n      \"gate\": \"owner_confirmation\",\n      \"gate_name\": \"Owner confirmation\",\n      \"requested_at\": \"2026-11-11T10:19:13+00:00\"\n    }\n  ],\n  \"is_stub\": false,\n  \"poll_after_seconds\": 300\n}"}],"structuredContent":{"contract_version":"1.0.0-draft.1","request_id":"M42-INT-935444A7","state":"awaiting_decision","terminal":false,"summary":"Waiting for a decision: Owner confirmation.","submitted_at":"2026-11-11T10:18:58Z","updated_at":"2026-11-11T10:19:14Z","progress":{"current_step":3,"steps_completed":1,"steps_total":19},"pending_approvals":[{"approval_id":"47fe0ab9-dbba-41c1-bd5f-f5e30bd87b82","gate":"owner_confirmation","gate_name":"Owner confirmation","requested_at":"2026-11-11T10:19:13+00:00"}],"is_stub":false,"poll_after_seconds":300},"isError":false}}
+PS C:\Users\vijayn\Projects\Intake1\Intake>
+
+
+=================== Approve the first gate over MCP
+
+$approvalId = "47fe0ab9-dbba-41c1-bd5f-f5e30bd87b82"
+
+$approve = @"
+{
+  "jsonrpc": "2.0",
+  "id": 5,
+  "method": "tools/call",
+  "params": {
+    "name": "decide-approval",
+    "arguments": {
+      "request_id": "$requestId",
+      "approval_id": "$approvalId",
+      "decision": "approve"
+    }
+  }
+}
+"@
+
+curl -sS -X POST "$apiHost/mcp" `
+  -H "Content-Type: application/json" `
+  -H "Accept: application/json, text/event-stream" `
+  -H "MCP-Protocol-Version: 2025-11-25" `
+  -H "X-Authenticated-User: test.user@company.com" `
+  -H "X-Correlation-Id: mcp-manual-approve-001" `
+  --data $approve
+
+
+{"jsonrpc":"2.0","id":5,"result":{"content":[{"type":"text","text":"{\"type\": \"urn:m42-intake:problem:unauthenticated\", \"title\": \"Authentication required\", \"status\": 401, \"detail\": \"A decision is recorded under the decider's name. Send it in the 0390f37c-6c3b-495c-9751-a6bc5af815c1 header (the gateway sets it).\", \"request_id\": \"M42-INT-935444A7\", \"correlation_id\": \"mcp-manual-approve-001\"}"}],"isError":true}}
+PS C:\Users\vijayn\Projects\Intake1\Intake>
+
+
