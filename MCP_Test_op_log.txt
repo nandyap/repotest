@@ -1,0 +1,290 @@
+MCP Test op 
+
+PowerShell 7.6.10
+PS C:\Users\vijayn> $apiHost = "https://ca-intake-intake-dev-backend.politewater-2393db25.uaenorth.azurecontainerapps.io"
+>>
+>> $caller = "Vijay.test_mcp@intakeagent.com"
+PS C:\Users\vijayn> function Invoke-Mcp($payload) {
+>>     curl -sS -X POST "$apiHost/mcp" `
+>>       -H "Content-Type: application/json" `
+>>       -H "Accept: application/json, text/event-stream" `
+>>       -H "MCP-Protocol-Version: 2025-11-25" `
+>>       -H "X-Authenticated-User: $caller" `
+>>       -H "X-Correlation-Id: $([guid]::NewGuid().ToString())" `
+>>       --data $payload
+>> }
+PS C:\Users\vijayn> $init = @'
+>> {
+>>   "jsonrpc": "2.0",
+>>   "id": 1,
+>>   "method": "initialize",
+>>   "params": {
+>>     "protocolVersion": "2025-11-25",
+>>     "capabilities": {},
+>>     "clientInfo": {
+>>       "name": "manual-mcp-test",
+>>       "version": "1.0.0"
+>>     }
+>>   }
+>> }
+>> '@
+>>
+>> Invoke-Mcp $init
+{"jsonrpc":"2.0","id":1,"result":{"protocolVersion":"2025-11-25","capabilities":{"experimental":{},"tools":{"listChanged":false}},"serverInfo":{"name":"m42-intake","version":"1.0.0-draft.1"},"instructions":"M42 Intake Agent assesses a business process as an AI agent candidate. The work is asynchronous. To submit: call fields, ask the person each question in order, call submit with a new idempotency_key, and give them the request_id. To follow up: call status; when terminal is true, call result. To decide as an approver: call list-approvals, show the question and facts, read the person's decision back, and only then call decide-approval. Never invent an answer, a number or a decision. If is_stub is true the result is test output, not an assessment."}}
+PS C:\Users\vijayn> $toolsList = @'
+>> {
+>>   "jsonrpc": "2.0",
+>>   "id": 2,
+>>   "method": "tools/list",
+>>   "params": {}
+>> }
+>> '@
+>>
+>> Invoke-Mcp $toolsList
+{"jsonrpc":"2.0","id":2,"result":{"tools":[{"name":"submit","title":"Submit an intake request","description":"Submit a business process for assessment as an AI agent candidate. Call this ONLY after you have collected the answers with the person, using the field list from the fields tool; never invent answers or numbers. Always pass a new idempotency_key (a GUID) and keep it so a retry after a timeout does not create a second request. Returns immediately with a request_id; the assessment is not finished. Tell the person the request_id, then use status to follow progress. On a validation error, read the errors list, ask the person to correct only those fields, and call again.","inputSchema":{"type":"object","properties":{"pathway":{"description":"Not asked. Use comprehensive.","enum":["quick","comprehensive"],"type":"string","default":"comprehensive"},"channel":{"description":"Not asked. Use copilot when submitting from the Use Case Desk.","enum":["form","teams","copilot","email","batch"],"type":"string","default":"form"},"q0_org_unit":{"description":"Which part of the organisation are you in?","enum":["Engineering","Operational","Clinical","Consultancy"],"type":"string"},"q1_full_name":{"description":"What is your full name?","type":"string"},"q2_department":{"description":"Which department or team are you in?","type":"string"},"q3_job_title":{"description":"What is your job title?","type":"string"},"q4_relationship":{"description":"What is your relationship to this task?","enum":["I perform it myself","I manage the team","I am an internal customer"],"type":"string"},"q5_task_description":{"description":"Describe the task: what is done, and what triggers it.","minLength":20,"type":"string"},"q6_categories":{"description":"Which categories best describe the task?","items":{"type":"string"},"type":"array"},"q7_goals":{"description":"What are the main goals of automating it?","items":{"type":"string"},"type":"array"},"q8_biggest_value":{"default":"","description":"What is the biggest value this would deliver?","type":"string"},"q9_other_kpis":{"default":"","description":"Are there other measures of success that matter?","type":"string"},"q10_step_count":{"description":"Roughly how many distinct steps does the process have?","enum":["1-5","6-15","16-30",">30"],"type":"string"},"q11_conditional_logic":{"description":"Does the process involve conditional logic: different paths depending on the case?","enum":["No","A few simple conditions","Many or nested rules"],"type":"string"},"q12_systems":{"description":"Which systems does the process use?","items":{"type":"string"},"type":"array"},"q12b_write_back_targets":{"description":"Which systems does it send or save its results to?","items":{"type":"string"},"type":"array"},"q13_systems_purpose":{"default":"","description":"What is each system used for in this process?","type":"string"},"q14_data_types":{"description":"What kinds of data are involved?","items":{"type":"string"},"type":"array"},"q15_change_frequency":{"description":"How often do the rules or systems of this process change?","enum":["Rarely","Occasionally","Frequently"],"type":"string"},"q16_volume_pattern":{"description":"Is the volume steady over time, or does it vary?","enum":["Consistent","Predictable peaks","Highly variable"],"type":"string"},"q16_annual_volume":{"anyOf":[{"minimum":0,"type":"integer"},{"type":"null"}],"default":null,"description":"Roughly how many cases are handled in a year?"},"q17_effort_table":{"description":"Who does the work today, how many people, how often, and how long does each case take?","items":{"additionalProperties":false,"description":"One row of the Q17 structured effort table.\n\nThis table is what makes an initial business case possible without an\narchitecture.  Missing values are left None so the calculator can mark\nthe driver \"requires input\" rather than fabricating a number.","properties":{"role":{"type":"string"},"role_band":{"description":"Cost anchor bands from Appendix B.","enum":["doctor","nurse","admin"],"type":"string"},"headcount":{"minimum":0,"type":"integer"},"seniority":{"default":"","type":"string"},"frequency_per_week":{"minimum":0,"type":"number"},"current_minutes":{"anyOf":[{"minimum":0,"type":"number"},{"type":"null"}],"default":null},"expected_minutes":{"anyOf":[{"minimum":0,"type":"number"},{"type":"null"}],"default":null}},"required":["role","role_band","headcount","frequency_per_week"],"type":"object"},"type":"array"},"q18_error_rate":{"description":"How often does the process result in an error or rework?","enum":["Rarely <1%","Occasionally 1-5%","Frequently >5%","Unknown"],"type":"string"},"q19_sensitive_data":{"description":"Does it involve any sensitive data? Which kinds?","items":{"type":"string"},"type":"array"},"q20_sign_off":{"description":"Is human sign-off required in the process?","enum":["Mandatory human approval","Audit trail only","No"],"type":"string"},"q21_sign_off_detail":{"default":"","description":"If sign-off is required, who gives it and for what?","type":"string"},"q22_failure_impact":{"description":"What is the likely impact if this process fails?","enum":["Low","Medium","High","Critical"],"type":"string"},"q23_stakeholder_discussion":{"default":"","description":"Have you discussed this with your line manager and other stakeholders?","type":"string"},"q24_data_readiness":{"description":"Is the data digital and structured?","enum":["Yes fully","Partially","No, work needed first"],"type":"string"},"q25_urgency":{"description":"How critical is it to do this soon?","enum":["Critical","High","Medium","Low"],"type":"string"},"q26_investment_band":{"default":"","description":"How much investment might be needed?","type":"string"},"q27_budget_likelihood":{"default":"","description":"If it is not budgeted, how likely is budget to be found?","type":"string"},"q28_estimated_annual_benefit_aed":{"anyOf":[{"minimum":0,"type":"number"},{"type":"null"}],"default":null,"description":"What annual saving or benefit do you expect, in AED?"},"q29_additional_context":{"default":"","description":"Is there anything else we should know?","type":"string"},"idempotency_key":{"anyOf":[{"maxLength":128,"minLength":8,"type":"string"},{"type":"null"}],"default":null,"description":"Not asked. A fresh GUID per submission attempt; reuse it only to retry the same attempt."}},"required":["q0_org_unit","q1_full_name","q2_department","q3_job_title","q4_relationship","q5_task_description","q10_step_count","q11_conditional_logic","q15_change_frequency","q16_volume_pattern","q18_error_rate","q20_sign_off","q22_failure_impact","q24_data_readiness","q25_urgency"],"additionalProperties":false},"outputSchema":{"additionalProperties":false,"properties":{"contract_version":{"description":"Version of this contract that produced the response.","type":"string"},"request_id":{"description":"Quote this in every later call. Same value as the tracking reference shown to people.","type":"string"},"state":{"enum":["accepted","running","awaiting_decision","completed","automation","rejected","returned_as_integration","failed","interrupted"],"type":"string","description":"State at the time of the response. A new request is 'accepted'."},"submitted_at":{"description":"UTC timestamp, ISO 8601.","type":"string"},"duplicate_of":{"anyOf":[{"type":"string"},{"type":"null"}],"default":null,"description":"Set when the content matches an earlier request: this call linked to it instead of starting a new run."},"idempotent_replay":{"default":false,"description":"True when the same idempotency_key and body were already accepted; nothing new was started.","type":"boolean"},"poll_after_seconds":{"anyOf":[{"type":"integer"},{"type":"null"}],"default":null,"description":"Suggested wait before the first status call. A hint, not a promise."}},"required":["contract_version","request_id","state","submitted_at"],"type":"object"},"annotations":{"title":"Submit an intake request","readOnlyHint":false,"destructiveHint":false,"idempotentHint":true,"openWorldHint":false},"_meta":{"m42/rest":{"method":"POST","path":"/v1/requests","operationId":"submit"},"m42/scope":"intake.submit","m42/success_statuses":[202,200],"m42/errors":["urn:m42-intake:problem:invalid-request","urn:m42-intake:problem:idempotency-conflict","urn:m42-intake:problem:unauthenticated","urn:m42-intake:problem:forbidden","urn:m42-intake:problem:rate-limited","urn:m42-intake:problem:unavailable"]}},{"name":"status","title":"Check the status of a request","description":"Get where an intake request is: running, waiting for a human decision, or finished (and how). Use it to answer 'how is my request going?'. Read the summary field aloud; do not paraphrase state names to the person. If is_stub is true, say the assessment ran in test mode and is not a real result. If state is awaiting_decision, pending_approvals names who is being waited on. Do not call more often than poll_after_seconds suggests. When terminal is true, use result.","inputSchema":{"type":"object","properties":{"request_id":{"type":"string","description":"The request id returned by submit (e.g. M42-INT-3F9A21C4)."}},"required":["request_id"],"additionalProperties":false},"outputSchema":{"additionalProperties":false,"properties":{"contract_version":{"type":"string"},"request_id":{"type":"string"},"state":{"enum":["accepted","running","awaiting_decision","completed","automation","rejected","returned_as_integration","failed","interrupted"],"type":"string","description":"Where the request is. Terminal states: completed, automation, rejected, returned_as_integration, failed."},"terminal":{"description":"True when the request will not change again without a new submission.","type":"boolean"},"summary":{"description":"One plain sentence the Desk can show the person.","type":"string"},"submitted_at":{"description":"UTC ISO 8601.","type":"string"},"updated_at":{"description":"UTC ISO 8601 of the last change to this request.","type":"string"},"progress":{"additionalProperties":false,"properties":{"current_step":{"anyOf":[{"type":"integer"},{"type":"null"}],"default":null,"description":"Derivation step being worked on, when running."},"steps_completed":{"description":"How many derivation steps have finished.","type":"integer"},"steps_total":{"description":"Total derivation steps in the pathway.","type":"integer"}},"required":["steps_completed","steps_total"],"type":"object"},"pending_approvals":{"description":"Decisions the request is waiting on. Empty unless state is awaiting_decision.","items":{"additionalProperties":false,"properties":{"approval_id":{"description":"Pass to list-approvals results or decide-approval.","type":"string"},"gate":{"enum":["owner_confirmation","coe_review","criticality_confirmation","architect_review","divergence_approval"],"type":"string","description":"Which decision point this is."},"gate_name":{"description":"Human name of the decision point.","type":"string"},"requested_at":{"anyOf":[{"type":"string"},{"type":"null"}],"default":null,"description":"When the approval was raised, UTC ISO 8601."}},"required":["approval_id","gate","gate_name"],"type":"object"},"type":"array"},"halt":{"anyOf":[{"additionalProperties":false,"properties":{"rule":{"anyOf":[{"type":"string"},{"type":"null"}],"default":null,"description":"Identifier of the governed rule that stopped the run."},"reason":{"description":"Why the run stopped, in plain words.","type":"string"}},"required":["reason"],"type":"object"},{"type":"null"}],"default":null,"description":"Present when a governed rule stopped the run."},"is_stub":{"description":"True when any derivation step ran as a stub rather than the real agent. A stub result must never be presented as a real assessment.","type":"boolean"},"poll_after_seconds":{"anyOf":[{"type":"integer"},{"type":"null"}],"default":null,"description":"Suggested wait before the next status call; absent when terminal."}},"required":["contract_version","request_id","state","terminal","summary","submitted_at","updated_at","progress","pending_approvals","is_stub"],"type":"object"},"annotations":{"title":"Check the status of a request","readOnlyHint":true,"idempotentHint":true,"openWorldHint":false},"_meta":{"m42/rest":{"method":"GET","path":"/v1/requests/{request_id}","operationId":"status"},"m42/scope":"intake.read","m42/success_statuses":[200],"m42/errors":["urn:m42-intake:problem:not-found","urn:m42-intake:problem:unauthenticated","urn:m42-intake:problem:forbidden","urn:m42-intake:problem:rate-limited","urn:m42-intake:problem:unavailable"]}},{"name":"result","title":"Get the result of a request","description":"Get the outcome of an intake request that has finished: the recommendation, the estimated annual value (if the data allowed one), the design summary, and every human decision. If ready is false the request is not finished; call status instead. Always show value_note next to any value. A missing value means the effort data was incomplete: say so, do not estimate. If provenance.stub_steps is not empty, say the result is from test mode.","inputSchema":{"type":"object","properties":{"request_id":{"type":"string","description":"The request id returned by submit (e.g. M42-INT-3F9A21C4)."}},"required":["request_id"],"additionalProperties":false},"outputSchema":{"additionalProperties":false,"properties":{"contract_version":{"type":"string"},"request_id":{"type":"string"},"ready":{"description":"False until the request is terminal. When false, only state is meaningful: poll status.","type":"boolean"},"state":{"enum":["accepted","running","awaiting_decision","completed","automation","rejected","returned_as_integration","failed","interrupted"],"type":"string"},"outcome":{"anyOf":[{"additionalProperties":false,"properties":{"recommendation":{"anyOf":[{"type":"string"},{"type":"null"}],"default":null,"description":"The recommendation in one line, when the run reached one."},"annual_value_aed":{"anyOf":[{"type":"number"},{"type":"null"}],"default":null,"description":"Estimated annual benefit, AED, from the submitted effort data. Absent when the data was incomplete."},"value_note":{"description":"Caveat to show next to any value: what the number is and is not.","type":"string"},"halt":{"anyOf":[{"additionalProperties":false,"properties":{"rule":{"anyOf":[{"type":"string"},{"type":"null"}],"default":null,"description":"Identifier of the governed rule that stopped the run."},"reason":{"description":"Why the run stopped, in plain words.","type":"string"}},"required":["reason"],"type":"object"},{"type":"null"}],"default":null}},"required":["value_note"],"type":"object"},{"type":"null"}],"default":null},"design":{"anyOf":[{"additionalProperties":false,"properties":{"build_surface":{"anyOf":[{"type":"string"},{"type":"null"}],"default":null},"build_surface_conditions":{"items":{"type":"string"},"type":"array"},"criticality_class":{"anyOf":[{"type":"string"},{"type":"null"}],"default":null},"governance_tier":{"anyOf":[{"type":"string"},{"type":"null"}],"default":null},"component_count":{"anyOf":[{"type":"integer"},{"type":"null"}],"default":null},"obligation_count":{"anyOf":[{"type":"integer"},{"type":"null"}],"default":null},"conformance_validated":{"anyOf":[{"type":"boolean"},{"type":"null"}],"default":null,"description":"False means the design is provisional."},"conformance_violations":{"items":{"type":"string"},"type":"array"},"unbound_obligations":{"items":{"type":"string"},"type":"array"}},"type":"object"},{"type":"null"}],"default":null},"decisions":{"description":"Every human decision recorded on the request, oldest first.","items":{"additionalProperties":false,"properties":{"decision":{"enum":["approve","reject","send_back"],"type":"string"},"decided_by":{"type":"string"},"decided_at":{"type":"string"},"comments":{"type":"string"}},"required":["decision","decided_by","decided_at","comments"],"type":"object"},"type":"array"},"provenance":{"anyOf":[{"additionalProperties":false,"properties":{"seed_artifacts_used":{"description":"Number of seed (not governed) artifacts the derivation relied on.","type":"integer"},"stub_steps":{"description":"Derivation steps that ran as stubs.","items":{"type":"integer"},"type":"array"},"open_gap_flags":{"description":"Unresolved gap flags in the pack.","type":"integer"}},"required":["seed_artifacts_used","stub_steps","open_gap_flags"],"type":"object"},{"type":"null"}],"default":null},"documents":{"description":"Documents to link to; REST only.","items":{"additionalProperties":false,"properties":{"kind":{"description":"approval_dossier or design_pack.","type":"string"},"gate":{"anyOf":[{"enum":["owner_confirmation","coe_review","criticality_confirmation","architect_review","divergence_approval"],"type":"string"},{"type":"null"}],"default":null},"version":{"anyOf":[{"type":"integer"},{"type":"null"}],"default":null},"media_type":{"type":"string"},"href":{"type":"string"},"sha256":{"anyOf":[{"type":"string"},{"type":"null"}],"default":null}},"required":["kind","media_type","href"],"type":"object"},"type":"array"},"notes":{"description":"Anything the Desk must say to the person that the fields above do not carry.","items":{"type":"string"},"type":"array"}},"required":["contract_version","request_id","ready","state","decisions","documents","notes"],"type":"object"},"annotations":{"title":"Get the result of a request","readOnlyHint":true,"idempotentHint":true,"openWorldHint":false},"_meta":{"m42/rest":{"method":"GET","path":"/v1/requests/{request_id}/result","operationId":"result"},"m42/scope":"intake.read","m42/success_statuses":[200],"m42/errors":["urn:m42-intake:problem:not-found","urn:m42-intake:problem:unauthenticated","urn:m42-intake:problem:forbidden","urn:m42-intake:problem:rate-limited","urn:m42-intake:problem:unavailable"]}},{"name":"fields","title":"List the intake questions","description":"Get the questions to ask the person before submitting: for each field its prompt, type, whether it is required, and for choice fields the exact permitted options. Call this before submit and ask in section order. Fields with ask=false are yours to fill, not the person's.","inputSchema":{"type":"object","properties":{},"required":[],"additionalProperties":false},"outputSchema":{"additionalProperties":false,"properties":{"contract_version":{"type":"string"},"form_id":{"type":"string"},"form_version":{"type":"string"},"sections":{"items":{"additionalProperties":false,"properties":{"id":{"type":"string"},"title":{"type":"string"},"questions":{"description":"Question range, e.g. Q5-Q9.","type":"string"}},"required":["id","title","questions"],"type":"object"},"type":"array"},"fields":{"items":{"additionalProperties":false,"properties":{"id":{"description":"Property name to use in submit.","type":"string"},"section":{"description":"Id of the section it belongs to.","type":"string"},"question":{"anyOf":[{"type":"string"},{"type":"null"}],"default":null,"description":"Question number in the intake form, e.g. Q5."},"label":{"description":"Short label.","type":"string"},"prompt":{"description":"How to ask for it, in words the submitter will understand.","type":"string"},"type":{"description":"text, long_text, number, integer, choice, multi_choice, list or table.","type":"string"},"required":{"type":"boolean"},"ask":{"description":"False for fields the agent supplies itself (channel, pathway, idempotency_key); do not ask the person.","type":"boolean"},"options":{"anyOf":[{"items":{"type":"string"},"type":"array"},{"type":"null"}],"default":null,"description":"Permitted values for choice and multi_choice fields; send exactly these strings."},"min_length":{"anyOf":[{"type":"integer"},{"type":"null"}],"default":null},"minimum":{"anyOf":[{"type":"number"},{"type":"null"}],"default":null},"columns":{"anyOf":[{"items":{"additionalProperties":false,"properties":{"id":{"type":"string"},"label":{"type":"string"},"type":{"description":"text, number, integer or choice.","type":"string"},"required":{"type":"boolean"},"options":{"anyOf":[{"items":{"type":"string"},"type":"array"},{"type":"null"}],"default":null}},"required":["id","label","type","required"],"type":"object"},"type":"array"},{"type":"null"}],"default":null,"description":"Columns of a table field; each row is an object with these keys."},"help":{"anyOf":[{"type":"string"},{"type":"null"}],"default":null}},"required":["id","section","label","prompt","type","required","ask"],"type":"object"},"type":"array"},"notes":{"items":{"type":"string"},"type":"array"}},"required":["contract_version","form_id","form_version","sections","fields","notes"],"type":"object"},"annotations":{"title":"List the intake questions","readOnlyHint":true,"idempotentHint":true,"openWorldHint":false},"_meta":{"m42/rest":{"method":"GET","path":"/v1/fields","operationId":"fields"},"m42/scope":"intake.read","m42/success_statuses":[200],"m42/errors":["urn:m42-intake:problem:unauthenticated","urn:m42-intake:problem:forbidden","urn:m42-intake:problem:rate-limited","urn:m42-intake:problem:unavailable"]}},{"name":"list-approvals","title":"List the approvals of a request","description":"Get the pending approvals of a request, including what each asks, which decisions are allowed, the key facts and a link to the dossier. Use it when the person is an approver and wants to review a request. Show the facts and the question before asking for a decision. Pass state=decided or state=all to see history.","inputSchema":{"type":"object","properties":{"request_id":{"type":"string","description":"The request id returned by submit (e.g. M42-INT-3F9A21C4)."},"state":{"type":"string","enum":["pending","decided","all"],"default":"pending","description":"Which approvals to list."}},"required":["request_id"],"additionalProperties":false},"outputSchema":{"additionalProperties":false,"properties":{"contract_version":{"type":"string"},"request_id":{"type":"string"},"approvals":{"items":{"additionalProperties":false,"properties":{"approval_id":{"type":"string"},"request_id":{"type":"string"},"gate":{"enum":["owner_confirmation","coe_review","criticality_confirmation","architect_review","divergence_approval"],"type":"string"},"gate_name":{"type":"string"},"state":{"enum":["pending","decided","superseded"],"type":"string","description":"pending: waiting for a decision. decided: recorded. superseded: replaced by a newer approval after a send-back or an override."},"question":{"description":"What the approver is being asked to decide.","type":"string"},"allowed_decisions":{"description":"Decisions this gate accepts. Anything else is refused.","items":{"enum":["approve","reject","send_back"],"type":"string"},"type":"array"},"comments_required_for":{"description":"Decisions that must carry comments.","items":{"enum":["approve","reject","send_back"],"type":"string"},"type":"array"},"requested_at":{"anyOf":[{"type":"string"},{"type":"null"}],"default":null},"facts":{"description":"The few facts the approver needs first. The dossier has the rest.","items":{"additionalProperties":false,"properties":{"label":{"type":"string"},"value":{"type":"string"}},"required":["label","value"],"type":"object"},"type":"array"},"dossier":{"anyOf":[{"additionalProperties":false,"properties":{"version":{"description":"Dossier version for this decision point; a send-back produces a new version.","type":"integer"},"pages":{"anyOf":[{"type":"integer"},{"type":"null"}],"default":null,"description":"Page count of the PDF."},"sha256":{"anyOf":[{"type":"string"},{"type":"null"}],"default":null,"description":"Hash of the stored PDF."},"pdf_href":{"description":"Relative path of the PDF (REST only; fetch with the same credentials).","type":"string"},"json_href":{"description":"Relative path of the machine-readable dossier.","type":"string"}},"required":["version","pdf_href","json_href"],"type":"object"},{"type":"null"}],"default":null},"decision":{"anyOf":[{"additionalProperties":false,"properties":{"decision":{"enum":["approve","reject","send_back"],"type":"string"},"decided_by":{"type":"string"},"decided_at":{"type":"string"},"comments":{"type":"string"}},"required":["decision","decided_by","decided_at","comments"],"type":"object"},{"type":"null"}],"default":null,"description":"Present once decided."},"design_must_be_opened":{"description":"True when approve is refused until the dossier or design has been opened (FR-41, TBC).","type":"boolean"},"design_opened":{"anyOf":[{"type":"boolean"},{"type":"null"}],"default":null,"description":"Whether it has been opened; null when design_must_be_opened is false."}},"required":["approval_id","request_id","gate","gate_name","state","question","allowed_decisions","comments_required_for","facts","design_must_be_opened"],"type":"object"},"type":"array"}},"required":["contract_version","request_id","approvals"],"type":"object"},"annotations":{"title":"List the approvals of a request","readOnlyHint":true,"idempotentHint":true,"openWorldHint":false},"_meta":{"m42/rest":{"method":"GET","path":"/v1/requests/{request_id}/approvals","operationId":"list-approvals"},"m42/scope":"intake.read","m42/success_statuses":[200],"m42/errors":["urn:m42-intake:problem:not-found","urn:m42-intake:problem:unauthenticated","urn:m42-intake:problem:forbidden","urn:m42-intake:problem:rate-limited","urn:m42-intake:problem:unavailable"]}},{"name":"decide-approval","title":"Record a decision on an approval","description":"Record the approver's decision. ONLY call this after the approver has told you the decision in their own words and you have read it back to them and they confirmed; a decision cannot be undone. Use only a decision listed in the approval's allowed_decisions. send_back needs comments. At the criticality gate, approve may carry criticality_class to substitute the proposed class. The caller is recorded as the decider automatically. If the answer is design-not-opened, tell the approver to open the dossier first.","inputSchema":{"type":"object","properties":{"request_id":{"type":"string","description":"The request id returned by submit (e.g. M42-INT-3F9A21C4)."},"approval_id":{"type":"string","description":"The approval id from status or list-approvals."},"decision":{"enum":["approve","reject","send_back"],"type":"string","description":"approve, reject or send_back. Which are allowed depends on the gate; see allowed_decisions."},"comments":{"default":"","description":"Reasoning or corrections. Required for send_back; recommended for reject.","type":"string"},"criticality_class":{"anyOf":[{"enum":["routine","significant","severe"],"type":"string"},{"type":"null"}],"default":null,"description":"Criticality gate only, with approve: the class being confirmed or substituted. Omit to confirm the proposed class."}},"required":["request_id","approval_id","decision"],"additionalProperties":false},"outputSchema":{"additionalProperties":false,"properties":{"contract_version":{"type":"string"},"request_id":{"type":"string"},"approval_id":{"type":"string"},"decision":{"enum":["approve","reject","send_back"],"type":"string"},"decided_by":{"description":"Taken from the caller's token, never from the request body.","type":"string"},"decided_at":{"type":"string"},"identity_verified":{"description":"False while the draft runs without token validation (DEF-014 interim). Treat as unauthenticated.","type":"boolean"},"replay":{"default":false,"description":"True when the same decision had already been recorded; nothing changed.","type":"boolean"},"request_state":{"enum":["accepted","running","awaiting_decision","completed","automation","rejected","returned_as_integration","failed","interrupted"],"type":"string","description":"State of the request after the decision, usually 'running' while the next step is derived."},"poll_after_seconds":{"anyOf":[{"type":"integer"},{"type":"null"}],"default":null}},"required":["contract_version","request_id","approval_id","decision","decided_by","decided_at","identity_verified","request_state"],"type":"object"},"annotations":{"title":"Record a decision on an approval","readOnlyHint":false,"destructiveHint":false,"idempotentHint":true,"openWorldHint":false},"_meta":{"m42/rest":{"method":"POST","path":"/v1/requests/{request_id}/approvals/{approval_id}/decision","operationId":"decide-approval"},"m42/scope":"intake.decide.<gate>","m42/success_statuses":[202,200],"m42/errors":["urn:m42-intake:problem:invalid-request","urn:m42-intake:problem:decision-not-allowed","urn:m42-intake:problem:comments-required","urn:m42-intake:problem:not-found","urn:m42-intake:problem:already-decided","urn:m42-intake:problem:approval-superseded","urn:m42-intake:problem:design-not-opened","urn:m42-intake:problem:unauthenticated","urn:m42-intake:problem:forbidden","urn:m42-intake:problem:rate-limited","urn:m42-intake:problem:unavailable"]}}]}}
+PS C:\Users\vijayn> $submit = @'
+>> {
+>>   "jsonrpc": "2.0",
+>>   "id": 3,
+>>   "method": "tools/call",
+>>   "params": {
+>>     "name": "submit",
+>>     "arguments": {
+>>       "channel": "copilot",
+>>       "pathway": "comprehensive",
+>>       "q0_org_unit": "Operational",
+>>       "q1_full_name": "Test MCP User",
+>>       "q2_department": "Operations",
+>>       "q3_job_title": "Ops Manager",
+>>       "q4_relationship": "I perform it myself",
+>>       "q5_task_description": "Testing MCP trigger flow.",
+>>       "q6_categories": ["Validate request"],
+>>       "q7_goals": ["Reduce time"],
+>>       "q8_biggest_value": "Reduced turnaround time.",
+>>       "q9_other_kpis": "Cycle time",
+>>       "q10_step_count": "6-15",
+>>       "q11_conditional_logic": "No",
+>>       "q12_systems": ["EMR-EHR"],
+>>       "q12b_write_back_targets": ["EMR"],
+>>       "q13_systems_purpose": "Test system",
+>>       "q14_data_types": ["Structured"],
+>>       "q15_change_frequency": "Rarely",
+>>       "q16_volume_pattern": "Consistent",
+>>       "q16_annual_volume": 12000,
+>>       "q17_effort_table": [
+>>         {
+>>           "role": "Operations analyst",
+>>           "role_band": "admin",
+>>           "headcount": 2,
+>>           "seniority": "mid",
+>>           "frequency_per_week": 20,
+>>           "current_minutes": 12,
+>>           "expected_minutes": 6
+>>         }
+>>       ],
+>>       "q18_error_rate": "Rarely <1%",
+>>       "q19_sensitive_data": ["PII"],
+>>       "q20_sign_off": "Audit trail only",
+>>       "q21_sign_off_detail": "Test tracking only",
+>>       "q22_failure_impact": "Low",
+>>       "q23_stakeholder_discussion": "yes supportive",
+>>       "q24_data_readiness": "Yes fully",
+>>       "q25_urgency": "High",
+>>       "q26_investment_band": "AED 200-500k",
+>>       "q27_budget_likelihood": "likely",
+>>       "q28_estimated_annual_benefit_aed": 500000,
+>>       "q29_additional_context": "Manual MCP test",
+>>       "idempotency_key": "9b1a2d18-1111-4a3d-b7d4-000000000001"
+>>     }
+>>   }
+>> }
+>> '@
+>>
+>> Invoke-Mcp $submit
+{"jsonrpc":"2.0","id":3,"result":{"content":[{"type":"text","text":"{\n  \"contract_version\": \"1.0.0-draft.1\",\n  \"request_id\": \"M42-INT-935444A7\",\n  \"state\": \"awaiting_decision\",\n  \"submitted_at\": \"2026-11-11T10:18:58Z\",\n  \"duplicate_of\": \"M42-INT-935444A7\",\n  \"idempotent_replay\": false,\n  \"poll_after_seconds\": 300\n}"}],"structuredContent":{"contract_version":"1.0.0-draft.1","request_id":"M42-INT-935444A7","state":"awaiting_decision","submitted_at":"2026-11-11T10:18:58Z","duplicate_of":"M42-INT-935444A7","idempotent_replay":false,"poll_after_seconds":300},"isError":false}}
+PS C:\Users\vijayn> $submit = @'
+>> {
+>>   "jsonrpc": "2.0",
+>>   "id": 3,
+>>   "method": "tools/call",
+>>   "params": {
+>>     "name": "submit",
+>>     "arguments": {
+>>       "channel": "copilot",
+>>       "pathway": "comprehensive",
+>>       "q0_org_unit": "Operational",
+>>       "q1_full_name": "Test MCP User",
+>>       "q2_department": "Operations",
+>>       "q3_job_title": "Ops Manager",
+>>       "q4_relationship": "I perform it myself",
+>>       "q5_task_description": "Testing MCP trigger flow.",
+>>       "q6_categories": ["Validate request"],
+>>       "q7_goals": ["Reduce time"],
+>>       "q8_biggest_value": "Reduced turnaround time.",
+>>       "q9_other_kpis": "Cycle time",
+>>       "q10_step_count": "6-15",
+>>       "q11_conditional_logic": "A few simple conditions",
+>>       "q12_systems": ["EMR-EHR"],
+>>       "q12b_write_back_targets": ["EMR"],
+>>       "q13_systems_purpose": "Test system",
+>>       "q14_data_types": ["Structured"],
+>>       "q15_change_frequency": "Rarely",
+>>       "q16_volume_pattern": "Consistent",
+>>       "q16_annual_volume": 12000,
+>>       "q17_effort_table": [
+>>         {
+>>           "role": "Operations analyst",
+>>           "role_band": "admin",
+>>           "headcount": 2,
+>>           "seniority": "mid",
+>>           "frequency_per_week": 20,
+>>           "current_minutes": 12,
+>>           "expected_minutes": 6
+>>         }
+>>       ],
+>>       "q18_error_rate": "Rarely <1%",
+>>       "q19_sensitive_data": ["PII"],
+>>       "q20_sign_off": "Audit trail only",
+>>       "q21_sign_off_detail": "Test tracking only",
+>>       "q22_failure_impact": "Low",
+>>       "q23_stakeholder_discussion": "yes supportive",
+>>       "q24_data_readiness": "Yes fully",
+>>       "q25_urgency": "High",
+>>       "q26_investment_band": "AED 200-500k",
+>>       "q27_budget_likelihood": "likely",
+>>       "q28_estimated_annual_benefit_aed": 500000,
+>>       "q29_additional_context": "Manual MCP test",
+>>       "idempotency_key": "9b1a2d18-1111-4a3d-b7d4-000000000001"
+>>     }
+>>   }
+>> }
+>> '@
+>>
+>> Invoke-Mcp $submit
+{"jsonrpc":"2.0","id":3,"result":{"content":[{"type":"text","text":"{\n  \"contract_version\": \"1.0.0-draft.1\",\n  \"request_id\": \"M42-INT-E6392740\",\n  \"state\": \"accepted\",\n  \"submitted_at\": \"2026-11-12T09:03:19Z\",\n  \"idempotent_replay\": false,\n  \"poll_after_seconds\": 20\n}"}],"structuredContent":{"contract_version":"1.0.0-draft.1","request_id":"M42-INT-E6392740","state":"accepted","submitted_at":"2026-11-12T09:03:19Z","idempotent_replay":false,"poll_after_seconds":20},"isError":false}}
+PS C:\Users\vijayn> $requestId = "M42-INT-E6392740"
+>>
+>> $status = @"
+>> {
+>>   "jsonrpc": "2.0",
+>>   "id": 4,
+>>   "method": "tools/call",
+>>   "params": {
+>>     "name": "status",
+>>     "arguments": {
+>>       "request_id": "$requestId"
+>>     }
+>>   }
+>> }
+>> "@
+>>
+>> Invoke-Mcp $status
+{"jsonrpc":"2.0","id":4,"result":{"content":[{"type":"text","text":"{\n  \"contract_version\": \"1.0.0-draft.1\",\n  \"request_id\": \"M42-INT-E6392740\",\n  \"state\": \"awaiting_decision\",\n  \"terminal\": false,\n  \"summary\": \"Waiting for a decision: Owner confirmation.\",\n  \"submitted_at\": \"2026-11-12T09:03:19Z\",\n  \"updated_at\": \"2026-11-12T09:03:25Z\",\n  \"progress\": {\n    \"current_step\": 3,\n    \"steps_completed\": 1,\n    \"steps_total\": 19\n  },\n  \"pending_approvals\": [\n    {\n      \"approval_id\": \"cd27b0a9-061c-4dd2-8d02-ab2db60d28e8\",\n      \"gate\": \"owner_confirmation\",\n      \"gate_name\": \"Owner confirmation\",\n      \"requested_at\": \"2026-11-12T09:03:25+00:00\"\n    }\n  ],\n  \"is_stub\": false,\n  \"poll_after_seconds\": 300\n}"}],"structuredContent":{"contract_version":"1.0.0-draft.1","request_id":"M42-INT-E6392740","state":"awaiting_decision","terminal":false,"summary":"Waiting for a decision: Owner confirmation.","submitted_at":"2026-11-12T09:03:19Z","updated_at":"2026-11-12T09:03:25Z","progress":{"current_step":3,"steps_completed":1,"steps_total":19},"pending_approvals":[{"approval_id":"cd27b0a9-061c-4dd2-8d02-ab2db60d28e8","gate":"owner_confirmation","gate_name":"Owner confirmation","requested_at":"2026-11-12T09:03:25+00:00"}],"is_stub":false,"poll_after_seconds":300},"isError":false}}
+PS C:\Users\vijayn> $requestId = "M42-INT-XXXXXX"
+>>
+>> $list = @"
+>> {
+>>   "jsonrpc": "2.0",
+>>   "id": 5,
+>>   "method": "tools/call",
+>>   "params": {
+>>     "name": "list-approvals",
+>>     "arguments": {
+>>       "request_id": "$requestId",
+>>       "state": "pending"
+>>     }
+>>   }
+>> }
+>> "@
+>>
+>> Invoke-Mcp $list
+{"jsonrpc":"2.0","id":5,"result":{"content":[{"type":"text","text":"{\"type\": \"urn:m42-intake:problem:not-found\", \"title\": \"Not found\", \"status\": 404, \"detail\": \"No request M42-INT-XXXXXX.\", \"request_id\": \"M42-INT-XXXXXX\", \"correlation_id\": \"258f8992-9ae0-4409-a082-a8c158a77f1e\"}"}],"isError":true}}
+PS C:\Users\vijayn> $requestId = "M42-INT-E6392740"
+>>
+>> $list = @"
+>> {
+>>   "jsonrpc": "2.0",
+>>   "id": 5,
+>>   "method": "tools/call",
+>>   "params": {
+>>     "name": "list-approvals",
+>>     "arguments": {
+>>       "request_id": "$requestId",
+>>       "state": "pending"
+>>     }
+>>   }
+>> }
+>> "@
+>>
+>> Invoke-Mcp $list
+{"jsonrpc":"2.0","id":5,"result":{"content":[{"type":"text","text":"{\n  \"contract_version\": \"1.0.0-draft.1\",\n  \"request_id\": \"M42-INT-E6392740\",\n  \"approvals\": [\n    {\n      \"approval_id\": \"cd27b0a9-061c-4dd2-8d02-ab2db60d28e8\",\n      \"request_id\": \"M42-INT-E6392740\",\n      \"gate\": \"owner_confirmation\",\n      \"gate_name\": \"Owner confirmation\",\n      \"state\": \"pending\",\n      \"question\": \"Confirm the framing, or send it back with corrections.\",\n      \"allowed_decisions\": [\n        \"approve\",\n        \"send_back\"\n      ],\n      \"comments_required_for\": [\n        \"send_back\"\n      ],\n      \"requested_at\": \"2026-11-12T09:03:25+00:00\",\n      \"facts\": [\n        {\n          \"label\": \"Problem\",\n          \"value\": \"The current manual MCP test process is slow and leads to longer turnaround times for operational tasks.\"\n        },\n        {\n          \"label\": \"Accountable owner\",\n          \"value\": \"(not named; the owner gate asks for one person)\"\n        },\n        {\n          \"label\": \"Expected change\",\n          \"value\": \"Reduced turnaround time for MCP-related operational work by improving the MCP trigger flow.\"\n        },\n        {\n          \"label\": \"Feasibility verdict\",\n          \"value\": \"not available at this point\"\n        },\n        {\n          \"label\": \"Criticality class\",\n          \"value\": \"not yet derived (not yet derived)\"\n        }\n      ],\n      \"dossier\": {\n        \"version\": 1,\n        \"pages\": 5,\n        \"sha256\": \"e652b6bcbc2922ca904bf99525204242c9ac3681625f4f1c1176bf58a88ef397\",\n        \"pdf_href\": \"/v1/requests/M42-INT-E6392740/approvals/cd27b0a9-061c-4dd2-8d02-ab2db60d28e8/dossier.pdf\",\n        \"json_href\": \"/v1/requests/M42-INT-E6392740/approvals/cd27b0a9-061c-4dd2-8d02-ab2db60d28e8/dossier.json\"\n      },\n      \"design_must_be_opened\": false\n    }\n  ]\n}"}],"structuredContent":{"contract_version":"1.0.0-draft.1","request_id":"M42-INT-E6392740","approvals":[{"approval_id":"cd27b0a9-061c-4dd2-8d02-ab2db60d28e8","request_id":"M42-INT-E6392740","gate":"owner_confirmation","gate_name":"Owner confirmation","state":"pending","question":"Confirm the framing, or send it back with corrections.","allowed_decisions":["approve","send_back"],"comments_required_for":["send_back"],"requested_at":"2026-11-12T09:03:25+00:00","facts":[{"label":"Problem","value":"The current manual MCP test process is slow and leads to longer turnaround times for operational tasks."},{"label":"Accountable owner","value":"(not named; the owner gate asks for one person)"},{"label":"Expected change","value":"Reduced turnaround time for MCP-related operational work by improving the MCP trigger flow."},{"label":"Feasibility verdict","value":"not available at this point"},{"label":"Criticality class","value":"not yet derived (not yet derived)"}],"dossier":{"version":1,"pages":5,"sha256":"e652b6bcbc2922ca904bf99525204242c9ac3681625f4f1c1176bf58a88ef397","pdf_href":"/v1/requests/M42-INT-E6392740/approvals/cd27b0a9-061c-4dd2-8d02-ab2db60d28e8/dossier.pdf","json_href":"/v1/requests/M42-INT-E6392740/approvals/cd27b0a9-061c-4dd2-8d02-ab2db60d28e8/dossier.json"},"design_must_be_opened":false}]},"isError":false}}
+PS C:\Users\vijayn> $approvalId = "cd27b0a9-061c-4dd2-8d02-ab2db60d28e8"
+>>
+>> $approve = @"
+>> {
+>>   "jsonrpc": "2.0",
+>>   "id": 5,
+>>   "method": "tools/call",
+>>   "params": {
+>>     "name": "decide-approval",
+>>     "arguments": {
+>>       "request_id": "$requestId",
+>>       "approval_id": "$approvalId",
+>>       "decision": "approve"
+>>     }
+>>   }
+>> }
+>> "@
+>>
+PS C:\Users\vijayn> Invoke-Mcp $approve
+{"jsonrpc":"2.0","id":5,"result":{"content":[{"type":"text","text":"{\"type\": \"urn:m42-intake:problem:unauthenticated\", \"title\": \"Authentication required\", \"status\": 401, \"detail\": \"A decision is recorded under the decider's name. Send it in the 0390f37c-6c3b-495c-9751-a6bc5af815c1 header (the gateway sets it).\", \"request_id\": \"M42-INT-E6392740\", \"correlation_id\": \"960af518-d243-4a93-881d-55fb81f3ffdf\"}"}],"isError":true}}
+PS C:\Users\vijayn> curl -sS -X POST "$apiHost/mcp" `
+>>   -H "Content-Type: application/json" `
+>>   -H "Accept: application/json, text/event-stream" `
+>>   -H "MCP-Protocol-Version: 2025-11-25" `
+>>   -H "0390f37c-6c3b-495c-9751-a6bc5af815c1: Vijay.test_mcp@intakeagent.com" `
+>>   -H "X-Correlation-Id: mcp-manual-approve-001" `
+>>   --data $approve
+{"jsonrpc":"2.0","id":5,"result":{"content":[{"type":"text","text":"{\n  \"contract_version\": \"1.0.0-draft.1\",\n  \"request_id\": \"M42-INT-E6392740\",\n  \"approval_id\": \"cd27b0a9-061c-4dd2-8d02-ab2db60d28e8\",\n  \"decision\": \"approve\",\n  \"decided_by\": \"Vijay.test_mcp@intakeagent.com\",\n  \"decided_at\": \"2026-11-12T09:19:04+00:00\",\n  \"identity_verified\": false,\n  \"replay\": false,\n  \"request_state\": \"running\",\n  \"poll_after_seconds\": 20\n}"}],"structuredContent":{"contract_version":"1.0.0-draft.1","request_id":"M42-INT-E6392740","approval_id":"cd27b0a9-061c-4dd2-8d02-ab2db60d28e8","decision":"approve","decided_by":"Vijay.test_mcp@intakeagent.com","decided_at":"2026-11-12T09:19:04+00:00","identity_verified":false,"replay":false,"request_state":"running","poll_after_seconds":20},"isError":false}}
+PS C:\Users\vijayn> Invoke-Mcp $status
+{"jsonrpc":"2.0","id":4,"result":{"content":[{"type":"text","text":"{\n  \"contract_version\": \"1.0.0-draft.1\",\n  \"request_id\": \"M42-INT-E6392740\",\n  \"state\": \"awaiting_decision\",\n  \"terminal\": false,\n  \"summary\": \"Waiting for a decision: AI CoE review.\",\n  \"submitted_at\": \"2026-11-12T09:03:19Z\",\n  \"updated_at\": \"2026-11-12T09:19:43Z\",\n  \"progress\": {\n    \"current_step\": 8,\n    \"steps_completed\": 6,\n    \"steps_total\": 19\n  },\n  \"pending_approvals\": [\n    {\n      \"approval_id\": \"bfc82f76-102e-4fc5-8171-d5979a47389a\",\n      \"gate\": \"coe_review\",\n      \"gate_name\": \"AI CoE review\",\n      \"requested_at\": \"2026-11-12T09:19:43+00:00\"\n    }\n  ],\n  \"is_stub\": false,\n  \"poll_after_seconds\": 300\n}"}],"structuredContent":{"contract_version":"1.0.0-draft.1","request_id":"M42-INT-E6392740","state":"awaiting_decision","terminal":false,"summary":"Waiting for a decision: AI CoE review.","submitted_at":"2026-11-12T09:03:19Z","updated_at":"2026-11-12T09:19:43Z","progress":{"current_step":8,"steps_completed":6,"steps_total":19},"pending_approvals":[{"approval_id":"bfc82f76-102e-4fc5-8171-d5979a47389a","gate":"coe_review","gate_name":"AI CoE review","requested_at":"2026-11-12T09:19:43+00:00"}],"is_stub":false,"poll_after_seconds":300},"isError":false}}
+PS C:\Users\vijayn> Invoke-Mcp $list
+{"jsonrpc":"2.0","id":5,"result":{"content":[{"type":"text","text":"{\n  \"contract_version\": \"1.0.0-draft.1\",\n  \"request_id\": \"M42-INT-E6392740\",\n  \"approvals\": [\n    {\n      \"approval_id\": \"bfc82f76-102e-4fc5-8171-d5979a47389a\",\n      \"request_id\": \"M42-INT-E6392740\",\n      \"gate\": \"coe_review\",\n      \"gate_name\": \"AI CoE review\",\n      \"state\": \"pending\",\n      \"question\": \"Approve, reject, or return for further information.\",\n      \"allowed_decisions\": [\n        \"approve\",\n        \"reject\",\n        \"send_back\"\n      ],\n      \"comments_required_for\": [\n        \"send_back\"\n      ],\n      \"requested_at\": \"2026-11-12T09:19:43+00:00\",\n      \"facts\": [\n        {\n          \"label\": \"Problem\",\n          \"value\": \"The current manual MCP test process is slow and leads to longer turnaround times for operational tasks.\"\n        },\n        {\n          \"label\": \"Accountable owner\",\n          \"value\": \"(not named; the owner gate asks for one person)\"\n        },\n        {\n          \"label\": \"Expected change\",\n          \"value\": \"Reduced turnaround time for MCP-related operational work by improving the MCP trigger flow.\"\n        },\n        {\n          \"label\": \"Feasibility verdict\",\n          \"value\": \"reject; rule fired: F04\"\n        },\n        {\n          \"label\": \"Criticality class\",\n          \"value\": \"significant (provisional (step 7); the class is set at the criticality gate)\"\n        }\n      ],\n      \"dossier\": {\n        \"version\": 1,\n        \"pages\": 6,\n        \"sha256\": \"d40139e09b9d56a1105563c9a296cc7188810dd89f2c21f593dfe54f96685e3a\",\n        \"pdf_href\": \"/v1/requests/M42-INT-E6392740/approvals/bfc82f76-102e-4fc5-8171-d5979a47389a/dossier.pdf\",\n        \"json_href\": \"/v1/requests/M42-INT-E6392740/approvals/bfc82f76-102e-4fc5-8171-d5979a47389a/dossier.json\"\n      },\n      \"design_must_be_opened\": false\n    }\n  ]\n}"}],"structuredContent":{"contract_version":"1.0.0-draft.1","request_id":"M42-INT-E6392740","approvals":[{"approval_id":"bfc82f76-102e-4fc5-8171-d5979a47389a","request_id":"M42-INT-E6392740","gate":"coe_review","gate_name":"AI CoE review","state":"pending","question":"Approve, reject, or return for further information.","allowed_decisions":["approve","reject","send_back"],"comments_required_for":["send_back"],"requested_at":"2026-11-12T09:19:43+00:00","facts":[{"label":"Problem","value":"The current manual MCP test process is slow and leads to longer turnaround times for operational tasks."},{"label":"Accountable owner","value":"(not named; the owner gate asks for one person)"},{"label":"Expected change","value":"Reduced turnaround time for MCP-related operational work by improving the MCP trigger flow."},{"label":"Feasibility verdict","value":"reject; rule fired: F04"},{"label":"Criticality class","value":"significant (provisional (step 7); the class is set at the criticality gate)"}],"dossier":{"version":1,"pages":6,"sha256":"d40139e09b9d56a1105563c9a296cc7188810dd89f2c21f593dfe54f96685e3a","pdf_href":"/v1/requests/M42-INT-E6392740/approvals/bfc82f76-102e-4fc5-8171-d5979a47389a/dossier.pdf","json_href":"/v1/requests/M42-INT-E6392740/approvals/bfc82f76-102e-4fc5-8171-d5979a47389a/dossier.json"},"design_must_be_opened":false}]},"isError":false}}
+PS C:\Users\vijayn> curl -L -o dossier.pdf "$apiHost/v1/requests/$requestId/approvals/$approvalId/dossier.pdf" `
+>>   -H "X-Authenticated-User: test.user@company.com"
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100 48432  100 48432    0     0   181k      0 --:--:-- --:--:-- --:--:--  184k
+PS C:\Users\vijayn> curl -L -o dossier.pdf "$apiHost/v1/requests/M42-INT-E6392740/approvals/bfc82f76-102e-4fc5-8171-d5979a47389a/dossier.pdf" `
+>>   -H "X-Authenticated-User: test.user@company.com"
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0Warning: Failed to open the file dossier.pdf: Permission denied
+  0 52992    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+curl: (23) client returned ERROR on write of 15877 bytes
+PS C:\Users\vijayn> curl -L -o dossier.pdf "$apiHost/v1/requests/M42-INT-E6392740/approvals/bfc82f76-102e-4fc5-8171-d5979a47389a/dossier.pdf" `
+>>   -H "X-Authenticated-User: test.user@company.com"
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100 52992  100 52992    0     0   402k      0 --:--:-- --:--:-- --:--:--  417k
+PS C:\Users\vijayn> curl -L -o dossier.pdf "$apiHost/v1/requests/$requestId/approvals/$approvalId/dossier_ownerConfirmation.pdf" `
+>>   -H "X-Authenticated-User: test.user@company.com"
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100    22  100    22    0     0    180      0 --:--:-- --:--:-- --:--:--   184
+PS C:\Users\vijayn> curl -L -o dossier.pdf "$apiHost/v1/requests/$requestId/approvals/$approvalId/dossier_ownerConfirmation.pdf" `
+>>   -H "X-Authenticated-User: test.user@company.com"
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100    22  100    22    0     0    195      0 --:--:-- --:--:-- --:--:--   203
+PS C:\Users\vijayn> curl -L -o dossier.pdf "$apiHost/v1/requests/M42-INT-E6392740/approvals/bfc82f76-102e-4fc5-8171-d5979a47389a/dossier_AICOE.pdf" `
+>>   -H "X-Authenticated-User: test.user@company.com"
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100    22  100    22    0     0    196      0 --:--:-- --:--:-- --:--:--   203
+PS C:\Users\vijayn> curl -L -o dossier.pdf "$apiHost/v1/requests/$requestId/approvals/$approvalId/dossier.pdf" `
+>>   -H "X-Authenticated-User: test.user@company.com"
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100 48432  100 48432    0     0   290k      0 --:--:-- --:--:-- --:--:--  297k
+PS C:\Users\vijayn>

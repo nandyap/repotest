@@ -1,0 +1,234 @@
+MCP testing 
+
+
+1) Common base for all MCP calls
+
+
+$apiHost = "https://ca-intake-intake-dev-backend.politewater-2393db25.uaenorth.azurecontainerapps.io"
+
+$caller = "Vijay.test_mcp@intakeagent.com"
+
+function Invoke-Mcp($payload) {
+    curl -sS -X POST "$apiHost/mcp" `
+      -H "Content-Type: application/json" `
+      -H "Accept: application/json, text/event-stream" `
+      -H "MCP-Protocol-Version: 2025-11-25" `
+      -H "X-Authenticated-User: $caller" `
+      -H "X-Correlation-Id: $([guid]::NewGuid().ToString())" `
+      --data $payload
+}
+
+2) initialize
+
+$init = @'
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "initialize",
+  "params": {
+    "protocolVersion": "2025-11-25",
+    "capabilities": {},
+    "clientInfo": {
+      "name": "manual-mcp-test",
+      "version": "1.0.0"
+    }
+  }
+}
+'@
+
+Invoke-Mcp $init
+
+3) tools/list
+
+$toolsList = @'
+{
+  "jsonrpc": "2.0",
+  "id": 2,
+  "method": "tools/list",
+  "params": {}
+}
+'@
+
+Invoke-Mcp $toolsList
+
+4) submit - Use a valid submission body. 
+
+$submit = @'
+{
+  "jsonrpc": "2.0",
+  "id": 3,
+  "method": "tools/call",
+  "params": {
+    "name": "submit",
+    "arguments": {
+      "channel": "copilot",
+      "pathway": "comprehensive",
+      "q0_org_unit": "Operational",
+      "q1_full_name": "Test MCP User",
+      "q2_department": "Operations",
+      "q3_job_title": "Ops Manager",
+      "q4_relationship": "I perform it myself",
+      "q5_task_description": "Testing MCP trigger flow.",
+      "q6_categories": ["Validate request"],
+      "q7_goals": ["Reduce time"],
+      "q8_biggest_value": "Reduced turnaround time.",
+      "q9_other_kpis": "Cycle time",
+      "q10_step_count": "6-15",
+      "q11_conditional_logic": "A few simple conditions",
+      "q12_systems": ["EMR-EHR"],
+      "q12b_write_back_targets": ["EMR"],
+      "q13_systems_purpose": "Test system",
+      "q14_data_types": ["Structured"],
+      "q15_change_frequency": "Rarely",
+      "q16_volume_pattern": "Consistent",
+      "q16_annual_volume": 12000,
+      "q17_effort_table": [
+        {
+          "role": "Operations analyst",
+          "role_band": "admin",
+          "headcount": 2,
+          "seniority": "mid",
+          "frequency_per_week": 20,
+          "current_minutes": 12,
+          "expected_minutes": 6
+        }
+      ],
+      "q18_error_rate": "Rarely <1%",
+      "q19_sensitive_data": ["PII"],
+      "q20_sign_off": "Audit trail only",
+      "q21_sign_off_detail": "Test tracking only",
+      "q22_failure_impact": "Low",
+      "q23_stakeholder_discussion": "yes supportive",
+      "q24_data_readiness": "Yes fully",
+      "q25_urgency": "High",
+      "q26_investment_band": "AED 200-500k",
+      "q27_budget_likelihood": "likely",
+      "q28_estimated_annual_benefit_aed": 500000,
+      "q29_additional_context": "Manual MCP test",
+      "idempotency_key": "9b1a2d18-1111-4a3d-b7d4-000000000001"
+    }
+  }
+}
+'@
+
+Invoke-Mcp $submit
+
+
+5) status
+
+$requestId = "M42-INT-E6392740"
+
+$status = @"
+{
+  "jsonrpc": "2.0",
+  "id": 4,
+  "method": "tools/call",
+  "params": {
+    "name": "status",
+    "arguments": {
+      "request_id": "$requestId"
+    }
+  }
+}
+"@
+
+Invoke-Mcp $status
+
+6) list-approvals
+
+$requestId = "M42-INT-E6392740"
+
+$list = @"
+{
+  "jsonrpc": "2.0",
+  "id": 5,
+  "method": "tools/call",
+  "params": {
+    "name": "list-approvals",
+    "arguments": {
+      "request_id": "$requestId",
+      "state": "pending"
+    }
+  }
+}
+"@
+
+Invoke-Mcp $list
+
+7) Approve Owner Confirmation gate
+
+$approvalId = "cd27b0a9-061c-4dd2-8d02-ab2db60d28e8"
+
+$approve = @"
+{
+  "jsonrpc": "2.0",
+  "id": 5,
+  "method": "tools/call",
+  "params": {
+    "name": "decide-approval",
+    "arguments": {
+      "request_id": "$requestId",
+      "approval_id": "$approvalId",
+      "decision": "approve"
+    }
+  }
+}
+"@
+
+curl -sS -X POST "$apiHost/mcp" `
+  -H "Content-Type: application/json" `
+  -H "Accept: application/json, text/event-stream" `
+  -H "MCP-Protocol-Version: 2025-11-25" `
+  -H "0390f37c-6c3b-495c-9751-a6bc5af815c1: Vijay.test_mcp@intakeagent.com" `
+  -H "X-Correlation-Id: mcp-manual-approve-001" `
+  --data $approve
+
+
+
+8) decide-approval for AI CoE gate
+
+$approvalId = "bfc82f76-102e-4fc5-8171-d5979a47389a"
+bfc82f76-102e-4fc5-8171-d5979a47389a
+$approve = @"
+{
+  "jsonrpc": "2.0",
+  "id": 6,
+  "method": "tools/call",
+  "params": {
+    "name": "decide-approval",
+    "arguments": {
+      "request_id": "$requestId",
+      "approval_id": "$approvalId",
+      "decision": "approve"
+    }
+  }
+}
+"@
+
+curl -sS -X POST "$apiHost/mcp" `
+  -H "Content-Type: application/json" `
+  -H "Accept: application/json, text/event-stream" `
+  -H "MCP-Protocol-Version: 2025-11-25" `
+  -H "X-Authenticated-User: test.user@company.com" `
+  --data $approve
+
+Gate-by-gate decision values
+Use the same header pattern for all of them.
+
+Owner confirmation: decision = "approve" or "send_back"
+AI CoE review: decision = "approve", "reject", or "send_back"
+Criticality confirmation: decision = "approve" or "reject"
+Architect review: decision = "approve", "reject", or "send_back"
+Divergence approval: decision = "approve" or "reject"
+
+9) Open PDF dossier
+
+Owner Confirmation - 
+curl -L -o dossier.pdf "$apiHost/v1/requests/$requestId/approvals/$approvalId/dossier.pdf" `
+  -H "X-Authenticated-User: test.user@company.com"
+
+AI COE gate
+curl -L -o dossier.pdf "$apiHost/v1/requests/M42-INT-E6392740/approvals/bfc82f76-102e-4fc5-8171-d5979a47389a/dossier.pdf" `
+  -H "X-Authenticated-User: test.user@company.com"
+
+/v1/requests/M42-INT-E6392740/approvals/bfc82f76-102e-4fc5-8171-d5979a47389a/dossier.pdf

@@ -1,0 +1,244 @@
+Invoke-RestMethod "$frontendUrl/api/health" | ConvertTo-Json -Depth 10
+
+Invoke-RestMethod "$frontendUrl/api/health/persistence" |
+  ConvertTo-Json -Depth 10
+
+Invoke-RestMethod "$frontendUrl/api/health/model" |
+  ConvertTo-Json -Depth 10
+
+Invoke-RestMethod "$frontendUrl/api/samples" |
+  ConvertTo-Json -Depth 10
+
+$sample = Invoke-RestMethod "$frontendUrl/api/samples/<sample-id>"
+$sample | ConvertTo-Json -Depth 20
+
+
+trigger 
+
+$headers = @{
+    "Content-Type" = "application/json"
+}
+
+$run = Invoke-RestMethod `
+  -Method Post `
+  -Uri "$frontendUrl/api/submissions" `
+  -Headers $headers `
+  -Body ($sample | ConvertTo-Json -Depth 20)
+
+$run | ConvertTo-Json -Depth 20
+
+$trackingReference = $run.tracking_reference
+
+Invoke-RestMethod `
+  "$frontendUrl/api/runs/$trackingReference" |
+  ConvertTo-Json -Depth 20
+
+
+Invoke-RestMethod `
+  "$frontendUrl/api/runs/$trackingReference/timeline" |
+  ConvertTo-Json -Depth 20
+
+
+
+
+========================================
+
+$submissionFile = "C:\Users\v-vijaynan\Projects\Intake\intake-agent\artifacts\submissions\M42-INT-SYN001.json"
+
+$payloadJson = Get-Content `
+  -Path $submissionFile `
+  -Raw
+
+
+
+$payload = $payloadJson | ConvertFrom-Json
+
+$payload.submission_id
+$payload.tracking_reference
+$payload.q5_task_description
+
+
+
+try {
+    $existing = Invoke-RestMethod `
+      -Method Get `
+      -Uri "$frontendUrl/api/runs/M42-INT-SYN001"
+
+    $existing | ConvertTo-Json -Depth 20
+}
+catch {
+    Write-Host "No existing M42-INT-SYN001 run found."
+}
+
+
+
+trigger the work flow
+
+$run = Invoke-RestMethod `
+  -Method Post `
+  -Uri "$frontendUrl/api/submissions" `
+  -ContentType "application/json" `
+  -Body $payloadJson `
+  -TimeoutSec 300
+
+$run | ConvertTo-Json -Depth 30
+
+
+
+$trackingReference = $run.tracking_reference
+$trackingReference
+
+Inspect the first gate
+
+$status = Invoke-RestMethod `
+  -Method Get `
+  -Uri "$frontendUrl/api/runs/$trackingReference"
+
+$status | ConvertTo-Json -Depth 30
+
+
+
+$gate = $status.pending_gates[0]
+
+$gate.request_id
+$gate.gate_type
+$gate.data | ConvertTo-Json -Depth 20
+
+
+Confirm the owner gate
+
+$gateAnswer = @{
+    request_id = $gate.request_id
+    payload = @{
+        confirmed    = $true
+        corrections  = ""
+        confirmed_by = "API VNet test"
+    }
+} | ConvertTo-Json -Depth 10
+
+$run = Invoke-RestMethod `
+  -Method Post `
+  -Uri "$frontendUrl/api/runs/$trackingReference/gates" `
+  -ContentType "application/json" `
+  -Body $gateAnswer `
+  -TimeoutSec 900
+
+$run | ConvertTo-Json -Depth 30
+
+
+
+8. Check where it stopped
+$status = Invoke-RestMethod `
+  -Method Get `
+  -Uri "$frontendUrl/api/runs/$trackingReference"
+
+$status | ConvertTo-Json -Depth 30
+
+inspect timeline
+$timeline = Invoke-RestMethod `
+  -Method Get `
+  -Uri "$frontendUrl/api/runs/$trackingReference/timeline"
+
+$timeline | ConvertTo-Json -Depth 30
+
+Inspect a specific completed step:
+Invoke-RestMethod `
+  -Method Get `
+  -Uri "$frontendUrl/api/runs/$trackingReference/steps/3" |
+  ConvertTo-Json -Depth 30
+
+after CoE gate is reached
+Invoke-RestMethod `
+  -Method Get `
+  -Uri "$frontendUrl/api/runs/$trackingReference/steps/8" |
+  ConvertTo-Json -Depth 30
+
+
+10. Continue via API instead of the UI
+
+At each gate, refresh the status:
+$status = Invoke-RestMethod "$frontendUrl/api/runs/$trackingReference"
+$gate = $status.pending_gates[0]
+
+$gate.gate_type
+$gate.data | ConvertTo-Json -Depth 20
+
+AI CoE approval
+$answer = @{
+    request_id = $gate.request_id
+    payload = @{
+        decision              = "approve"
+        notes                 = "Approved during SYN001 VNet API test."
+        reviewed_by           = "API VNet test"
+        information_requested = @()
+    }
+} | ConvertTo-Json -Depth 10
+
+
+Criticality confirmation
+$answer = @{
+    request_id = $gate.request_id
+    payload = @{
+        confirmed      = $true
+        confirmed_class = $gate.data.proposed_class
+        notes          = "Confirmed during SYN001 VNet API test."
+        confirmed_by   = "API VNet test"
+    }
+} | ConvertTo-Json -Depth 10
+
+
+Architect approval
+$answer = @{
+    request_id = $gate.request_id
+    payload = @{
+        decision           = "approve"
+        notes              = "Approved during SYN001 VNet API test."
+        reviewed_by        = "API VNet test"
+        re_prompt_guidance = ""
+    }
+} | ConvertTo-Json -Depth 10
+
+
+Post whichever answer matches the current gate_type:
+$run = Invoke-RestMethod `
+  -Method Post `
+  -Uri "$frontendUrl/api/runs/$trackingReference/gates" `
+  -ContentType "application/json" `
+  -Body $answer `
+  -TimeoutSec 900
+
+$run | ConvertTo-Json -Depth 30
+
+
+
+11. Retrieve the final result
+Run summary:
+Invoke-RestMethod `
+  "$frontendUrl/api/runs/$trackingReference" |
+  ConvertTo-Json -Depth 30
+
+Curated design pack:
+Invoke-RestMethod `
+  "$frontendUrl/api/runs/$trackingReference/design" |
+  ConvertTo-Json -Depth 50
+
+Full raw design pack:
+Invoke-RestMethod `
+  "$frontendUrl/api/runs/$trackingReference/pack" |
+  ConvertTo-Json -Depth 100
+
+Save the result:
+Invoke-RestMethod `
+  "$frontendUrl/api/runs/$trackingReference/pack" |
+  ConvertTo-Json -Depth 100 |
+  Set-Content ".\$trackingReference-result.json" -Encoding UTF8
+
+
+
+
+
+
+
+
+
+
